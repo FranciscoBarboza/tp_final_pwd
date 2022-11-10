@@ -1,5 +1,5 @@
 <?php
-include_once '../Modelo/Menurol.php';
+include_once '../Modelo/MenuRol.php';
 
 class C_Menurol
 {
