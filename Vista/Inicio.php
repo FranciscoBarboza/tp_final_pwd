@@ -10,7 +10,7 @@
 </head>
 <body>
 <!-- menu principal -->
-<div class="fondoLogo" id="fondo">
+<!-- <div class="fondoLogo" id="fondo">
     <a href="inicio.html"></a>
     <div class="logo" id="pnglogo">
         <p><a href="curriculum.html">quieres trabajar <br> con nosotros?</a></p>
@@ -22,7 +22,7 @@
         <a href="tienda.php">Tienda</a>
         <a href="calculadora2.php">pedido</a>
     </div>
-</div>
+</div> -->
 
 
 <div class="presentacion">

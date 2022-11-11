@@ -5,18 +5,19 @@
     </head>
     <body>
         <!-- menu principal -->
-<div class="fondoLogo" id="fondo">
+        <div class="fondoLogo" id="fondo">
     <a href="inicio.html"></a>
     <div class="logo" id="pnglogo">
         <p><a href="curriculum.html">quieres trabajar <br> con nosotros?</a></p>
         <img src="./css/imagenes/logo.png"></div>
     </a>
     <div class="navegacion">
-        <a href="inicio.html">Inicio</a>
-        <a href="sobre_nosotros.html">Sobre nosotros</a>
-        <a href="tienda.html">Tienda</a>
-        <a href="calculadora2.html">pedido</a>
+        <a href="inicio.php">Inicio</a>
+        <a href="sobre_nosotros.php">Sobre nosotros</a>
+        <a href="tienda.php">Tienda</a>
+        <a href="calculadora2.php">pedido</a>
     </div>
+</div>
 </div>
 <div id="pantalla">
     <div id="todo_texto">
