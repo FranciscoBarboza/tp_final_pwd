@@ -19,9 +19,7 @@
 
       <div class="collapse navbar-collapse" id="navbarsExample03">
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="VerAutos.php" style="font-family: 'Chivo', sans-serif;">Ver Autos</a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link active" href="buscarAuto.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
           </li>
@@ -34,7 +32,7 @@
             case "Administrador":; */
           ?>
           <li class="nav-item">
-            <a class="nav-link active" href="nuevaPersona.php" style="font-family: 'Chivo', sans-serif;">Administrar cuentas</a>
+            <a class="nav-link active" href="nuevaPersona.php" style="font-family: 'Chivo', sans-serif;">administrar</a>
           </li>
           <?php /*
             case "Deposito":;
