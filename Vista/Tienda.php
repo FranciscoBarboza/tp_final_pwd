@@ -1,8 +1,11 @@
+<?php
+    include "../configuracion.php";
+    include_once("Menu/Cabecera.php");
+?>
 <html>
     <head>
         <title>tienda</title>
         <link rel="stylesheet" href="css/tienda.css">
-        
     </head>
 <body>
 
