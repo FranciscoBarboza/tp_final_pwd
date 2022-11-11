@@ -81,6 +81,8 @@ function agregarP4() {
 function eliminar(elemento) {
     elemento.parentNode.remove();
     actualizarTotal();
+    /**
+    */
 }
 
 //agregar productos
