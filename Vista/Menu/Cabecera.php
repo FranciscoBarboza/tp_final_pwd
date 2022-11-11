@@ -29,16 +29,16 @@
             <a class="nav-link active" href="listaPersona.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
           </li>
           <?php
-          switch($rol){
+          /*switch($rol){
             case "Usuario":$a;
-            case "Administrador":;
+            case "Administrador":; */
           ?>
           <li class="nav-item">
             <a class="nav-link active" href="nuevaPersona.php" style="font-family: 'Chivo', sans-serif;">Administrar cuentas</a>
           </li>
-          <?php
+          <?php /*
             case "Deposito":;
-          }
+          }*/
           ?>
           
         </ul>
