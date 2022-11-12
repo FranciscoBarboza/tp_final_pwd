@@ -7,9 +7,7 @@
     <title>Footer</title>
 
     
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="../bootstrap-5.1.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css_header_footer.css">
+
     
 
     <style>
