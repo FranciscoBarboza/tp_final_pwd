@@ -8,7 +8,7 @@
   
 </head>
 <body>
-  <nav class="navbar navbar-expand-xl navbar-light bg-light barra_navegacion" aria-label="Third navbar example"  id="header">
+  <nav class="navbar navbar-expand-xl navbar-light  barra_navegacion" aria-label="Third navbar example"  id="header" style="background-color: #4B515D">
     <div class="container-fluid">
     <span class="navbar-brand" style="font-family: 'Chivo', sans-serif;">Trabajo Final</span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
