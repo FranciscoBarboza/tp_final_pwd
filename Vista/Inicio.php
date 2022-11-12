@@ -49,3 +49,8 @@
 <?php
     include_once("Menu/Pie.php")
 ?>
+
+<?php
+    // include "../configuracion.php";
+    include_once("Menu/Cabecera.php");
+?>
