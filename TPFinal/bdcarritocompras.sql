@@ -273,3 +273,33 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+/*
+
+DROP TABLE IF EXISTS `producto`;
+CREATE TABLE IF NOT EXISTS `producto` (
+  `idProducto` bigint(20) NOT NULL AUTO_INCREMENT,
+  `proNombre` varchar(30) NOT NULL,
+  `proDetalle` varchar(512) NOT NULL,
+  `proCantStock` int(11) NOT NULL,
+  `proPrecio` int(11) NOT NULL,
+  `urlImagen` varchar(200) NOT NULL,
+  PRIMARY KEY (`idProducto`),
+  UNIQUE KEY `idproducto` (`idProducto`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+*/
+
+insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
+values ('AGUA BENDITA', '200ml frasco arrojadizo', 25, 700,  '');
+
+insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
+values ('ESTACAS CAZAVAMPIROS' '35cm de pino tallado', 25, 500, 'https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg');
+
+insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
+values ('BALAS DE PLATA', 'bendecidas', 100, 50, 'https://comunaslitoral.com.ar/06-2016/resize_1465306129.jpg');
+
+insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
+values ('CRUCIFIJO', 'grabado y relieves en plata', 7, 800, 'https://www.antiguedadestecnicas.com/fotos/prin/AR-B-898/AR-B-898-1.jpg');
+
+insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
+values ('EXORCISMO', 'viene un tipo a tu casa y te saca los fantasmas ', 'https://pbs.twimg.com/media/EY1UeCdWkAEsJKX.jpg')
