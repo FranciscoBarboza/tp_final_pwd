@@ -16,10 +16,13 @@
         <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css">
         <script src="/Vista/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
     </head>
+
+    
     
 <body>
 
     <!-- menu principal -->
+    <!--
     <div class="fondoLogo" id="fondo">
     <a href="inicio.html"></a>
     <div class="logo" id="pnglogo">
@@ -33,6 +36,9 @@
         <a href="calculadora2.php">pedido</a>
     </div>
 </div>
+
+-->
+
 
 <div class="tienda">
     
