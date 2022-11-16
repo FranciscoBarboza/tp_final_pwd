@@ -3,42 +3,42 @@
 include_once '../Modelo/Conector/BaseDatos.php';
 class Rol
 {
-    private $idrol;
-    private $rodescripcion;
+    private $idRol;
+    private $rolDescripcion;
     private $mensajeFuncion;
     
 
     public function __construct()
     {
-        $this->idrol = "";
-        $this->rodescripcion = "";
+        $this->idRol = "";
+        $this->rolDescripcion = "";
        
     }
 
-    public function cargar($idrol, $rodescripcion)
+    public function cargar($idRol, $rolDescripcion)
     {
-        $this->setIdrol($idrol);
-        $this->setRodescripcion($rodescripcion);
+        $this->setIdRol($idRol);
+        $this->setRolDescripcion($rolDescripcion);
     }
 
     //Metodos de acceso
-    public function getIdrol(){
-        return $this->idrol;
+    public function getIdRol(){
+        return $this->idRol;
     }
 
-    public function setIdrol($idrol){
-        $this->idrol = $idrol;
+    public function setIdRol($idRol){
+        $this->idRol = $idRol;
     }
 
-    public function getRodescripcion(){
-        return $this->rodescripcion;
+    public function getRolDescripcion(){
+        return $this->rolDescripcion;
     }
 
-    public function setRodescripcion($rodescripcion){
-        $this->rodescripcion = $rodescripcion;
+    public function setRolDescripcion($rolDescripcion){
+        $this->rolDescripcion = $rolDescripcion;
     }
 
-    public function getMensaje(){
+    public function getMensajeFuncion(){
         return $this->mensajeFuncion;
     }
 
@@ -54,9 +54,9 @@ class Rol
         $base = new BaseDatos();
         $resp = false;
         //Creo la consulta 
-        $consulta = "INSERT INTO rol (idrol, rodescripcion) VALUES (
-            '" . $this->getIdrol() . "',
-            '" . $this->getRodescripcion() . "')";
+        $consulta = "INSERT INTO rol (idRol, rolDescripcion) VALUES (
+            '" . $this->getIdRol() . "',
+            '" . $this->getRolDescripcion() . "')";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
@@ -75,9 +75,8 @@ class Rol
         $base = new BaseDatos();
         $resp = false;
         $consulta = "UPDATE rol SET
-        idrol= '".$this->getIdrol()."',
-        rodescripcion = '".$this->getRodescripcion()."' 
-        WHERE idrol = ".$this->getIdrol();
+        rolDescripcion = '".$this->getRolDescripcion()."' 
+        WHERE idRol = ".$this->getIdRol();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
@@ -91,16 +90,16 @@ class Rol
     }
     
     //BUSCAR
-    public function buscar($idrol)
+    public function buscar($idRol)
     {
         $base = new BaseDatos();
         $resp = false;
-        $consulta = "SELECT * FROM rol WHERE idrol =" . $idrol;
+        $consulta = "SELECT * FROM rol WHERE idRol =" . $idRol;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 if ($rol = $base->Registro()) {
-                    $this->setIdrol($idrol);
-                    $this->setRodescripcion($rol['rodescripcion']);
+                    $this->setIdRol($idRol);
+                    $this->setRolDescripcion($rol['rolDescripcion']);
                     $resp = true;
                 }
             } else {
@@ -121,13 +120,13 @@ class Rol
         if ($condicion != '') {
             $consultaRol = $consultaRol . ' WHERE ' . $condicion;
         }
-        $consultaRol .= " ORDER BY idrol ";
+        $consultaRol .= " ORDER BY idRol ";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consultaRol)) {
                 $arregloRoles = array();
                 while ($rol = $base->Registro()) {
                     $objRol = new Rol();
-                    $objRol->buscar($rol['idrol']);
+                    $objRol->buscar($rol['idRol']);
                     array_push($arregloRoles, $objRol);
                 }
             } else {
@@ -145,7 +144,7 @@ class Rol
         $base = new BaseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "DELETE FROM rol WHERE idrol =" . $this->getIdrol();
+            $consulta = "DELETE FROM rol WHERE idRol =" . $this->getIdRol();
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
             } else {
@@ -159,7 +158,7 @@ class Rol
 
     public function __toString(){
         return(
-        "ID del rol: " . $this->getIdrol() . "\n 
-        Detalles del rol: " . $this->getRodescripcion() . "\n");
+            "ID del rol: " . $this->getIdRol() . "\n 
+            Detalles del rol: " . $this->getRolDescripcion() . "\n");
     }
 }

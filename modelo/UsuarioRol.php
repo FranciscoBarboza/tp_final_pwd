@@ -64,9 +64,9 @@ class UsuarioRol
         $resp = false;
         
         //Creo la consulta 
-        $consulta = "INSERT INTO usuariorol (idusuario, idrol) VALUES ('".
-        $this->getObjUsuario()->getIdusuario()."',
-        '".$this->getObjRol()->getIdrol(). "')"; 
+        $consulta = "INSERT INTO usuariorol (idUsuario, idRol) VALUES ('".
+        $this->getObjUsuario()->getIdUsuario()."',
+        '".$this->getObjRol()->getIdRol(). "')"; 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
@@ -84,10 +84,10 @@ class UsuarioRol
     {
         $base = new BaseDatos();
         $resp = false;
-        $consulta = "UPDATE usuarioRol SET 
-        idusuario = '".$this->getObjUsuario()->getIdusuario()."', 
-        idrol = ".$this->getObjRol()->getIdrol()." 
-        WHERE idusuario = ".$this->getObjUsuario()->getIdusuario();
+        $consulta = "UPDATE usuariorol SET 
+        idUsuario = '".$this->getObjUsuario()->getIdUsuario()."', 
+        idRol = ".$this->getObjRol()->getIdRol()." 
+        WHERE idUsuario = ".$this->getObjUsuario()->getIdUsuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
@@ -101,11 +101,12 @@ class UsuarioRol
     }
 
     //BUSCAR
-    public function buscar($idusuario)
+    public function buscar($idUsuario, $idRol)
     {
         $base = new BaseDatos();
         $resp = false;
-        $consulta = "SELECT * FROM usuariorol WHERE idusuario = " . $idusuario;
+        //PROBLEMA, NO ESTÁ BIEN ESCRITO
+        $consulta = "SELECT * FROM usuariorol WHERE idUsuario = '. $idUsuario AND idRol =" . $idRol;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 if ($usuarioRol = $base->Registro()) {
@@ -127,7 +128,7 @@ class UsuarioRol
         return $resp;
     }
 
-    //LISTAR
+    //LISTAR (REVISAR)
     public function listar($condicion = '')
     {
         $arregloUsuarioRol = null;
@@ -136,13 +137,13 @@ class UsuarioRol
         if ($condicion != '') {
             $consultaUserRol = $consultaUserRol . ' WHERE ' . $condicion;
         }
-        $consultaUserRol .= " ORDER BY idusuario ";
+        $consultaUserRol .= " ORDER BY idUsuario ";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consultaUserRol)) {
                 $arregloUsuarioRol = array();
                 while ($usuarioRol = $base->Registro()) {
                     $objUsuarioRol = new UsuarioRol();
-                    $objUsuarioRol->buscar($usuarioRol['idusuario'], $usuarioRol['idrol']);
+                    $objUsuarioRol->buscar($usuarioRol['idUsuario'], $usuarioRol['idRol']);
                     array_push($arregloUsuarioRol, $objUsuarioRol);
                 }
             } else {
@@ -160,8 +161,8 @@ class UsuarioRol
         $base = new BaseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "DELETE FROM usuariorol WHERE idusuario= '". $this->getObjUsuario()->getIdusuario()."' 
-            AND idrol= " . $this->getObjRol()->getIdrol();
+            $consulta = "DELETE FROM usuariorol WHERE idUsuario= '". $this->getObjUsuario()->getIdUsuario()."' 
+            AND idRol= " . $this->getObjRol()->getIdRol();
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
             } else {
@@ -176,7 +177,7 @@ class UsuarioRol
     public function __toString()
     {
         return (
-            "ID del usuario: " . $this->getObjUsuario()->getIdusuario() .
-            "\n ID rol: " . $this->getObjRol()->getIdrol() . "\n");
+            "ID del usuario: " . $this->getObjUsuario()->getIdUsuario() .
+            "\n ID rol: " . $this->getObjRol()->getIdRol() . "\n");
     }
 }

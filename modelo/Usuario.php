@@ -2,77 +2,77 @@
 include_once '../Modelo/conector/BaseDatos.php';
 
 /* CREATE TABLE `usuario` (
-    `idusuario` bigint(20) NOT NULL,
-    `usnombre` varchar(50) NOT NULL,
-    `uspass` varchar(150) NOT NULL,
-    `usmail` varchar(50) NOT NULL,
-    `usdeshabilitado` timestamp NULL DEFAULT NULL
+    `idUsuario` bigint(20) NOT NULL,
+    `usNombre` varchar(50) NOT NULL,
+    `usPass` varchar(150) NOT NULL,
+    `usMail` varchar(50) NOT NULL,
+    `usDeshabilitado` timestamp NULL DEFAULT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1; */
 class Usuario
 {
-    private $idusuario;
-    private $usnombre;
-    private $uspass;
-    private $usmail; 
-    private $usdeshabilitado;
+    private $idUsuario;
+    private $usNombre;
+    private $usPass;
+    private $usMail; 
+    private $usDeshabilitado;
     private $mensajeFuncion;
 
     public function __construct()
     {
-        $this->idusuario = "";
-        $this->usnombre = "";
-        $this->uspass = "";
-        $this->usmail = '';
-        $this->usdeshabilitado = "";
+        $this->idUsuario = "";
+        $this->usNombre = "";
+        $this->usPass = "";
+        $this->usMail = '';
+        $this->usDeshabilitado = "";
     }
 
-    public function cargar($idusuario, $usnombre, $uspass, $usmail, $usdeshabilitado)
+    public function cargar($idUsuario, $usNombre, $usPass, $usMail, $usDeshabilitado)
     {
-        $this->setIdusuario($idusuario);
-        $this->setUsnombre($usnombre);
-        $this->setUspass($uspass);
-        $this->setUsmail($usmail);
-        $this->setUsdeshabilitado($usdeshabilitado);
+        $this->setIdUsuario($idUsuario);
+        $this->setUsNombre($usNombre);
+        $this->setUsPass($usPass);
+        $this->setUsMail($usMail);
+        $this->setUsDeshabilitado($usDeshabilitado);
     }
 
-    public function getIdusuario(){
-        return $this->idusuario;
+    public function getIdUsuario(){
+        return $this->idUsuario;
     }
 
-    public function setIdusuario($idusuario){
-        $this->idusuario = $idusuario;
+    public function setIdUsuario($idUsuario){
+        $this->idUsuario = $idUsuario;
     }
 
-    public function getUsnombre(){
-        return $this->usnombre;
+    public function getUsNombre(){
+        return $this->usNombre;
     }
 
-    public function setUsnombre($usnombre){
-        $this->usnombre = $usnombre;
+    public function setUsNombre($usNombre){
+        $this->usNombre = $usNombre;
     }
 
-    public function getUspass(){
-        return $this->uspass;
+    public function getUsPass(){
+        return $this->usPass;
     }
 
-    public function setUspass($uspass){
-        $this->uspass = $uspass;
+    public function setUsPass($usPass){
+        $this->usPass = $usPass;
     }
 
-    public function getUsmail(){
-        return $this->usmail;
+    public function getUsMail(){
+        return $this->usMail;
     }
 
-    public function setUsmail($usmail){
-        $this->usmail = $usmail;
+    public function setUsMail($usMail){
+        $this->usMail = $usMail;
     }
 
-    public function getUsdeshabilitado(){
-        return $this->usdeshabilitado;
+    public function getUsDeshabilitado(){
+        return $this->usDeshabilitado;
     }
 
-    public function setUsdeshabilitado($usdeshabilitado){
-        $this->usdeshabilitado = $usdeshabilitado;
+    public function setUsDeshabilitado($usDeshabilitado){
+        $this->usDeshabilitado = $usDeshabilitado;
     }
 
     public function getMensajeFuncion(){
@@ -91,10 +91,10 @@ class Usuario
         $resp = false;
 
         //Creo la consulta 
-        $consulta = "INSERT INTO usuario (idusuario, usnombre, uspass, usmail, usdeshabilitado) VALUES ('".$this->getIdusuario()."', '".$this->getUsnombre()."',
-        '".$this->getUspass()."',
-        '".$this->getUsmail()."',
-        '".$this->getUsdeshabilitado()."')";
+        $consulta = "INSERT INTO usuario (idUsuario, usNombre, usPass, usMail, usDeshabilitado) VALUES ('".$this->getIdUsuario()."', '".$this->getUsNombre()."',
+        '".$this->getUsPass()."',
+        '".$this->getUsMail()."',
+        '".$this->getUsDeshabilitado()."')";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
@@ -115,12 +115,11 @@ class Usuario
         
         //Hago consulta sql
         $consulta = "UPDATE usuario SET
-        idusuario= '".$this->getIdusuario()."',
-        usnombre= '".$this->getUsnombre()."',
-        uspass= '".$this->getUspass()."',
-        usmail= '".$this->getUsmail()."',
-        usdeshabilitado = ".$this->getUsdeshabilitado()."
-        WHERE idusuario= ". $this->getIdusuario();
+        usNombre= '".$this->getUsNombre()."',
+        usPass= '".$this->getUsPass()."',
+        usMail= '".$this->getUsMail()."',
+        usDeshabilitado = ".$this->getUsDeshabilitado()."
+        WHERE idUsuario= ". $this->getIdUsuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
@@ -134,19 +133,19 @@ class Usuario
     }
 
     //BUSCAR
-    public function buscar($idusuario)
+    public function buscar($idUsuario)
     {
         $base = new BaseDatos();
         $resp = false;
-        $consulta = "SELECT * FROM usuario WHERE idusuario = " .$idusuario;
+        $consulta = "SELECT * FROM usuario WHERE idUsuario = " .$idUsuario;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 if ($usuario = $base->Registro()) {
-                    $this->setIdusuario($idusuario);
-                    $this->setUsnombre($usuario['usnombre']);
-                    $this->setUspass($usuario['uspass']);
-                    $this->setUsmail($usuario['usmail']);
-                    $this->setUsdeshabilitado($usuario['usdeshabilitado']);
+                    $this->setIdUsuario($idUsuario);
+                    $this->setUsNombre($usuario['usNombre']);
+                    $this->setUsPass($usuario['usPass']);
+                    $this->setUsMail($usuario['usMail']);
+                    $this->setUsDeshabilitado($usuario['usDeshabilitado']);
                     $resp = true;
                 }
             } else {
@@ -167,13 +166,13 @@ class Usuario
         if ($condicion != '') {
             $consultaUsuario = $consultaUsuario . ' WHERE ' . $condicion;
         }
-        $consultaUsuario .= " ORDER BY idusuario ";
+        $consultaUsuario .= " ORDER BY idUsuario ";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consultaUsuario)) {
                 $arregloUsuarios = array();
                 while ($usuario = $base->Registro()) {
                     $objUsuario = new Usuario();
-                    $objUsuario->buscar($usuario['idusuario']);
+                    $objUsuario->buscar($usuario['idUsuario']);
                     array_push($arregloUsuarios, $objUsuario);
                 }
             } else {
@@ -191,8 +190,8 @@ class Usuario
         $base = new BaseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "DELETE FROM usuario WHERE idusuario = " . $this->getIdusuario();
-            if ($base->Ejecutar($consulta)) {
+            $consulta = "DELETE FROM usuario WHERE idUsuario = " . $this->getIdUsuario();
+            if ($base->Ejecutar($consulta)){
                 $resp = true;
             } else {
                 $this->setMensajeFuncion($base->getError());
@@ -206,10 +205,10 @@ class Usuario
     public function __toString()
     {
         return (
-            "ID del usuario: " . $this->getIdusuario() ."\n Nombre del usuario: " . $this->getUsnombre() .
-            "\n Contraseña del usuario: " . $this->getUspass() .
-            "\n Email del usuario: " . $this->getUsmail() . 
-            "\n Usuario deshabilitado: " . $this->getUsdeshabilitado() . "\n");
+            "ID del usuario: " . $this->getIdUsuario() ."\n Nombre del usuario: " . $this->getUsNombre() .
+            "\n Contraseña del usuario: " . $this->getUsPass() .
+            "\n Email del usuario: " . $this->getUsMail() . 
+            "\n Usuario deshabilitado: " . $this->getUsDeshabilitado() . "\n");
     }
     
 }
