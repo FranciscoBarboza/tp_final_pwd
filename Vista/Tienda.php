@@ -45,9 +45,9 @@
     <div class="row">
 
     <div class="col-12 col-sm-12 col-md-3" style="background-color: blue;">
-        <div class="caja_producto id container">
+        <div class="caja_producto id container col-9 col-sm-12">
             <div class="img_producto">
-                <img src="https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg" class="col-12 col-md-11">
+                <img src="https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg" class="col-8 col-md-10 col-sm-8" height="">
             </div>
             <div clas="titulo_producto">titulo</div>
             <hr>
