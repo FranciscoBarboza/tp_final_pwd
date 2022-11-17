@@ -40,99 +40,30 @@
 -->
 
 
-<div class="tienda">
-    
-    
-<div class="productos">
-    <div class="p" id="p1" value="1">
-        <div id="img"></div>
-        <div id="fotito"></div>
-        <div id="titulo">
-            MACHIMBRE 1cm x 6cm x 1 mt<span><br><br>$1800</span> <br>
-            <input type="button" value="comprar" id="producto1" >
-        </div>
-        <br>
-        
-    </div>
+<div class="container-fluid">  
 
-    <div class="p" id="p2">
-        <div id="img"></div>
-        <div id="fotito"></div>
-        <div id="titulo">
-            estacas 3"x3"x55cm 20unidades <span><br>$2100 c/u</span>
-            <br><input type="button" value="comprar" id="producto2">
+    <div class="row">
+
+    <div class="col-12 col-sm-12 col-md-3" style="background-color: blue;">
+        <div class="caja_producto id container">
+            <div class="img_producto">
+                <img src="https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg" class="col-12 col-md-11">
+            </div>
+            <div clas="titulo_producto">titulo</div>
+            <hr>
+            <div class="desc_producto">descripcion</div>
+
         </div>
     </div>
-    <div class="p" id="p3">
-        <div id="img"></div>
-        <div id="fotito"></div>
-        <div id="titulo">
-            TIRANTE DE PINO 3"x 6"x3,66mts <span><br>$270 c/u</span>
-            <br><input type="button" value="comprar" id="producto3">
-        </div>
+    <div class="col-12 col-sm-12 col-md-3" style="background-color: yellow;">aaaa</div>
+    <div class="col-12 col-sm-12 col-md-3" style="background-color: black;">aaaa</div>
+    <div class="col-12 col-sm-12 col-md-3" style="background-color: blue;">aaaa</div>
+
     </div>
-
-    <div class="p" id="p4">
-        <div id="img"></div>
-        <div id="fotito"></div>
-        <div id="titulo">
-            LISTONES DE PINO 1"x3"x3mts<span><br><br>$2100</span><br>
-            <input type="button" value="comprar" id="producto4">
-        </div>
-    </div>
-
-    <div class="p" id="p5">
-        <div id="img"></div>
-        <div id="fotito"></div>
-    </div>
-
-    <div class="p" id="p6">
-        <div id="img"></div>
-        <div id="fotito"></div>
-        
-    </div>
-
-    <div class="p" id="p7">
-        <div id="img"></div>
-        <div id="fotito"></div>
-    </div>
-
-    <div class="p" id="p8">
-        <div id="img"></div>
-        <div id="fotito"></div>
-    </div>
-</div>
+</div> 
 
 
 
-
-
-<div class="carrito">
-    <div class="cositaslogo">
-    <h2>C A R R I T O</h2>
-    <div id="logocarrito"></div>
-    </div>
-    
-    
-    <hr/>
-    <div>
-        <ul id="comprado">
-        <!-- aca van los productos comprados -->
-    
-        
-        </ul>
-    </div>
-    
-
-
-    <div id="total">Total: $<span>0</span></div>;
-    <input type="button" value="comprar" id="botoncompra">
-
-    
-</div>
-
-</div>
-    
 
 
 <script src="javascript/tienda.js"></script>
