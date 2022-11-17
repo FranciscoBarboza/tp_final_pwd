@@ -1,10 +1,7 @@
 <?php
 include_once '../Modelo/Conector/BaseDatos.php';
 
-/* CREATE TABLE `usuariorol` (
-    `idusuario` bigint(20) NOT NULL,
-    `idrol` bigint(20) NOT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=latin1; */
+//REVISAR LISTAR
 class UsuarioRol
 {
     private $objUsuario;

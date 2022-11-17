@@ -1,141 +1,85 @@
 <?php
 include_once '../Modelo/Conector/BaseDatos.php';
-class Compraestadotipo
+
+//REVISAR MODIFICAR
+class CompraEstadoTipo
 {
-    private $idcompraestadotipo;
-    private $cetdescripcion;
-    private $cetdetalle;
-    private $mensaje;
+    private $idCompraEstadoTipo;
+    private $cetDescripcion;
+    private $cetDetalle;
+    private $mensajeFuncion;
 
     public function __construct()
     {
-        $this->idcompraestadotipo = "";
-        $this->cetdescripcion = "";
-        $this->cetdetalle = "";
-        $this->mensaje = "";
+        $this->idCompraEstadoTipo = "";
+        $this->cetDescripcion = "";
+        $this->cetDetalle = "";
     }
 
-    public function cargar($idcompraestadotipo, $cetdescripcion, $cetdetalle)
+    public function cargar($idCompraEstadoTipo, $cetDescripcion, $cetDetalle)
     {
-        $this->setIdcompraestadotipo($idcompraestadotipo);
-        $this->setCetdescripcion($cetdescripcion);
-        $this->setCetdetalle($cetdetalle);
+        $this->setIdCompraEstadoTipo($idCompraEstadoTipo);
+        $this->setCetDescripcion($cetDescripcion);
+        $this->setCetDetalle($cetDetalle);
     }
 
     //Metodos de acceso
     
-    public function getIdcompraestadotipo(){
-        return $this->idcompraestadotipo;
+    public function getIdCompraEstadoTipo(){
+        return $this->idCompraEstadoTipo;
     }
 
-    public function setIdcompraestadotipo($idcompraestadotipo){
-        $this->idcompraestadotipo = $idcompraestadotipo;
+    public function setIdCompraEstadoTipo($idCompraEstadoTipo){
+        $this->idCompraEstadoTipo = $idCompraEstadoTipo;
     }
 
-    public function getCetdescripcion(){
-        return $this->cetdescripcion;
+    public function getCetDescripcion(){
+        return $this->cetDescripcion;
     }
 
-    public function setCetdescripcion($cetdescripcion){
-        $this->cetdescripcion = $cetdescripcion;
+    public function setCetDescripcion($cetDescripcion){
+        $this->cetDescripcion = $cetDescripcion;
     }
 
-    public function getCetdetalle(){
-        return $this->cetdetalle;
+    public function getCetDetalle(){
+        return $this->cetDetalle;
     }
 
-    public function setCetdetalle($cetdetalle){
-        $this->cetdetalle = $cetdetalle;
+    public function setCetDetalle($cetDetalle){
+        $this->cetDetalle = $cetDetalle;
     }
 
-    public function getMensaje()
+    public function getMensajeFuncion()
     {
-        return $this->mensaje;
+        return $this->mensajeFuncion;
     }
 
-    public function setMensaje($mensaje)
+    public function setMensajeFuncion($mensajeFuncion)
     {
-        $this->mensaje = $mensaje;
-    }
-
-    public function __toString()
-    {
-        return "idcompraestadotipo: " . $this->getIdcompraestadotipo() .
-            "\ncetdescripcion: " . $this->getCetdescripcion() .
-            "\ncetdetalle: " . $this->getCetdetalle() ;
+        $this->mensajeFuncion = $mensajeFuncion;
     }
 
     //Funciones BD
-
-    //BUSCAR
-    public function buscar($idcompraestadotipo)
-    {
-        $base = new BaseDatos();
-        $resp = false;
-        $sql = "SELECT * FROM Compraestadotipo WHERE idcompraestadotipo = '" . $idcompraestadotipo . "'";
-        if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
-                if ($row2 = $base->Registro()) {
-                    $this->setIdcompraestadotipo($row2['idcompraestadotipo']);
-                    $this->setCetdescripcion($row2['cetdescripcion']);
-                    $this->setCetdetalle($row2['cetdetalle']);
-                    $resp = true;
-                }
-            } else {
-                $this->setMensaje($base->getError());
-            }
-        } else {
-            $this->setMensaje($base->getError());
-        }
-        return $resp;
-    }
-
-    //LISTAR
-    public function listar($condicion = '')
-    {
-        $array = null;
-        $base = new BaseDatos();
-        $sql =  "select * from Compraestadotipo";
-        if ($condicion != '') {
-            $sql = $sql . ' where ' . $condicion;
-        }
-        if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
-                $array = array();
-                while ($row2 = $base->Registro()) {
-                    $objCompraestadotipo = new Compraestadotipo();
-                    $objCompraestadotipo->buscar($row2['idcompraestadotipo']);
-                    $array[] = $objCompraestadotipo;
-                }
-            } else {
-                $this->setMensaje($base->getError());
-            }
-        } else {
-            $this->setMensaje($base->getError());
-        }
-
-        return $array;
-    }
 
     //INSERTAR
     public function insertar()
     {
         $base = new BaseDatos();
         $resp = false;
-        //Asigno los datos a variables
-        $idcompraestadotipo = $this->getIdcompraestadotipo();
-        $cetdescripcion = $this->getCetdescripcion();
-        $cetdetalle = $this->getCetdetalle();
+                
         //Creo la consulta 
-        $sql = "INSERT INTO Compraestadotipo (idcompraestadotipo, cetdescripcion, cetdetalle) VALUES ('{$idcompraestadotipo}', '{$cetdescripcion}', '{$cetdetalle}')";
+        $consulta = "INSERT INTO compraestadotipo (idCompraEstadoTipo, cetDescripcion, cetDetalle) VALUES ('".
+        $this->getIdCompraEstadoTipo()."',
+        '".$this->getCetDescripcion()."',
+        '".$this->getCetDetalle()."')"; 
         if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
+            if ($base->Ejecutar($consulta)) {
                 $resp = true;
             } else {
-                $this->setMensaje($base->getError());
+                $this->setMensajeFuncion($base->getError());
             }
         } else {
-            $this->setMensaje($base->getError());
+            $this->setMensajeFuncion($base->getError());
         }
         return $resp;
     }
@@ -145,39 +89,94 @@ class Compraestadotipo
     {
         $base = new BaseDatos();
         $resp = false;
-        $idcompraestadotipo = $this->getIdcompraestadotipo();
-        $cetdescripcion = $this->getCetdescripcion();
-        $cetdetalle = $this->getCetdetalle();
-        $sql = "UPDATE Compraestadotipo SET cetdescripcion = '{$cetdescripcion}', cetdetalle = '{$cetdetalle}' WHERE idcompraestadotipo = '{$idcompraestadotipo}'";
+        $consulta = "UPDATE Compraestadotipo SET
+        cetDescripcion = '".$this->getCetDescripcion()."', 
+        cetDetalle = '".$this->getCetDetalle()."' 
+        WHERE idCompraEstadoTipo = ". $this->getIdCompraEstadoTipo();
         if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
+            if ($base->Ejecutar($consulta)) {
                 $resp = true;
             } else {
-                $this->setMensaje($base->getError());
+                $this->setMensajeFuncion($base->getError());
             }
         } else {
-            $this->setMensaje($base->getError());
+            $this->setMensajeFuncion($base->getError());
         }
         return $resp;
+    }
+
+    //BUSCAR
+    public function buscar($idCompraEstadoTipo)
+    {
+        $base = new BaseDatos();
+        $resp = false;
+        $consulta = "SELECT * FROM compraestadotipo WHERE idCompraEstadoTipo =" . $idCompraEstadoTipo;
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($consulta)) {
+                if ($CET = $base->Registro()) {
+                    $this->setIdCompraEstadoTipo($idCompraEstadoTipo);
+                    $this->setCetDescripcion($CET['cetDescripcion']);
+                    $this->setCetDetalle($CET['cetDetalle']);
+                    $resp = true;
+                }
+            } else {
+                $this->setMensajeFuncion($base->getError());
+            }
+        } else {
+            $this->setMensajeFuncion($base->getError());
+        }
+        return $resp;
+    }
+
+    //LISTAR
+    public function listar($condicion = ''){
+        $arrayCET = null;
+        $base = new BaseDatos();
+        $consultaCET = "SELECT * from compraestadotipo";
+        if ($condicion != '') {
+            $consultaCET = $consultaCET . ' WHERE ' . $condicion;
+        }
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($consultaCET)) {
+                $arrayCET = array();
+                while ($CET = $base->Registro()) {
+                    $objCompraEstadoTipo = new CompraEstadoTipo();
+                    $objCompraEstadoTipo->buscar($CET['idCompraEstadoTipo']);
+                    array_push($arrayCET, $objCompraEstadoTipo);
+                }
+            } else {
+                $this->setMensajeFuncion($base->getError());
+            }
+        } else {
+            $this->setMensajeFuncion($base->getError());
+        }
+        return $arrayCET;
     }
 
     //ELIMINAR
     public function eliminar()
     {
         $base = new BaseDatos();
-        $rta = false;
-        $consulta = "DELETE FROM Compraestadotipo WHERE idcompraestadotipo = " . $this->getIdcompraestadotipo();
+        $resp = false;
         if ($base->Iniciar()) {
+            $consulta = "DELETE FROM compraestadotipo WHERE idCompraEstadoTipo = " . $this->getIdCompraEstadoTipo();
             if ($base->Ejecutar($consulta)) {
-                $rta = true;
+                $resp = true;
             } else {
-                $this->setMensaje($base->getError());
+                $this->setMensajeFuncion($base->getError());
             }
         } else {
-            $this->setMensaje($base->getError());
+            $this->setMensajeFuncion($base->getError());
         }
-        return $rta;
+        return $resp;
     }
 
+    public function __toString()
+    {
+        return (
+            "ID de CET: " . $this->getIdCompraEstadoTipo() .
+            "\n Descripción CET: " . $this->getCetDescripcion() .
+            "\n Detalles CET: " . $this->getCetDetalle() . "\n");
+    }
     
 }

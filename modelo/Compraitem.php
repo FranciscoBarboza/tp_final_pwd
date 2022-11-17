@@ -1,6 +1,6 @@
 <?php
 include_once '../Modelo/Conector/BaseDatos.php';
-class Compraitem
+class CompraItem
 {
     private $idcompraitem;
     private $idproducto;

@@ -1,7 +1,8 @@
 <?php
 include_once '../Modelo/Conector/BaseDatos.php';
-class Compra
-{
+
+//REVISAR COSAS
+class Compra{
     private $idCompra;
     private $coFecha;
     private $objUsuario; //Delegación 
@@ -85,7 +86,7 @@ class Compra
     {
         $base = new BaseDatos();
         $resp = false;
-       //coFecha SE MODIFICA??????????? Está DEFAULT
+        //coFecha SE MODIFICA??????????? Está DEFAULT
         $consulta = "UPDATE compra SET 
         coFecha= '".$this->getCoFecha()."',
         idUsuario = ".$this->getObjUsuario()->getIdUsuario()."

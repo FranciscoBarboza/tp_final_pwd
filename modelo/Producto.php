@@ -1,5 +1,7 @@
 <?php
 include_once '../Modelo/Conector/BaseDatos.php';
+
+//TERMINADO (ver situación de modificar)
 class Producto{
     private $idProducto;
     private $proNombre;
