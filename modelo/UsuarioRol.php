@@ -106,7 +106,7 @@ class UsuarioRol
         $base = new BaseDatos();
         $resp = false;
         //PROBLEMA, NO ESTÁ BIEN ESCRITO
-        $consulta = "SELECT * FROM usuariorol WHERE idUsuario = '. $idUsuario AND idRol =" . $idRol;
+        $consulta = "SELECT * FROM usuariorol WHERE idUsuario = $idUsuario AND idRol =" . $idRol;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 if ($usuarioRol = $base->Registro()) {
