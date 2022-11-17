@@ -293,7 +293,7 @@ insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `ur
 values ('AGUA BENDITA', '200ml frasco arrojadizo', 25, 700,  '');
 
 insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
-values ('ESTACAS CAZAVAMPIROS' '35cm de pino tallado', 25, 500, 'https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg');
+values ('ESTACAS CAZAVAMPIROS', '35cm de pino tallado', 25, 500, 'https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg');
 
 insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
 values ('BALAS DE PLATA', 'bendecidas', 100, 50, 'https://comunaslitoral.com.ar/06-2016/resize_1465306129.jpg');
