@@ -8,6 +8,8 @@
     $arrayProductos= $objProducto->listar();
     //inicializo los objetos producto
 
+    print_r($arrayProductos);
+
 ?>
 <html>
     <head>
@@ -55,7 +57,18 @@
 
         </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-4 col-lg-3" style="background-color: yellow;">aaaa</div>
+
+    <div class="col-12 col-sm-12 col-md-4 col-lg-3" style="background-color: yellow;">
+        <div class="caja_producto id container col-9 col-sm-12 col-md-12">
+            <div class="img_producto">
+                <img src=<?php echo "aaaa" ?> class="col-8 col-md-11 col-sm-9" height="">
+            </div>
+            <div clas="titulo_producto">titulo</div>
+            <hr>
+            <div class="desc_producto">descripcion</div>
+
+        </div>
+    </div>
     <div class="col-12 col-sm-12 col-md-4 col-lg-3" style="background-color: black;">aaaa</div>
     <div class="col-12 col-sm-12 col-md-4 col-lg-3" style="background-color: blue;">aaaa</div>
 
