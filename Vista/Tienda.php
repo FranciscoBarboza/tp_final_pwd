@@ -3,14 +3,32 @@
     // include_once("Menu/Cabecera.php");
     include_once "Menu/Cabecera.php";
 
-    $objProducto= new Producto();
 
-    $arrayProductos= $objProducto->listar();
-    //inicializo los objetos producto
+    function crearTienda(){
+      $objProducto= new Producto();
+      $arrayProductos= $objProducto->listar();
 
-    print_r($arrayProductos);
+      
+
+
+
+
+    }
+    /**
+     * imprime un 
+     */
+    function formato($idProducto, ){
+        echo "";
+    };
+
+
 
 ?>
+
+
+
+
+
 <html>
     <head>
         <title>tienda</title>
@@ -44,16 +62,23 @@
 
 <div class="container-fluid">  
 
-    <div class="row">
+    <div class="row" id="tienda_productos">
 
-    <div class="col-12 col-sm-12 col-md-4 col-lg-3" style="background-color: blue;">
-        <div class="caja_producto id container col-9 col-sm-12 col-md-12">
+    <div class="col-12 col-sm-12 col-md-4 col-lg-3 container py-2" style="background-color: blue;">
+        <div class="caja_producto id container col-9 col-sm-12 col-md-12 py-2">
             <div class="img_producto">
-                <img src="https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg" class="col-8 col-md-11 col-sm-9" height="">
+                <img src="https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg" class="col-8 col-md-11 col-sm-9 " height="">
             </div>
-            <div clas="titulo_producto">titulo</div>
+            <div clas="titulo_producto text-start">titulo
+                
+            </div>
+            <form action="">
+                <input type="number" name="" class="cantidad col-2">
+                <button>COMPRAR</button>
+            </form>
+            
             <hr>
-            <div class="desc_producto">descripcion</div>
+            <div class="desc_producto ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur ullam nihil aliquid similique iste vel? Totam corrupti eligendi ipsum et.</div>
 
         </div>
     </div>
