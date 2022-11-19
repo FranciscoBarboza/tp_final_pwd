@@ -33,11 +33,11 @@
         <div class=\"col-12 col-sm-12 col-md-4 col-lg-3 container py-2\" style=\"background-color: blue;\">
         <div class=\"caja_producto id container col-9 col-sm-12 col-md-12 py-2\">
             <div class=\"img_producto\">
-                <img src=\"{$urlItem}\" class=\"col-8 col-md-11 col-sm-9 \" height=\"\">
+                <img src=\"{$urlItem}\" class=\"img-thumbnail rounded col-8 col-md-11 col-sm-9 \"  style=\"width: auto;height: 260px\">
             </div>
-            <div clas=\"titulo_producto text-start\"><h3 style=\"display: inline-block;\">{$proNombre}-{$proPrecio}</h3></div>
+            <div class=\"titulo_producto text-center\"><h4 style=\"display: inline-block;\">{$proNombre}-{$proPrecio}</h4></div>
             <form action=\"\">
-                <input type=\"number\" name=\"\" class=\"cantidad col-20\">
+                <input type=\"number\" name=\"\" class=\"cantidad col-2\">
                 stock: {$proCantStock}
                 <button>COMPRAR</button>
                 <div class=\"d-none\">{$idProducto}</div>
@@ -55,7 +55,7 @@
 
 ?>
 
-
+<img src="" alt="" style="background-position: center;" height="200px">
 
 
 
