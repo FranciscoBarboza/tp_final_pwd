@@ -30,11 +30,11 @@ if($objSession->validar($metodo)){
         })
 
         function redireccionarPagina() {
-            // location.href = "login.php"
+            location.href = "login.php"
         }
         setTimeout("redireccionarPagina()", 1450);
     </script>
 <?php
-    $objSesion->cerrar();
+    $objSession->cerrar();
 }
 ?>
