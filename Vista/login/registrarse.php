@@ -45,7 +45,7 @@ include_once("../menu/cabecera.php");
             </div>
             <input type="submit" name="boton_enviar" onclick="return verificarContraseñaIgual(document.getElementById('input_contraseña'), document.getElementById('input_contraseñaRep'))" class="btn btn-dark mt-2" id="boton_enviar" value="Cargar">
         </form>
-        <a href="Login.php" class="link-warning">ya tengo cuenta</a>
+        <a href="login.php" class="link-warning">Ya estoy registrado</a>
     </div>
 </div>
 <script src="js/md5Ajax.js"></script>

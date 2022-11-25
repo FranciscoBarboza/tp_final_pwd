@@ -8,7 +8,7 @@ include_once("../menu/cabecera.php");
                 <h2 class="fw-bold mb-0">Iniciar Sesion</h2>
             </div>
             <div class="modal-body p-5 pt-0">
-                <form class="col needs-validation" method="post" action="VerificarLogin.php" novalidate>
+                <form class="col needs-validation" method="post" action="verificarLogin.php" novalidate>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="usnombre" name="usNombre" required placeholder="Usuario">
                         <label for="floatingInput"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill text-dark" viewBox="0 0 16 16">
@@ -30,7 +30,7 @@ include_once("../menu/cabecera.php");
                     <button class="w-100 mb-2 btn btn-lg rounded-3 btn-success" type="submit">Iniciar Sesion</button>
                 </form>
                 <div>
-                    <a href="Registrarse.php" class="link-info">No tengo cuenta</a>
+                    <a href="registrarse.php" class="link-info">No estoy registrado</a>
                 </div>
             </div>
         </div>
