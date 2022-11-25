@@ -1,6 +1,5 @@
 <?php
-class c_Session{
-
+class C_Session{
     private $objUsuario;       
 
     public function getObjUsuario(){
@@ -13,59 +12,76 @@ class c_Session{
 
     public function __construct(){
         session_start();
-       $this->objUsuario = null;
+        $this->objUsuario = null;
     }
 
     private function iniciar($nombreUsuario, $arrayRoles){
         $_SESSION["nombreUsuario"] = $nombreUsuario;
         $_SESSION["roles"] = $arrayRoles;
+        $objRol = new C_Rol();
+        $param = [2];
+        $_SESSION["vista"] = $objRol->obtenerObj($param)[0];
     }
 
-    /* public function validar($usuario, $pass){
-        $objUsuarios = new c_usuario();
-        $arrayUsuario = $objUsuarios->buscar($usuario);
+    public function validar($param){
+        $arrayUsuario = $this->getObjUsuario()->buscar($param);
         $resp = false;
         if($arrayUsuario != null){
-            if($pass == $arrayUsuario[0]->getPass()){
+            if($param["usPass"] == $arrayUsuario[0]->getUsPass()){
                 $this->setObjUsuario($arrayUsuario[0]);
                 $arrayRoles = $this->getRol();
-                $this->iniciar($usuario, $arrayRoles);
+                $this->iniciar($param["usNombre"], $arrayRoles);
                 $resp = true;
             }
         }
         return $resp;
-    } */
+    }
 
     public function activa(){
-        $resp = false;
-        if($this->getObjUsuario() != null){                      
-            $resp = true;
-        }
+        $resp = isset($_SESSION["nombreUsuario"])? TRUE : FALSE;
         return $resp;
     }
 
-   /*  public function getUsuario(){
+   public function getUsuario(){
         $resp = null;
         if($this->getObjUsuario() != null){
-            $resp = $this->getObjUsuario()->getNombre();
+            $resp = $this->getObjUsuario();
         }
         return $resp;
-    } */
-
-    /* public function getRol(){
-        $arrayRolesUsuario = null;
-        if($this->getObjUsuario() != null){
-            $objUsuarioRol = new c_usuarioRol();
-            $arrayRolesUsuario = $objUsuarioRol->buscar($this->getObjUsuario()->getId());
-        }
-        return $arrayRolesUsuario;
-    } */
-
-    public function cerrar(){
-        session_destroy();   
     }
 
+    public function getRol(){
+        $arrayRolesUsuario = null;
+        if($this->getObjUsuario() != null){
+            $objUsuarioRol = new C_usuarioRol();
+            $param["idUsuario"] = $this->getObjUsuario()->getIdUsuario();
+            $arrayRolesUsuario = $objUsuarioRol->buscar($param);
+            $arrayRoles = [];
+                foreach($arrayRolesUsuario as $rol){
+                    array_push($idRoles, $rol->getRol());
+                }
+                $idRoles = [];
+                    foreach($arrayRoles as $objRol){
+                        array_push($idRoles, $objRol->getIdRol());
+                    }
+        }
+        return $idRoles;
+    }
 
+    public function cerrar(){
+        $cerrado = false;
+        if(session_destroy()){
+            $cerrado = true;
+        }   
+        return $cerrado;
+    }
 
+    public function getVista(){
+        $resp = null;
+        if($_SESSION["vista"] != null){
+            $resp = $_SESSION["vista"];
+        }
+        return $resp;
+    }
 }
 ?>
