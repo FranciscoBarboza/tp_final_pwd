@@ -128,4 +128,24 @@ class C_Compraestado
         
         return $arreglo;
     }
-}
+
+    public function buscarCompraBorrador($arrayCompra){
+        $objCompraEstadoIniciada= null;
+        $i= 0;
+
+        do {
+            $idCompra["idCompra"] = $arrayCompra[$i]->getIdCompra();
+            $arrayCompraEstado= $this->buscar($idCompra);
+            
+            if($arrayCompraEstado[0]->getCompraEstadoTipo()->getCetDescripcion() == "borrador"){
+                $objCompraEstadoIniciada = $arrayCompraEstado[0];
+            } else {
+                $i++;
+            }
+        } while (($objCompraEstadoIniciada == null) && ($i < count($arrayCompra)));
+
+
+        return $objCompraEstadoIniciada;
+    }
+    
+}   

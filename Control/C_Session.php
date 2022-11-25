@@ -12,7 +12,13 @@ class C_Session{
 
     public function __construct(){
         session_start();
-        $this->objUsuario = null;
+        $this->setObjUsuario(new C_Usuario());
+        
+        if(isset($_SESSION["nombreUsuario"])){
+            $usNombre["usNombre"] = $_SESSION["nombreUsuario"];
+            $usuario = $this->getObjUsuario()->buscar($usNombre);
+            $this->setObjUsuario($usuario[0]);
+        }
     }
 
     private function iniciar($nombreUsuario, $arrayRoles){
