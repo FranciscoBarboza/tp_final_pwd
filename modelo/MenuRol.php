@@ -51,7 +51,7 @@ class MenuRol{
         
         //Creo la consulta 
         $consulta = "INSERT INTO menurol (idMenu, idRol) VALUES (
-        '".$this->getObjMenu()->getObjMenu()."',
+        '".$this->getObjMenu()->getIdMenu()."',
         '".$this->getObjRol()->getIdRol()."')"; 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
@@ -97,10 +97,10 @@ class MenuRol{
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 if ($meRol = $base->Registro()) {
-                    $this->setIdMenuRol($idMenu);
-                    $ObjRol = new Rol();
-                    $ObjRol->buscar($meRol['idRol']);
-                    $this->setObjRol($ObjRol);
+                    $this->setObjMenu($idMenu);
+                    $objRol = new Rol();
+                    $objRol->buscar($meRol['idRol']);
+                    $this->setObjRol($objRol);
                     $resp = true;
                 }
             } else {

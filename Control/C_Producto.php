@@ -11,18 +11,20 @@ class C_Producto
      */
     private function cargarObjeto($param)
     {
-        $obj = null;
-        if (array_key_exists('idproducto', $param)) {
+        $objProducto = null;
+        if (array_key_exists('idProducto', $param)) {
 
-            $obj = new Producto();
-            $obj->cargar(
-                $param['idproducto'],
-                $param['pronombre'],
-                $param['prodetalle'],
-                $param['procantstock']
+            $objProducto = new Producto();
+            $objProducto->cargar(
+                $param['idProducto'],
+                $param['proNombre'],
+                $param['proDetalle'],
+                $param['proCantStock'],
+                $param['proPrecio'],
+                $param['urlImagen']
             );
         }
-        return $obj;
+        return $objProducto;
     }
 
     /**
@@ -34,9 +36,9 @@ class C_Producto
     private function cargarObjetoConClave($param)
     {
         $obj = null;
-        if (isset($param['idproducto'])) {
+        if (isset($param['idProducto'])) {
             $obj = new Producto();
-            $obj->cargar($param['idproducto'], null, null, null);
+            $obj->cargar($param['idProducto'], null, null, null, null, null);
         }
         return $obj;
     }
@@ -50,7 +52,7 @@ class C_Producto
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idproducto']))
+        if (isset($param['idProducto']))
             $resp = true;
         return $resp;
     }
@@ -62,6 +64,7 @@ class C_Producto
     public function alta($param)
     {
         $resp = false;
+        $param['idProducto'] = null;
         $obj = $this->cargarObjeto($param);
         if ($obj != null and $obj->insertar()) {
             $resp = true;
@@ -111,18 +114,35 @@ class C_Producto
         $where = " true "; 
         if ($param<>NULL){
             $where .= '';
-            if  (isset($param['idproducto']))
-                $where.=" and idproducto ='".$param['idproducto']."'"; 
-            if  (isset($param['pronombre']))
-                    $where.=" and pronombre ='".$param['pronombre']."'";
-            if  (isset($param['prodetalle']))
-                    $where.=" and prodetalle ='".$param['prodetalle']."'";
-            if  (isset($param['procantstock']))
-                    $where.=" and procantstock ='".$param['procantstock']."'";
+            if  (isset($param['idProducto']))
+                $where.=" and idProducto ='".$param['idProducto']."'"; 
+            if  (isset($param['proNombre']))
+                    $where.=" and proNombre ='".$param['proNombre']."'";
+            if  (isset($param['proDetalle']))
+                    $where.=" and proDetalle ='".$param['proDetalle']."'";
+            if  (isset($param['proCantStock']))
+                    $where.=" and proCantStock ='".$param['proCantStock']."'";
+            if  (isset($param['proPrecio']))
+                    $where.=" and proPrecio ='".$param['proPrecio']."'";
+            if  (isset($param['urlImagen']))
+                    $where.=" and urlImagen ='".$param['urlImagen']."'";
         }
         $obj = new Producto();
         $arreglo =  $obj->listar($where);  
         
         return $arreglo;
+    }
+
+    public function validar_stock($idProducto,$cantidad){
+
+        if($idProducto == null || $idProducto == '' ){
+            return false;
+        }
+
+        $obj = new Producto();
+        //return un booleano
+        return $obj->validar_stock($idProducto, $cantidad);
+
+
     }
 }
