@@ -7,10 +7,6 @@
   <title>Head</title>
   <script src="../bootstrap/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/producto.css">
-  <script src="../js/producto.js"></script>
-  <script src="../alertas/dist/sweetalert2.all.min.js"></script>
-  <link rel="stylesheet" href="../alertas/dist/sweetalert2.min.css">
 </head>
 <body>
   <nav class="navbar navbar-expand-xl navbar-light  barra_navegacion" aria-label="Third navbar example"  id="header" style="background-color: #4B515D">

@@ -5,11 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footer</title>
-
-    
-
-    
-
     <style>
         .footer_container{
             margin-top: 300px;
@@ -28,6 +23,4 @@
         </footer>
     </div>
 </body>
-
-
 </html>
