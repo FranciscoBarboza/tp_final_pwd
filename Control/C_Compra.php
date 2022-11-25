@@ -1,5 +1,5 @@
 <?php
-class C_Compra
+class c_compra
 {
 
     /**

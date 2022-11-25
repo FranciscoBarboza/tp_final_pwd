@@ -1,5 +1,5 @@
 <?php
-class C_Rol
+class c_rol
 {
 
     /**

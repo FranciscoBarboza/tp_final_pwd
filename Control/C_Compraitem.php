@@ -1,5 +1,5 @@
 <?php
-class C_Compraitem
+class c_compraItem
 {
 
     /**

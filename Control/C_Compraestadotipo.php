@@ -1,5 +1,5 @@
 <?php
-class C_CompraEstadoTipo
+class c_compraEstadoTipo
 {
 
     /**

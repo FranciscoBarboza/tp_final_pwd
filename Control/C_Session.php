@@ -1,5 +1,5 @@
 <?php
-class C_Session{
+class c_session{
     private $objUsuario;       
 
     public function getObjUsuario(){

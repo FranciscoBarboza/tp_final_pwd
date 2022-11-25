@@ -1,5 +1,5 @@
 <?php
-class C_Menurol
+class c_menuRol
 {
 
     /**

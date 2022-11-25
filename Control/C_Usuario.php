@@ -1,5 +1,5 @@
 <?php
-class C_Usuario
+class c_usuario
 {
 
     /**

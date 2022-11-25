@@ -1,5 +1,5 @@
 <?php
-class C_Menu
+class c_menu
 {
 
     /**
