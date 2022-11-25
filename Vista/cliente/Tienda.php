@@ -130,10 +130,6 @@
     })
 })()
 </script>
-
-
-
-
 <script src="javascript/tienda.js"></script>
 </body>
 </html>
