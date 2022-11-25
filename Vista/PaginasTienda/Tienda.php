@@ -91,8 +91,6 @@
 </div>
 
 -->
-
-
 <div class="container-fluid" >  
     <div class="row" id="tienda_productos">
     <?php crearTienda() ?>
