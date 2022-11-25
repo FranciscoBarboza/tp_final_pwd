@@ -48,8 +48,8 @@ include_once("../menu/cabecera.php");
         <a href="Login.php" class="link-warning">ya tengo cuenta</a>
     </div>
 </div>
-<script src="Js/Md5Ajax.js"></script>
-<script src="Js/AjaxRegistro.js"></script>
+<script src="js/md5Ajax.js"></script>
+<script src="js/ajaxRegistro.js"></script>
 <?php
 include_once("../menu/pie.php")
 ?>
