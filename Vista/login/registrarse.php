@@ -1,10 +1,6 @@
 <?php
 include_once("../Menu/Cabecera.php");
 ?>
-<script src="../js/validarContraseñaIguales.js"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer> </script>
-<link rel="stylesheet" href="../bootstrap-5.1.3-dist/css/bootstrap.min.css">
-<script src="../bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
 <style>
     body{
         background-color: rgb(70, 70, 70);
@@ -15,7 +11,7 @@ include_once("../Menu/Cabecera.php");
     <div class="container col-md-5">
         <form action="accionRegistrarse.php" method="get" class="needs-validation row-md-4 text-white mb-4" novalidate>
             <div>
-                <label>Nombre: </label><input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="nombre" minlength="3" id="input_nombre" class="form-control text" required>
+                <label>Nombre: </label><input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="usNombre" minlength="3" id="input_nombre" class="form-control text" required>
                 <div class="invalid-feedback">
                     Porfavor ingrese un nombre valido! No se aceptan numeros y tiene que ser mayor a 3 letras.
                 </div>
@@ -24,7 +20,7 @@ include_once("../Menu/Cabecera.php");
                 </div>
             </div>
             <div>
-                <label>Contraseña: </label><input type="password" name="contraseña" id="input_contraseña" class="form-control" required>
+                <label>Contraseña: </label><input type="password" name="usPass" id="input_contraseña" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una contraseña!
                 </div>
@@ -46,14 +42,14 @@ include_once("../Menu/Cabecera.php");
                 <div class="valid-feedback password-correcta">
                     Correcto!
                 </div>
-                <div class="g-recaptcha m-4" data-sitekey="6Lf95XwiAAAAANd2Ey0ue87QCWiiD6_A17eONhTX"></div>
             </div>
             <input type="submit" name="boton_enviar" onclick="return verificarContraseñaIgual(document.getElementById('input_contraseña'), document.getElementById('input_contraseñaRep'))" class="btn btn-dark mt-2" id="boton_enviar" value="Cargar">
         </form>
         <a href="Login.php" class="link-warning">ya tengo cuenta</a>
     </div>
 </div>
-<script src="../js/validarCamposVacios.js"></script>
+<script src="Js/Md5Ajax.js"></script>
+<script src="Js/AjaxRegistro.js"></script>
 <?php
 include_once("../Menu/Pie.php")
 ?>

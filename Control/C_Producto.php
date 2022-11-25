@@ -131,7 +131,7 @@ class C_Producto
         return $arreglo;
     }
 
-    public function validar_stock($idProducto,$cantidad){
+    /* public function validar_stock($idProducto,$cantidad){
 
         if($idProducto == null || $idProducto == '' ){
             return false;
@@ -142,5 +142,5 @@ class C_Producto
         return $obj->validar_stock($idProducto, $cantidad);
 
 
-    }
+    } */
 }

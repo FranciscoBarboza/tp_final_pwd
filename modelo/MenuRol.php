@@ -159,6 +159,6 @@ class MenuRol{
     {
         return (
             "ID menu: " . $this->getObjMenu()->getIdMenu() .
-            "\n ID Rol: " . $this->getObjMenu()->getIdRol() . "\n" );
+            "\n ID Rol: " . $this->getObjRol()->getIdRol() . "\n" );
     }
 }
