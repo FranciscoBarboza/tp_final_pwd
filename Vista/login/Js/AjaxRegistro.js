@@ -3,9 +3,9 @@ $(document).ready(function () {
         e.preventDefault();
         const forms = document.querySelectorAll('.needs-validation');
         if (forms[0].checkValidity()) {
-            var password = document.getElementById("input_contraseña").value;
+            var password = document.getElementById("input_contrasena").value;
             var passhash = hex_md5(password).toString();
-            document.getElementById("input_contraseña").value = passhash;
+            document.getElementById("input_contrasena").value = passhash;
             $.ajax({
                 type: "POST",
                 url: 'accion/accionAjaxRegistro.php',

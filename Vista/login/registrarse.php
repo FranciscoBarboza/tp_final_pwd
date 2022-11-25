@@ -9,7 +9,7 @@ include_once("../menu/cabecera.php");
 
 <div class="container-fluid">
     <div class="container col-md-5">
-        <form action="accionRegistrarse.php" method="get" class="needs-validation row-md-4 text-white mb-4" novalidate>
+        <form action="accion/accionRegistrarse.php" method="get" class="needs-validation row-md-4 text-white mb-4" novalidate>
             <div>
                 <label>Nombre: </label><input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="usNombre" minlength="3" id="input_nombre" class="form-control text" required>
                 <div class="invalid-feedback">
@@ -20,7 +20,7 @@ include_once("../menu/cabecera.php");
                 </div>
             </div>
             <div>
-                <label>Contraseña: </label><input type="password" name="usPass" id="input_contraseña" class="form-control" required>
+                <label>Contraseña: </label><input type="password" name="usPass" id="input_contrasena" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una contraseña!
                 </div>
@@ -32,7 +32,7 @@ include_once("../menu/cabecera.php");
                 </div>
             </div>
             <div>
-                <label>Repetir la Contraseña: </label><input type="password" name="contraseñaRep" id="input_contraseñaRep" class="form-control" required>
+                <label>Repetir la Contraseña: </label><input type="password" name="contrasenaRep" id="input_contrasenaRep" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una contraseña!
                 </div>
@@ -43,7 +43,7 @@ include_once("../menu/cabecera.php");
                     Correcto!
                 </div>
             </div>
-            <input type="submit" name="boton_enviar" onclick="return verificarContraseñaIgual(document.getElementById('input_contraseña'), document.getElementById('input_contraseñaRep'))" class="btn btn-dark mt-2" id="boton_enviar" value="Cargar">
+            <input type="submit" name="boton_enviar" onclick="return verificarContraseñaIgual(document.getElementById('input_contrasena'), document.getElementById('input_contrasenaRep'))" class="btn btn-dark mt-2" id="boton_enviar" value="Cargar">
         </form>
         <a href="login.php" class="link-warning">Ya estoy registrado</a>
     </div>
