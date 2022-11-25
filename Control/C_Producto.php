@@ -1,6 +1,4 @@
 <?php
-include_once '../Modelo/Producto.php';
-
 class C_Producto
 {
 

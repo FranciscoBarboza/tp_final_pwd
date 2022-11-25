@@ -1,3 +1,7 @@
+<?php
+include_once('../../Configuracion.php');
+$objSession= new C_Session();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

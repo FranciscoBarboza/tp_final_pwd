@@ -1,6 +1,4 @@
 <?php
-include_once '../Modelo/Compraestadotipo.php';
-
 class C_CompraEstadoTipo
 {
 

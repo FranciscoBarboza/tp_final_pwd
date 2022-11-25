@@ -1,6 +1,4 @@
 <?php
-include_once '../Modelo/Menu.php';
-
 class C_Menu
 {
 

@@ -1,6 +1,4 @@
 <?php
-include_once '../Modelo/Rol.php';
-
 class C_Rol
 {
 

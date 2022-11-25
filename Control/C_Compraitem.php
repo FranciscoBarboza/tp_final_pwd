@@ -1,6 +1,4 @@
 <?php
-include_once '../Modelo/Compraitem.php';
-
 class C_Compraitem
 {
 
