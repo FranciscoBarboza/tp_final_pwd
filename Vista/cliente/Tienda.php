@@ -37,14 +37,14 @@
                 <img src=\"{$urlItem}\" class=\"img-thumbnail rounded col-8 col-md-11 col-sm-9 \"  style=\"width: auto;height: 260px\">
             </div>
             <div class=\"titulo_producto text-center\"><h4 style=\"display: inline-block;\">{$proNombre}-{$proPrecio}</h4></div>
-            <form action=\"\" method=\"post\" class=\"needs-validation\" novalidate>
-                <input type=\"text\" name=\"idProducto\" id=\"idProducto\" class=\"d-none\">
+            <form action=\"Accion/accionAgregarAlCarrito.php\" method=\"post\" class=\"needs-validation\" novalidate>
+                <input type=\"text\" name=\"idProducto\" id=\"idProducto\" class=\"d-none\" value=\"{$idProducto}\">
                 <div>
                     <input type=\"number\" name=\"ciCantidad\" id=\"cantidad_input\" min=\"1\" max=\"{$proCantStock}\" class=\"form-control\" placeholder=\"cant\" required cols=\"2\">
                     <div class=\"invalid-feedback mb-1\">
                         sin stock
                     </div>
-                    <div class=\"invalid-feedback mb-1\">
+                    <div class=\"valid-feedback mb-1\">
                         bien!
                     </div>
                     <input class=\"btn btn-success me-2\" type=\"submit\" name=\"boton_enviar\" value=\"comprar\">
@@ -109,7 +109,27 @@
     
     </div>
 </div> 
+<script>
+    (function () {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
 
 
 

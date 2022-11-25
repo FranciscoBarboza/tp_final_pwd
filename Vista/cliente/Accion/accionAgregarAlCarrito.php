@@ -1,13 +1,27 @@
 <?php
+include_once("../../../configuracion.php");
+include_once("../../Menu/Cabecera.php");
 
-/* programa */
-$datos= data_submitted();
-$objCompraEstadoBor= null; //guarda un objeto compra estado borrador
-$arrayCompras= null;
-$objSession= new c_Session(); //control session
-$objCompraEstado= new C_Compraestado(); //control compra estado
-$objUsuario= $objSession->getUsuario();
-$idUsuario["idUsuario"]= 
+$datos = data_submitted();
+
+$idProducto= $datos["idProducto"];
+$cantidadStock= $datos["ciCantidad"];
+
+var_dump($datos);
+
+$objProducto= new Producto();
+$objProducto->buscar($idProducto);
+
+echo $objProducto
+
+
+
+
 
 
 ?>
+
+
+
+<link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.min.css">
+<script src="../../bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
