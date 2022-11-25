@@ -9,6 +9,8 @@ $PROYECTO ='PW/tp_final_pwd'; //Pone la ubicación de todo el proyecto desde htd
 //$PROYECTO ='PW/tp_final_pwd'; //a mi no me anduvo usa el otro jejejjejejejssjsjrsje
 
 
+
+
 //variable que almacena el directorio del proyecto
 $ROOT =$_SERVER['DOCUMENT_ROOT']."/$PROYECTO/"; //Agarra la ubicación del servidor donde tiene guardada la carpeta
 

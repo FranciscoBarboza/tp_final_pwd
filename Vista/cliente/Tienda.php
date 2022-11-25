@@ -1,7 +1,7 @@
 <?php
-    include "../configuracion.php";
+    include "../../configuracion.php";
     // include_once("Menu/Cabecera.php");
-    include_once "Menu/Cabecera.php";
+    include_once "../Menu/Cabecera.php";
 
 
     function crearTienda(){
@@ -21,6 +21,7 @@
      */
     function formato($objProducto){
         
+
 
         $idProducto= $objProducto->getIdProducto();
         $proNombre= $objProducto->getProNombre();
@@ -71,9 +72,9 @@
 <html>
     <head>
         <title>tienda</title>
-        <link rel="stylesheet" href="css/tienda.css">
-        <link rel="stylesheet" href="bootstrap-5.1.3-dist/css/bootstrap.min.css">
-        <script src="/Vista/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../css/tienda.css">
+        <link rel="stylesheet" href="../bootstrap-5.1.3-dist/css/bootstrap.min.css">
+        <script src="../bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
     </head>
 
     

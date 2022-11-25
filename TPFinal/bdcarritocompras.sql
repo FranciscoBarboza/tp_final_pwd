@@ -78,7 +78,8 @@ INSERT INTO `compraestadotipo` (`idCompraEstadoTipo`, `cetDescripcion`, `cetDeta
 (1, 'iniciada', 'cuando el usuario : cliente inicia la compra de uno o mas productos del carrito'),
 (2, 'aceptada', 'cuando el usuario administrador da ingreso a uno de las compras en estado = 1 '),
 (3, 'enviada', 'cuando el usuario administrador envia a uno de las compras en estado =2 '),
-(4, 'cancelada', 'un usuario administrador podra cancelar una compra en cualquier estado y un usuario cliente solo en estado=1 ');
+(4, 'cancelada', 'un usuario administrador podra cancelar una compra en cualquier estado y un usuario cliente solo en estado=1 '),
+(5, 'borrador', 'se guarda antes de ser aceptada por el administrador');
 
 -- --------------------------------------------------------
 
@@ -289,17 +290,15 @@ CREATE TABLE IF NOT EXISTS `producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 */
 
-insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
-values ('AGUA BENDITA', '200ml frasco arrojadizo', 25, 700,  '');
 
-insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
+insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`)
 values ('ESTACAS CAZAVAMPIROS', '35cm de pino tallado', 25, 500, 'https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg');
 
-insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
+insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`)
 values ('BALAS DE PLATA', 'bendecidas', 100, 50, 'https://comunaslitoral.com.ar/06-2016/resize_1465306129.jpg');
 
-insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
+insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`)
 values ('CRUCIFIJO', 'grabado y relieves en plata', 7, 800, 'https://www.antiguedadestecnicas.com/fotos/prin/AR-B-898/AR-B-898-1.jpg');
 
-insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlImagen`)
-values ('EXORCISMO', 'viene un tipo a tu casa y te saca los fantasmas ', 'https://pbs.twimg.com/media/EY1UeCdWkAEsJKX.jpg')
+insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`)
+values ('EXORCISMO', 'viene un tipo a tu casa y te saca los fantasmas ', 20, 250,'https://pbs.twimg.com/media/EY1UeCdWkAEsJKX.jpg');
