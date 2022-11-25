@@ -36,10 +36,20 @@
                 <img src=\"{$urlItem}\" class=\"img-thumbnail rounded col-8 col-md-11 col-sm-9 \"  style=\"width: auto;height: 260px\">
             </div>
             <div class=\"titulo_producto text-center\"><h4 style=\"display: inline-block;\">{$proNombre}-{$proPrecio}</h4></div>
-            <form action=\"\">
-                <input type=\"number\" name=\"\" class=\"cantidad col-2\">
-                stock: {$proCantStock}
-                <button>COMPRAR</button>
+            <form action=\"\" method=\"post\" class=\"needs-validation\" novalidate>
+                <input type=\"text\" name=\"idProducto\" id=\"idProducto\" class=\"d-none\">
+                <div>
+                    <input type=\"number\" name=\"ciCantidad\" id=\"cantidad_input\" min=\"1\" max=\"{$proCantStock}\" class=\"form-control\" placeholder=\"cant\" required cols=\"2\">
+                    <div class=\"invalid-feedback mb-1\">
+                        sin stock
+                    </div>
+                    <div class=\"invalid-feedback mb-1\">
+                        bien!
+                    </div>
+                    <input class=\"btn btn-success me-2\" type=\"submit\" name=\"boton_enviar\" value=\"comprar\">
+                    stock: {$proCantStock}
+                    
+                </div>
                 <div class=\"d-none\">{$idProducto}</div>
             </form>
             
@@ -55,7 +65,6 @@
 
 ?>
 
-<img src="" alt="" style="background-position: center;" height="200px">
 
 
 
