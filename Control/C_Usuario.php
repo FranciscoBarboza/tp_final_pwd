@@ -10,7 +10,7 @@ class c_usuario
     private function cargarObjeto($param)
     {
         $obj = null;
-        if (array_key_exists('idusuario', $param)) {
+        if (array_key_exists('idUsuario', $param)) {
             $obj = new Usuario();
             $obj->cargar(
                 $param['idUsuario'],
@@ -61,6 +61,7 @@ class c_usuario
     {
         $resp = false;
         $param['idUsuario'] = null;
+        $param['usDeshabilitado'] = null;
         $obj = $this->cargarObjeto($param);
         if ($obj != null and $obj->insertar()) {
             $resp = true;

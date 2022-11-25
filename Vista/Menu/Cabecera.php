@@ -30,10 +30,10 @@ $objSession= new C_Session();
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
           
           <li class="nav-item">
-            <a class="nav-link active" href="inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
+            <a class="nav-link active" href="../paginasTienda/inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="tienda.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
+            <a class="nav-link active" href="../paginasTienda/tienda.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
           </li>
           <?php
           /*switch($rol){
@@ -41,10 +41,10 @@ $objSession= new C_Session();
             case "Administrador":; */
           ?>
           <li class="nav-item">
-            <a class="nav-link active" href="nuevaPersona.php" style="font-family: 'Chivo', sans-serif;">administrar</a>
+            <a class="nav-link active" href="../menuRoles/administrador.php" style="font-family: 'Chivo', sans-serif;">administrar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="login.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
+            <a class="nav-link active" href="../login/login.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
           </li>
           <?php /*
             case "Deposito":;

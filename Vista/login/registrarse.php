@@ -20,6 +20,15 @@ include_once("../menu/cabecera.php");
                 </div>
             </div>
             <div>
+                <label>Email: </label><input type="email" name="usMail" id="input_email" class="form-control text" required>
+                <div class="invalid-feedback">
+                    Porfavor ingrese un e-mail valido! Es requerido que contenga numeros y letras.
+                </div>
+                <div class="valid-feedback">
+                    Correcto!
+                </div>
+            </div>
+            <div>
                 <label>Contraseña: </label><input type="password" name="usPass" id="input_contrasena" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una contraseña!

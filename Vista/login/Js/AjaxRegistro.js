@@ -40,7 +40,7 @@ function registerSuccess() {
         timer: 1500
     })
     setTimeout(function () {
-        recargarPagina();
+        window.location.href = "../paginasTienda/inicio.php";
     }, 1500);
 }
 
