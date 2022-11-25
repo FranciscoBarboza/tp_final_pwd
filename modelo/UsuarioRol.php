@@ -1,6 +1,4 @@
 <?php
-include_once '../Modelo/Conector/BaseDatos.php';
-
 //REVISAR LISTAR
 class UsuarioRol
 {

@@ -1,5 +1,4 @@
 <?php
-include_once '../Modelo/Conector/BaseDatos.php';
 class MenuRol{
     private $objMenu;
     private $objRol;

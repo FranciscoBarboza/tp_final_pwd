@@ -1,6 +1,4 @@
 <?php
-include_once '../Modelo/conector/BaseDatos.php';
-
 //TERMINADO (ver situación de modificar)
 class Usuario
 {

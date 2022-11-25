@@ -1,5 +1,6 @@
 <?php
 include_once('../../Configuracion.php');
+
 $objSession= new C_Session();
 ?>
 <!DOCTYPE html>
@@ -11,6 +12,10 @@ $objSession= new C_Session();
   <title>Head</title>
   <script src="../bootstrap/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+  <script src="../alertas/dist/sweetalert2.all.min.js"></script>
+  <link rel="stylesheet" href="../alertas/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="../css/genera.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-expand-xl navbar-light  barra_navegacion" aria-label="Third navbar example"  id="header" style="background-color: #4B515D">

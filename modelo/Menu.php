@@ -1,5 +1,4 @@
 <?php
-include_once '../Modelo/Conector/BaseDatos.php';
 class Menu{
     private $idMenu;
     private $meNombre;

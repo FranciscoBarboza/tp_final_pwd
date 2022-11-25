@@ -1,8 +1,9 @@
 <?php
 include_once("../Menu/Cabecera.php");
 $metodo = data_submitted();
+$metodo['usPass'] = md5($metodo["usPass"]);
 $objUsuario = new C_Usuario();
-if($objSession->validar($metodo["usNombre"], md5($metodo["usPass"]))){
+if($objSession->validar($metodo)){
     ?>
     <script>
         Swal.fire({
@@ -13,7 +14,7 @@ if($objSession->validar($metodo["usNombre"], md5($metodo["usPass"]))){
         })
 
         function redireccionarPagina() {
-            location.href = "../sesion/paginaSegura.php"
+            location.href = "../Inicio.php"
         }
         setTimeout("redireccionarPagina()", 1450);
     </script>
@@ -29,7 +30,7 @@ if($objSession->validar($metodo["usNombre"], md5($metodo["usPass"]))){
         })
 
         function redireccionarPagina() {
-            location.href = "../sesion/login.php"
+            // location.href = "login.php"
         }
         setTimeout("redireccionarPagina()", 1450);
     </script>
