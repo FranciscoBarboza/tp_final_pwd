@@ -79,7 +79,7 @@ class Usuario
 
     //INSERTAR
     public function insertar(){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
 
         //Creo la consulta 
@@ -102,7 +102,7 @@ class Usuario
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         //Hago consulta sql
@@ -127,7 +127,7 @@ class Usuario
     //BUSCAR
     public function buscar($idUsuario)
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM usuario WHERE idUsuario = " .$idUsuario;
         if ($base->Iniciar()) {
@@ -153,7 +153,7 @@ class Usuario
     public function listar($condicion = '')
     {
         $arregloUsuarios = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaUsuario =  "SELECT * from usuario";
         if ($condicion != '') {
             $consultaUsuario = $consultaUsuario . ' WHERE ' . $condicion;
@@ -179,7 +179,7 @@ class Usuario
     //ELIMINAR
     public function eliminar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM usuario WHERE idUsuario = " . $this->getIdUsuario();

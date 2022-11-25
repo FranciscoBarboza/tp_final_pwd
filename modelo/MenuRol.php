@@ -45,7 +45,7 @@ class MenuRol{
 
     //INSERTAR
     public function insertar(){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         //Creo la consulta 
@@ -67,7 +67,7 @@ class MenuRol{
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         $consulta = "UPDATE menurol 
@@ -90,7 +90,7 @@ class MenuRol{
     //BUSCAR
     public function buscar($idMenu)
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM menurol WHERE idMenu = " . $idMenu;
         if ($base->Iniciar()) {
@@ -114,7 +114,7 @@ class MenuRol{
     //LISTAR
     public function listar($condicion = ''){
         $arrayMR = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaMR =  "SELECT * from menurol";
         if ($condicion != '') {
             $consultaMR = $consultaMR . ' WHERE ' . $condicion;
@@ -139,7 +139,7 @@ class MenuRol{
 
     //ELIMINAR
     public function eliminar(){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM menurol WHERE idMenu= '". $this->getObjMenu()->getIdMenu()."' 

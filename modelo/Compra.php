@@ -59,7 +59,7 @@ class Compra{
     //INSERTAR
     public function insertar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         //Creo la consulta 
@@ -82,7 +82,7 @@ class Compra{
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         //coFecha SE MODIFICA??????????? Está DEFAULT
         $consulta = "UPDATE compra SET 
@@ -104,7 +104,7 @@ class Compra{
     //BUSCAR
     public function buscar($idCompra)
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM compra WHERE idCompra = " . $idCompra;
         if ($base->Iniciar()) {
@@ -131,7 +131,7 @@ class Compra{
     public function listar($condicion = '')
     {
         $arrayCompra = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaCompra =  "SELECT * from compra";
         if ($condicion != '') {
             $consultaCompra = $consultaCompra . ' WHERE ' . $condicion;
@@ -158,7 +158,7 @@ class Compra{
     //ELIMINAR
     public function eliminar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM compra WHERE idCompra = ". $this->getIdCompra();

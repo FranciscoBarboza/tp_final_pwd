@@ -62,7 +62,7 @@ class CompraEstadoTipo
     //INSERTAR
     public function insertar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
                 
         //Creo la consulta 
@@ -85,7 +85,7 @@ class CompraEstadoTipo
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "UPDATE Compraestadotipo SET
         cetDescripcion = '".$this->getCetDescripcion()."', 
@@ -106,7 +106,7 @@ class CompraEstadoTipo
     //BUSCAR
     public function buscar($idCompraEstadoTipo)
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM compraestadotipo WHERE idCompraEstadoTipo =" . $idCompraEstadoTipo;
         if ($base->Iniciar()) {
@@ -129,7 +129,7 @@ class CompraEstadoTipo
     //LISTAR
     public function listar($condicion = ''){
         $arrayCET = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaCET = "SELECT * from compraestadotipo";
         if ($condicion != '') {
             $consultaCET = $consultaCET . ' WHERE ' . $condicion;
@@ -154,7 +154,7 @@ class CompraEstadoTipo
     //ELIMINAR
     public function eliminar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM compraestadotipo WHERE idCompraEstadoTipo = " . $this->getIdCompraEstadoTipo();

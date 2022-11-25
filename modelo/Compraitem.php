@@ -70,7 +70,7 @@ class CompraItem
 
     //INSERTAR
     public function insertar(){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
     
         //Creo la consulta 
@@ -94,7 +94,7 @@ class CompraItem
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         $consulta = "UPDATE compraitem 
@@ -116,7 +116,7 @@ class CompraItem
 
     //BUSCAR
     public function buscar($idCompraItem){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM compraitem WHERE idCompraItem =" .$idCompraItem;
         if ($base->Iniciar()) {
@@ -146,7 +146,7 @@ class CompraItem
     public function listar($condicion = '')
     {
         $arrayCompraItem = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaItem =  "SELECT * from compraitem";
         if ($condicion != '') {
             $consultaItem = $consultaItem . ' WHERE ' . $condicion;
@@ -171,7 +171,7 @@ class CompraItem
 
     //ELIMINAR
     public function eliminar(){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM compraitem WHERE idCompraItem = " . $this->getIdCompraItem();

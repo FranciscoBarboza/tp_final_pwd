@@ -77,7 +77,7 @@ class CompraEstado{
 
     //INSERTAR
     public function insertar(){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         //Creo la consulta 
@@ -102,7 +102,7 @@ class CompraEstado{
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         $consulta = "UPDATE compraestado
@@ -127,7 +127,7 @@ class CompraEstado{
     //BUSCAR
     public function buscar($idCompraEstado)
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM compraestado WHERE idCompraEstado = " . $idCompraEstado;
         if ($base->Iniciar()) {
@@ -158,7 +158,7 @@ class CompraEstado{
     public function listar($condicion = '')
     {
         $arrayCET = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaCET =  "SELECT * from compraestado";
         if ($condicion != '') {
             $consultaCET = $consultaCET . ' WHERE ' . $condicion;
@@ -183,7 +183,7 @@ class CompraEstado{
 
     //ELIMINAR
     public function eliminar(){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM compraestado WHERE idCompraEstado = " . $this->getIdCompraEstado();

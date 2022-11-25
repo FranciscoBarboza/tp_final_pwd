@@ -104,7 +104,7 @@ class Producto{
 
     //INSERTAR
     public function insertar(){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         //Creo la consulta 
@@ -129,7 +129,7 @@ class Producto{
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "UPDATE producto SET 
         proNombre = '".$this->getProNombre()."',
@@ -153,7 +153,7 @@ class Producto{
 
     //BUSCAR
     public function buscar($idProducto){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM producto WHERE idProducto = '" . $idProducto . "'";
         if ($base->Iniciar()) {
@@ -180,7 +180,7 @@ class Producto{
     public function listar($condicion = '')
     {
         $arrayProductos = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaProducto =  "SELECT * from producto";
         if ($condicion != '') {
             $consultaProducto = $consultaProducto . ' WHERE ' . $condicion;
@@ -206,7 +206,7 @@ class Producto{
 
     //ELIMINAR
     public function eliminar(){
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()){
             $consulta = "DELETE FROM producto WHERE idProducto = " . $this->getIdProducto();

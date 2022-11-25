@@ -78,7 +78,7 @@ class Menu{
     //INSERTAR
     public function insertar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         //Creo la consulta 
@@ -103,7 +103,7 @@ class Menu{
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         $consulta = "UPDATE menu 
@@ -128,7 +128,7 @@ class Menu{
     //BUSCAR
     public function buscar($idMenu)
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM menu WHERE idMenu = " . $idMenu;
         if ($base->Iniciar()) {
@@ -154,7 +154,7 @@ class Menu{
     public function listar($condicion = '')
     {
         $arrayMenu = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaMenu =  "SELECT * from menu ";
         if ($condicion != '') {
             $consultaMenu = $consultaMenu . ' WHERE ' . $condicion;
@@ -180,7 +180,7 @@ class Menu{
     //ELIMINAR
     public function eliminar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM menu WHERE idMenu = " . $this->getIdMenu();

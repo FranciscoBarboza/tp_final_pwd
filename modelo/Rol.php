@@ -50,7 +50,7 @@ class Rol
     //INSERTAR
     public function insertar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         //Creo la consulta 
         $consulta = "INSERT INTO rol (idRol, rolDescripcion) VALUES (
@@ -71,7 +71,7 @@ class Rol
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "UPDATE rol SET
         rolDescripcion = '".$this->getRolDescripcion()."' 
@@ -91,7 +91,7 @@ class Rol
     //BUSCAR
     public function buscar($idRol)
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM rol WHERE idRol =" . $idRol;
         if ($base->Iniciar()) {
@@ -114,7 +114,7 @@ class Rol
     public function listar($condicion = "")
     {
         $arregloRoles = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaRol =  "SELECT * from rol ";
         if ($condicion != '') {
             $consultaRol = $consultaRol . ' WHERE ' . $condicion;
@@ -140,7 +140,7 @@ class Rol
     //ELIMINAR
     public function eliminar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM rol WHERE idRol =" . $this->getIdRol();

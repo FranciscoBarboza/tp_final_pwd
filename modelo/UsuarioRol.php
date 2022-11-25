@@ -55,7 +55,7 @@ class UsuarioRol
     //INSERTAR
     public function insertar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         
         //Creo la consulta 
@@ -77,7 +77,7 @@ class UsuarioRol
     //MODIFICAR
     public function modificar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         $consulta = "UPDATE usuariorol SET 
         idUsuario = '".$this->getObjUsuario()->getIdUsuario()."', 
@@ -98,7 +98,7 @@ class UsuarioRol
     //BUSCAR
     public function buscar($idUsuario, $idRol)
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         //PROBLEMA, NO ESTÁ BIEN ESCRITO
         $consulta = "SELECT * FROM usuariorol WHERE idUsuario = $idUsuario AND idRol =" . $idRol;
@@ -127,7 +127,7 @@ class UsuarioRol
     public function listar($condicion = '')
     {
         $arregloUsuarioRol = null;
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $consultaUserRol =  "SELECT * from usuariorol ";
         if ($condicion != '') {
             $consultaUserRol = $consultaUserRol . ' WHERE ' . $condicion;
@@ -153,7 +153,7 @@ class UsuarioRol
     //ELIMINAR
     public function eliminar()
     {
-        $base = new BaseDatos();
+        $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM usuariorol WHERE idUsuario= '". $this->getObjUsuario()->getIdUsuario()."' 

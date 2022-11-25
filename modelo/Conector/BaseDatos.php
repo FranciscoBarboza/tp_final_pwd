@@ -1,5 +1,5 @@
 <?php
-class BaseDatos extends PDO {
+class baseDatos extends PDO {
   
     private $engine;
     private $host;
