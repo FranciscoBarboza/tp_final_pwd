@@ -120,4 +120,14 @@ class C_Rol
         
         return $arreglo;
     }
+
+    public function obtenerObj($arrayId){
+        $objRoles=[];
+        foreach($arrayId as $idRol){
+            $param['idRol']=$idRol;
+            $objRol=$this->buscar($param);
+            array_push($objRoles, $objRol[0]);
+        }
+        return $objRoles;
+    }
 }
