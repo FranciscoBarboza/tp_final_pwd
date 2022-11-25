@@ -1,5 +1,5 @@
 <?php
-include_once("../Menu/Cabecera.php");
+include_once("../menu/cabecera.php");
 ?>
 <div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
     <div class="modal-dialog" role="document">
@@ -38,5 +38,5 @@ include_once("../Menu/Cabecera.php");
 </div>
 <script src="../js/validarCamposVacios.js"></script>
 <?php
-include_once("../Menu/Pie.php")
+include_once("../menu/pie.php")
 ?>

@@ -1,5 +1,5 @@
 <?php
-include_once("../Menu/Cabecera.php");
+include_once("../menu/cabecera.php");
 ?>
 <style>
     body{
@@ -51,5 +51,5 @@ include_once("../Menu/Cabecera.php");
 <script src="Js/Md5Ajax.js"></script>
 <script src="Js/AjaxRegistro.js"></script>
 <?php
-include_once("../Menu/Pie.php")
+include_once("../menu/pie.php")
 ?>

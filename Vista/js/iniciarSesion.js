@@ -2,7 +2,7 @@ function redireccionarPaginaInicio() {
     location.href = 'index.php'
 }
 function redireccionarInicioSesion() {
-    location.href = 'IniciarSesion.php'
+    location.href = 'iniciarSesion.php'
 }
 
 function comprobarCuenta(){

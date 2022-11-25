@@ -1,5 +1,5 @@
 <?php
-include_once("../Menu/Cabecera.php");
+include_once("../menu/cabecera.php");
 $metodo = data_submitted();
 $metodo['usPass'] = md5($metodo["usPass"]);
 $objUsuario = new C_Usuario();
@@ -14,7 +14,7 @@ if($objSession->validar($metodo)){
         })
 
         function redireccionarPagina() {
-            location.href = "../Inicio.php"
+            location.href = "../inicio.php"
         }
         setTimeout("redireccionarPagina()", 1450);
     </script>

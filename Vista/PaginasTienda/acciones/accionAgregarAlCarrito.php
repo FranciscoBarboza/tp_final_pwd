@@ -1,6 +1,6 @@
 <?php
 include_once("../../../configuracion.php");
-include_once("../../Menu/Cabecera.php");
+include_once("../../menu/cabecera.php");
 
 $datos = data_submitted();
 

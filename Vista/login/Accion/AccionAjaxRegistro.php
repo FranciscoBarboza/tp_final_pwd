@@ -1,5 +1,5 @@
 <?php
-include_once("../../../Configuracion.php");
+include_once("../../../configuracion.php");
 
 $datos = data_submitted();
 $objPersona = new C_Usuario();

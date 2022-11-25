@@ -8,7 +8,7 @@ $(document).ready(function () {
             document.getElementById("input_contraseña").value = passhash;
             $.ajax({
                 type: "POST",
-                url: 'Accion/AccionAjaxRegistro.php',
+                url: 'accion/accionAjaxRegistro.php',
                 data: $(this).serialize(),
                 success: function (response) {
                     var jsonData = JSON.parse(response);
