@@ -1,6 +1,6 @@
 <?php
     // include "../configuracion.php";
-    include_once("Menu/Cabecera.php");
+    include_once("../Menu/Cabecera.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +47,6 @@
 <link rel="stylesheet" href="../Vista/css/tpFinal.css">
 </html>
 <?php
-    include_once("Menu/Pie.php")
+    include_once("../Menu/Pie.php")
 ?>
 

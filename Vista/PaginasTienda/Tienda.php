@@ -1,7 +1,7 @@
 <?php
-    include "../configuracion.php";
+    include "../../configuracion.php";
     // include_once("Menu/Cabecera.php");
-    include_once "Menu/Cabecera.php";
+    include_once "../Menu/Cabecera.php";
 
 
     function crearTienda(){
@@ -140,12 +140,7 @@
 -->
     </div>
 </div> 
-
-
-
-
-
-<script src="javascript/tienda.js"></script>
+<script src="../javascript/tienda.js"></script>
 </body>
 </html>
 
