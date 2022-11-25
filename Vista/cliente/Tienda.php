@@ -22,6 +22,7 @@
     function formato($objProducto){
         
 
+
         $idProducto= $objProducto->getIdProducto();
         $proNombre= $objProducto->getProNombre();
         $proDetalle= $objProducto->getProDetalle();
