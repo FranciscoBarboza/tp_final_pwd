@@ -1,7 +1,7 @@
 <?php
 include_once '../Modelo/Compraestadotipo.php';
 
-class C_Compraestadotipo
+class C_CompraEstadoTipo
 {
 
     /**
@@ -12,13 +12,12 @@ class C_Compraestadotipo
     private function cargarObjeto($param)
     {
         $obj = null;
-        if (array_key_exists('idcompraestadotipo', $param)) {
-
-            $obj = new Compraestadotipo();
+        if (array_key_exists('idCompraEstadoTipo', $param)) {
+            $obj = new CompraEstadoTipo();
             $obj->cargar(
-                $param['idcompraestadotipo'],
-                $param['cetdescripcion'],
-                $param['cetdetalle'],
+                $param['idCompraEstadoTipo'],
+                $param['cetDescripcion'],
+                $param['cetDetalle'],
             );
         }
         return $obj;
@@ -33,9 +32,9 @@ class C_Compraestadotipo
     private function cargarObjetoConClave($param)
     {
         $obj = null;
-        if (isset($param['idcompraestadotipo'])) {
-            $obj = new Compraestadotipo();
-            $obj->cargar($param['idcompraestadotipo'], null, null);
+        if (isset($param['idCompraEstadoTipo'])) {
+            $obj = new CompraEstadoTipo();
+            $obj->cargar($param['idCompraEstadoTipo'], null, null);
         }
         return $obj;
     }
@@ -49,7 +48,7 @@ class C_Compraestadotipo
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idcompraestadotipo']))
+        if (isset($param['idCompraEstadoTipo']))
             $resp = true;
         return $resp;
     }
@@ -61,6 +60,7 @@ class C_Compraestadotipo
     public function alta($param)
     {
         $resp = false;
+        $param['idCompraEstadoTipo'] = null;
         $obj = $this->cargarObjeto($param);
         if ($obj != null and $obj->insertar()) {
             $resp = true;
@@ -110,16 +110,15 @@ class C_Compraestadotipo
         $where = " true "; 
         if ($param<>NULL){
             $where .= '';
-            if  (isset($param['idcompraestadotipo']))
-                $where.=" and idcompraestadotipo ='".$param['idcompraestadotipo']."'"; 
-            if  (isset($param['cetdescripcion']))
-                    $where.=" and cetdescripcion ='".$param['cetdescripcion']."'";
-            if  (isset($param['cetdetalle']))
-                    $where.=" and cetdetalle ='".$param['cetdetalle']."'";
+            if  (isset($param['idCompraEstadoTipo']))
+                $where.=" and idCompraEstadoTipo ='".$param['idCompraEstadoTipo']."'"; 
+            if  (isset($param['cetDescripcion']))
+                    $where.=" and cetDescripcion ='".$param['cetDescripcion']."'";
+            if  (isset($param['cetDetalle']))
+                    $where.=" and cetDetalle ='".$param['cetDetalle']."'";
         }
-        $obj = new Compraestadotipo();
+        $obj = new CompraEstadoTipo();
         $arreglo =  $obj->listar($where);  
-        
         return $arreglo;
     }
 }

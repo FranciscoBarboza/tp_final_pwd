@@ -13,14 +13,13 @@ class C_Usuario
     {
         $obj = null;
         if (array_key_exists('idusuario', $param)) {
-
             $obj = new Usuario();
             $obj->cargar(
-                $param['idusuario'],
-                $param['usnombre'],
-                $param['uspass'],
-                $param['usmail'],
-                $param['usdeshabilitado'],
+                $param['idUsuario'],
+                $param['usNombre'],
+                $param['usPass'],
+                $param['usMail'],
+                $param['usDeshabilitado'],
             );
         }
         return $obj;
@@ -35,9 +34,9 @@ class C_Usuario
     private function cargarObjetoConClave($param)
     {
         $obj = null;
-        if (isset($param['idusuario'])) {
+        if (isset($param['idUsuario'])) {
             $obj = new Usuario();
-            $obj->cargar($param['idusuario'], null, null, null, null);
+            $obj->cargar($param['idUsuario'], null, null, null, null);
         }
         return $obj;
     }
@@ -51,7 +50,7 @@ class C_Usuario
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idusuario']))
+        if (isset($param['idUsuario']))
             $resp = true;
         return $resp;
     }
@@ -63,6 +62,7 @@ class C_Usuario
     public function alta($param)
     {
         $resp = false;
+        $param['idUsuario'] = null;
         $obj = $this->cargarObjeto($param);
         if ($obj != null and $obj->insertar()) {
             $resp = true;
@@ -112,20 +112,33 @@ class C_Usuario
         $where = " true "; 
         if ($param<>NULL){
             $where .= '';
-            if  (isset($param['idusuario']))
-                $where.=" and idusuario ='".$param['idusuario']."'"; 
-            if  (isset($param['usnombre']))
-                    $where.=" and usnombre ='".$param['usnombre']."'";
-            if  (isset($param['uspass']))
-                    $where.=" and uspass ='".$param['uspass']."'";
-            if  (isset($param['usmail']))
-                    $where.=" and usmail ='".$param['usmail']."'";
-            if  (isset($param['usdeshabilitado']))
-                    $where.=" and usdeshabilitado ='".$param['usdeshabilitado']."'";
+            if  (isset($param['idUsuario']))
+                $where.=" and idUsuario ='".$param['idUsuario']."'"; 
+            if  (isset($param['usNombre']))
+                    $where.=" and usNombre ='".$param['usNombre']."'";
+            if  (isset($param['usPass']))
+                    $where.=" and usPass ='".$param['usPass']."'";
+            if  (isset($param['usMail']))
+                    $where.=" and usMail ='".$param['usMail']."'";
+            if  (isset($param['usDeshabilitado']))
+                    $where.=" and usDeshabilitado ='".$param['usDeshabilitado']."'";
         }
         $obj = new Usuario();
         $arreglo =  $obj->listar($where);  
         
         return $arreglo;
+    }
+
+    function deshabilitar($param){
+        $resp = false;
+        $arrayObjUsuarios = $this->buscar($param);
+        $fecha = new DateTime();
+        $fechaStamp = $fecha->format('Y-m-d H:i:s');
+        $objUsuario = $arrayObjUsuarios[0];
+        $objUsuario->setUsDeshabilitado($fechaStamp);
+        if ($objUsuario != null and $objUsuario->modificar()){
+            $resp = true;
+        }
+        return $resp;
     }
 }

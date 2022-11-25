@@ -1,165 +1,102 @@
 <?php
-include_once '../Modelo/conector/BaseDatos.php';
-class Menu
-{
-    private $idmenu;
-    private $menombre;
-    private $medescripcion;
-    private $idpadre; 
-    private $medeshabilitado;
-    private $mensaje;
+include_once '../Modelo/Conector/BaseDatos.php';
+class Menu{
+    private $idMenu;
+    private $meNombre;
+    private $meDescripcion;
+    private $idPadre; 
+    private $meDeshabilitado;
+    private $mensajeFuncion;
 
     public function __construct()
     {
-        $this->idmenu = "";
-        $this->menombre = "";
-        $this->medescripcion = "";
-        $this->idpadre = '';
-        $this->medeshabilitado = "";
+        $this->idMenu = "";
+        $this->meNombre = "";
+        $this->meDescripcion = "";
+        $this->idPadre = '';
+        $this->meDeshabilitado = "";
     }
 
-    public function cargar($idmenu, $menombre, $medescripcion, $idpadre, $medeshabilitado)
+    public function cargar($idMenu, $meNombre, $meDescripcion, $idPadre, $meDeshabilitado)
     {
-        $this->setIdmenu($idmenu);
-        $this->setMenombre($menombre);
-        $this->setMedescripcion($medescripcion);
-        $this->setIdpadre($idpadre);
-        $this->setMedeshabilitado($medeshabilitado);
+        $this->setIdMenu($idMenu);
+        $this->setMeNombre($meNombre);
+        $this->setMeDescripcion($meDescripcion);
+        $this->setIdPadre($idPadre);
+        $this->setMensajeFuncion($meDeshabilitado);
     }
 
-    public function getIdmenu(){
-        return $this->idmenu;
+    public function getIdMenu(){
+        return $this->idMenu;
     }
 
-    public function setIdmenu($idmenu){
-        $this->idmenu = $idmenu;
+    public function setIdMenu($idMenu){
+        $this->idMenu = $idMenu;
     }
 
-    public function getMenombre(){
-        return $this->menombre;
+    public function getMeNombre(){
+        return $this->meNombre;
     }
 
-    public function setMenombre($menombre){
-        $this->menombre = $menombre;
+    public function setMeNombre($meNombre){
+        $this->meNombre = $meNombre;
     }
 
-    public function getMedescripcion(){
-        return $this->medescripcion;
+    public function getMeDescripcion(){
+        return $this->meDescripcion;
     }
 
-    public function setMedescripcion($medescripcion){
-        $this->medescripcion = $medescripcion;
+    public function setMeDescripcion($meDescripcion){
+        $this->meDescripcion = $meDescripcion;
     }
 
-    public function getIdpadre(){
-        return $this->idpadre;
+    public function getIdPadre(){
+        return $this->idPadre;
     }
 
-    public function setIdpadre($idpadre){
-        $this->idpadre = $idpadre;
+    public function setIdPadre($idPadre){
+        $this->idPadre = $idPadre;
     }
 
-    public function getMedeshabilitado(){
-        return $this->medeshabilitado;
+    public function getMeDeshabilitado(){
+        return $this->meDeshabilitado;
     }
 
-    public function setMedeshabilitado($medeshabilitado){
-        $this->medeshabilitado = $medeshabilitado;
+    public function setMeDeshabilitado($meDeshabilitado){
+        $this->meDeshabilitado = $meDeshabilitado;
     }
 
-    public function getMensaje(){
-        return $this->mensaje;
+    public function getMensajeFuncion(){
+        return $this->mensajeFuncion;
     }
 
-    public function setMensaje($mensaje){
-        $this->mensaje = $mensaje;
-    }
-
-    public function __toString()
-    {
-        return "idmenu: " . $this->getidmenu() .
-            "\nmenombre: " . $this->getmenombre() .
-            "\nmedescripcion: " . $this->getMedescripcion() .
-            "\nDueño: " . $this->getidpadre();
+    public function setMensajeFuncion($mensajeFuncion){
+        $this->mensajeFuncion = $mensajeFuncion;
     }
 
     //Funciones BD
-
-    //BUSCAR
-    public function buscar($idmenu)
-    {
-        $base = new BaseDatos();
-        $resp = false;
-        $sql = "SELECT * FROM Menu WHERE idmenu = '" . $idmenu . "'";
-        if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
-                if ($row2 = $base->Registro()) {
-                    $this->setidmenu($row2['idmenu']);
-                    $this->setmenombre($row2['menombre']);
-                    $this->setmedescripcion($row2['medescripcion']);
-                    $this->setidpadre($row2['idpadre']);
-                    $this->setMedeshabilitado($row2['medeshabilitado']);
-                    $resp = true;
-                }
-            } else {
-                $this->setmedeshabilitado($base->getError());
-            }
-        } else {
-            $this->setmedeshabilitado($base->getError());
-        }
-        return $resp;
-    }
-
-    //LISTAR
-    public function listar($condicion = '')
-    {
-        $array = null;
-        $base = new BaseDatos();
-        $sql =  "select * from Menu";
-        if ($condicion != '') {
-            $sql = $sql . ' where ' . $condicion;
-        }
-        if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
-                $array = array();
-                while ($row2 = $base->Registro()) {
-                    $objMenu = new Menu();
-                    $objMenu->buscar($row2['idmenu']);
-                    $array[] = $objMenu;
-                }
-            } else {
-                $this->setmedeshabilitado($base->getError());
-            }
-        } else {
-            $this->setmedeshabilitado($base->getError());
-        }
-
-        return $array;
-    }
 
     //INSERTAR
     public function insertar()
     {
         $base = new BaseDatos();
         $resp = false;
-        //Asigno los datos a variables
-        $idmenu = $this->getidmenu();
-        $menombre = $this->getmenombre();
-        $medescripcion = $this->getMedescripcion();
-        $idpadre = $this->getidpadre();
-        $medeshabilitado = $this->getMedeshabilitado();
-
-
+        
         //Creo la consulta 
-        $sql = "INSERT INTO Menu (idmenu, menombre, medescripcion, idpadre, medeshabilitado) VALUES ('{$idmenu}', '{$menombre}', '{$medescripcion}', '{$idpadre}', '{$medeshabilitado}')";
+        $consulta = "INSERT INTO menu (idMenu, meNombre, meDescripcion, idPadre, meDeshabilitado) VALUES (
+        '".$this->getIdMenu()."',
+         '".$this->getMeNombre()."',
+        '".$this->getMeDescripcion()."',
+        '".$this->getIdPadre()."',
+        '".$this->getMeDeshabilitado()."')"; 
         if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
+            if ($base->Ejecutar($consulta)) {
                 $resp = true;
             } else {
-                $this->setmedeshabilitado($base->getError());
+                $this->setMensajeFuncion($base->getError());
             }
         } else {
-            $this->setmedeshabilitado($base->getError());
+            $this->setMensajeFuncion($base->getError());
         }
         return $resp;
     }
@@ -169,42 +106,103 @@ class Menu
     {
         $base = new BaseDatos();
         $resp = false;
-        $idmenu = $this->getidmenu();
-        $menombre = $this->getmenombre();
-        $medescripcion = $this->getMedescripcion();
-        $idpadre = $this->getidpadre();
-        $medeshabilitado = $this->getMedeshabilitado();
-
-        $sql = "UPDATE Menu SET menombre = '{$menombre}', medescripcion = '{$medescripcion}', idpadre = '{$idpadre}', medeshabilitado = '{$medeshabilitado}' WHERE idmenu = '{$idmenu}'";
+        
+        $consulta = "UPDATE menu 
+        SET
+        meNombre = '".$this->getMeNombre()."',
+        meDescripcion = '".$this->getMeDescripcion()."',
+        idPadre = '".$this->getIdPadre()."',
+        meDeshabilitado = ".$this->getMeDeshabilitado()."
+        WHERE idMenu = ". $this->getIdMenu();
         if ($base->Iniciar()) {
-            if ($base->Ejecutar($sql)) {
+            if ($base->Ejecutar($consulta)) {
                 $resp = true;
             } else {
-                $this->setmedeshabilitado($base->getError());
+                $this->setMensajeFuncion($base->getError());
             }
         } else {
-            $this->setmedeshabilitado($base->getError());
+            $this->setMensajeFuncion($base->getError());
         }
         return $resp;
+    }
+
+    //BUSCAR
+    public function buscar($idMenu)
+    {
+        $base = new BaseDatos();
+        $resp = false;
+        $consulta = "SELECT * FROM menu WHERE idMenu = " . $idMenu;
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($consulta)) {
+                if ($menu = $base->Registro()) {
+                    $this->setIdMenu($idMenu);
+                    $this->setMeNombre($menu['meNombre']);
+                    $this->setMeDescripcion($menu['meDescripcion']);
+                    $this->setIdPadre($menu['idPadre']);
+                    $this->setMeDeshabilitado($menu['meDeshabilitado']);
+                    $resp = true;
+                }
+            } else {
+                $this->setMensajeFuncion($base->getError());
+            }
+        } else {
+            $this->setMensajeFuncion($base->getError());
+        }
+        return $resp;
+    }
+
+    //LISTAR
+    public function listar($condicion = '')
+    {
+        $arrayMenu = null;
+        $base = new BaseDatos();
+        $consultaMenu =  "SELECT * from menu ";
+        if ($condicion != '') {
+            $consultaMenu = $consultaMenu . ' WHERE ' . $condicion;
+        }
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($consultaMenu)) {
+                $arrayMenu = array();
+                while ($menu = $base->Registro()) {
+                    $objMenu = new Menu();
+                    $objMenu->buscar($menu['idMenu']);
+                    array_push($arrayMenu, $objMenu);
+                }
+            } else {
+                $this->setMensajeFuncion($base->getError());
+            }
+        } else {
+            $this->setMensajeFuncion($base->getError());
+        }
+
+        return $arrayMenu;
     }
 
     //ELIMINAR
     public function eliminar()
     {
         $base = new BaseDatos();
-        $rta = false;
-        $consulta = "DELETE FROM Menu WHERE idmenu = " . $this->getidmenu();
+        $resp = false;
         if ($base->Iniciar()) {
+            $consulta = "DELETE FROM menu WHERE idMenu = " . $this->getIdMenu();
             if ($base->Ejecutar($consulta)) {
-                $rta = true;
+                $resp = true;
             } else {
-                $this->setmedeshabilitado($base->getError());
+                $this->setMensajeFuncion($base->getError());
             }
         } else {
-            $this->setmedeshabilitado($base->getError());
+            $this->setMensajeFuncion($base->getError());
         }
-        return $rta;
+        return $resp;
     }
 
-    
+    public function __toString()
+    {
+        return (
+            "ID menu: " . $this->getIdMenu() .
+            "\n Nombre del menu: " . $this->getMeNombre() .
+            "\n Descripcion del menu: " . $this->getMeDescripcion() .
+            "\n ID del padre: " . $this->getIdPadre() .
+            "\n Menu deshabilitado: " . $this->getMeDeshabilitado() . "\n");
+    }
 }

@@ -12,13 +12,11 @@ class C_Rol
     private function cargarObjRol($param)
     {
         $objRol = null;
-        if (array_key_exists('idrol', $param) and array_key_exists('rodescripcion', $param)) {
+        if (array_key_exists('idRol', $param)){
             $objRol = new Rol();
-            /* $objRol->cargar(
-                $param['idrol'],
-                $param['rodescripcion']); */
-            if(!$objRol->cargar($param['idrol'], $param['rodescripcion'])){
-                $objRol = null;
+            if(!$objRol->cargar(
+                $param['idRol'], 
+                $param['rolDescripcion'])){
             }
         }
         return $objRol;
@@ -33,10 +31,9 @@ class C_Rol
     private function cargarObjRolConClave($param)
     {
         $objRol = null;
-        if (isset($param['idrol'])) {
+        if (isset($param['idRol'])) {
             $objRol = new Rol();
-            $objRol->setIdrol($param['idrol']);
-            /* $objRol->cargar($param['idrol'], null); */
+            $objRol->cargar($param['idRol'], null);
         }
         return $objRol;
     }
@@ -49,7 +46,7 @@ class C_Rol
 
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['idrol']))
+        if (isset($param['idRol']))
             $resp = true;
         return $resp;
     }
@@ -60,7 +57,7 @@ class C_Rol
      */
     public function alta($param){
         $resp = false;
-        $param['idrol'] =null;
+        $param['idRol'] =null;
         $objRol = $this->cargarObjRol($param);
         if ($objRol != null and $objRol->insertar()) {
             $resp = true;
@@ -110,10 +107,10 @@ class C_Rol
         $where = " true "; 
         if ($param<>null){
             $where .= '';
-            if  (isset($param['idrol']))
-                $where.=" and idrol ='".$param['idrol']."'"; 
-            if  (isset($param['rodescripcion']))
-                    $where.=" and rodescripcion ='".$param['rodescripcion']."'";
+            if  (isset($param['idRol']))
+                $where.=" and idRol ='".$param['idRol']."'"; 
+            if  (isset($param['rolDescripcion']))
+                    $where.=" and rolDescripcion ='".$param['rolDescripcion']."'";
         }
         $objRol = new Rol();
         $arreglo =  $objRol->listar($where);  

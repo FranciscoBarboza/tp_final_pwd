@@ -11,17 +11,18 @@ class C_Menurol
      */
     private function cargarObjeto($param)
     {
-        $obj = null;
-        if (array_key_exists('idmenurol', $param)) {
-
-            $obj = new Menurol();
-            $obj->cargar(
-                $param['idmenurol'],
-                $param['idmenu'],
-                $param['idrol']
-            );
+        $objMenuRol = null;
+        $objMenu = null;
+        $objRol = null;
+        if (array_key_exists('idMenu', $param) and array_key_exists('idRol', $param)) {
+            $objMenu = new Menu();
+            $objMenu->setIdMenu($param['idMenu']);
+            $objRol = new Rol();
+            $objRol->setIdRol($param['idRol']);
+            $objMenuRol = new MenuRol();
+            $objMenuRol->cargar($objMenu, $objRol);
         }
-        return $obj;
+        return $objMenuRol;
     }
 
     /**
@@ -33,9 +34,9 @@ class C_Menurol
     private function cargarObjetoConClave($param)
     {
         $obj = null;
-        if (isset($param['idmenurol'])) {
-            $obj = new Menurol();
-            $obj->cargar($param['idmenurol'], null, null);
+        if (isset($param['idMenu'])) {
+            $obj = new MenuRol();
+            $obj->cargar($param['idMenu'], null);
         }
         return $obj;
     }
@@ -49,7 +50,7 @@ class C_Menurol
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idmenurol']))
+        if (isset($param['idMenu'], $param['idRol']))
             $resp = true;
         return $resp;
     }
@@ -61,8 +62,8 @@ class C_Menurol
     public function alta($param)
     {
         $resp = false;
-        $obj = $this->cargarObjeto($param);
-        if ($obj != null and $obj->insertar()) {
+        $objMenuRol = $this->cargarObjeto($param);
+        if ($objMenuRol != null and $objMenuRol->insertar()) {
             $resp = true;
         }
         return $resp;
@@ -77,8 +78,8 @@ class C_Menurol
     {
         $resp = false;
         if ($this->seteadosCamposClaves($param)) {
-            $obj = $this->cargarObjetoConClave($param);
-            if ($obj != null and $obj->eliminar()) {
+            $objMenuRol = $this->cargarObjetoConClave($param);
+            if ($objMenuRol != null and $objMenuRol->eliminar()) {
                 $resp = true;
             }
         }
@@ -109,17 +110,34 @@ class C_Menurol
     public function buscar($param){
         $where = " true "; 
         if ($param<>NULL){
-            $where .= '';
-            if  (isset($param['idmenurol']))
-                $where.=" and idmenurol ='".$param['idmenurol']."'"; 
-            if  (isset($param['idmenu']))
-                    $where.=" and idmenu ='".$param['idmenu']."'";
-            if  (isset($param['idrol']))
-                    $where.=" and idrol ='".$param['idrol']."'";
+            if  (isset($param['idMenu']))
+                    $where.=" and idMenu ='".$param['idMenu']."'";
+            if  (isset($param['idRol']))
+                    $where.=" and idRol ='".$param['idRol']."'";
         }
-        $obj = new Menurol();
-        $arreglo =  $obj->listar($where);  
-        
+        $objMenuRol = new MenuRol();
+        $arreglo =  $objMenuRol->listar($where);  
         return $arreglo;
+    }
+
+    public function menuesByIdRol($objRol)
+    {
+        $param['idRol'] = $objRol->getIdRol();
+        $objMenuObjRol = $this->buscar($param);
+        $menuesRoles = [];
+        foreach ($objMenuObjRol as $objMenuRol) {
+            if (is_array($objMenuRol)) {
+                foreach ($objMenuRol as $objMR) {
+                    array_push($menuesRoles, $objMR);
+                }
+            } else {
+                array_push($menuesRoles, $objMenuRol);
+            }
+        }
+        $menues = [];
+        foreach ($menuesRoles as $objetos) {
+            array_push($menues, $objetos->getMenu());
+        }
+        return $menues;
     }
 }

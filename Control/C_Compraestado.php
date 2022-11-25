@@ -1,9 +1,7 @@
 <?php
 include_once '../Modelo/Compraestado.php';
 
-class C_Compraestado
-{
-
+class C_CompraEstado{
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
@@ -12,15 +10,15 @@ class C_Compraestado
     private function cargarObjeto($param)
     {
         $obj = null;
-        if (array_key_exists('idcompraestado', $param)) {
+        if (array_key_exists('idCompraEstado', $param)) {
 
-            $obj = new Compraestado();
+            $obj = new CompraEstado();
             $obj->cargar(
-                $param['idcompraestado'],
-                $param['idcompra'],
-                $param['idcompraestadotipo'],
-                $param['cefechaini'],
-                $param['cefechafin'],
+                $param['idCompraEstado'],
+                $param['idCompra'],
+                $param['idCompraEstadotipo'],
+                $param['ceFechaINI'],
+                $param['cefechaFIN'],
             );
         }
         return $obj;
@@ -35,9 +33,9 @@ class C_Compraestado
     private function cargarObjetoConClave($param)
     {
         $obj = null;
-        if (isset($param['idcompraestado'])) {
-            $obj = new Compraestado();
-            $obj->cargar($param['idcompraestado'], null, null, null, null);
+        if (isset($param['idCompraEstado'])) {
+            $obj = new CompraEstado();
+            $obj->cargar($param['idCompraEstado'], null, null, null, null);
         }
         return $obj;
     }
@@ -51,7 +49,7 @@ class C_Compraestado
     private function seteadosCamposClaves($param)
     {
         $resp = false;
-        if (isset($param['idcompraestado']))
+        if (isset($param['idCompraEstado']))
             $resp = true;
         return $resp;
     }
@@ -63,6 +61,7 @@ class C_Compraestado
     public function alta($param)
     {
         $resp = false;
+        $param['idCompraEstado'] = null;
         $obj = $this->cargarObjeto($param);
         if ($obj != null and $obj->insertar()) {
             $resp = true;
@@ -112,40 +111,59 @@ class C_Compraestado
         $where = " true "; 
         if ($param<>NULL){
             $where .= '';
-            if  (isset($param['idcompraestado']))
-                $where.=" and idcompraestado ='".$param['idcompraestado']."'"; 
-            if  (isset($param['idcompra']))
-                    $where.=" and idcompra ='".$param['idcompra']."'";
-            if  (isset($param['idcompraestadotipo']))
-                    $where.=" and idcompraestadotipo ='".$param['idcompraestadotipo']."'";
-            if  (isset($param['cefechaini']))
-                    $where.=" and cefechaini ='".$param['cefechaini']."'";
-            if  (isset($param['cefechafin']))
-                    $where.=" and cefechafin ='".$param['cefechafin']."'";
+            if  (isset($param['idCompraEstado']))
+                $where.=" and idCompraEstado ='".$param['idCompraEstado']."'"; 
+            if  (isset($param['idCompra']))
+                    $where.=" and idCompra ='".$param['idCompra']."'";
+            if  (isset($param['idCompraEstadoTipo']))
+                    $where.=" and idCompraEstadoTipo ='".$param['idCompraEstadoTipo']."'";
+            if  (isset($param['ceFechaIni']))
+                    $where.=" and ceFechaIni ='".$param['ceFechaIni']."'";
+            if  (isset($param['ceFechaFin']))
+                    $where.=" and ceFechaFin ='".$param['ceFechaFin']."'";
         }
         $obj = new Compraestado();
         $arreglo =  $obj->listar($where);  
-        
         return $arreglo;
     }
 
-    public function buscarCompraBorrador($arrayCompra){
-        $objCompraEstadoIniciada= null;
-        $i= 0;
-
-        do {
+    public function buscarCompraBorrador($arrayCompra)
+    {
+        $objCompraEstadoInciada = null;
+        $i = 0;
+        /* Busca en el array de compra si hay alguna que este con el estado "iniciada" */
+        while (($objCompraEstadoInciada == null) && ($i < count($arrayCompra))) {
             $idCompra["idCompra"] = $arrayCompra[$i]->getIdCompra();
-            $arrayCompraEstado= $this->buscar($idCompra);
-            
-            if($arrayCompraEstado[0]->getCompraEstadoTipo()->getCetDescripcion() == "borrador"){
-                $objCompraEstadoIniciada = $arrayCompraEstado[0];
+            $arrayCompraEstado = $this->buscar($idCompra);
+            if ($arrayCompraEstado[0]->getCompraEstadoTipo()->getCetDescripcion() == "borrador") {
+                $objCompraEstadoInciada = $arrayCompraEstado[0];
             } else {
                 $i++;
             }
-        } while (($objCompraEstadoIniciada == null) && ($i < count($arrayCompra)));
+        }
+        return $objCompraEstadoInciada;
+    }
 
-
-        return $objCompraEstadoIniciada;
+    public function buscarCompras($arrayCompra)
+    {
+        $arrayCompraIniciadas = [];
+        /* Busca en el array de compra si hay alguna que este con el estado "iniciada" */
+        foreach ($arrayCompra as $compra) {
+            $idCompra["idCompra"] = $compra->getIdCompra();
+            $arrayCompraEstado = $this->buscar($idCompra);
+            if (count($arrayCompraEstado) > 1) {
+                foreach ($arrayCompraEstado as $compraEstado) {
+                    if ($compraEstado->getCeFechaFin() == "0000-00-00 00:00:00") {
+                        array_push($arrayCompraIniciadas, $compraEstado);
+                    }
+                }
+            } else {
+                if ($arrayCompraEstado[0]->getCompraEstadoTipo()->getIdCompraEstadoTipo() >= 2) {
+                    array_push($arrayCompraIniciadas, $arrayCompraEstado[0]);
+                }
+            }
+        }
+        return $arrayCompraIniciadas;
     }
     
 }   
