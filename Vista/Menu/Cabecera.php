@@ -1,5 +1,5 @@
 <?php
-include_once('../../Configuracion.php');
+include_once('../../configuracion.php');
 
 $objSession= new C_Session();
 ?>
