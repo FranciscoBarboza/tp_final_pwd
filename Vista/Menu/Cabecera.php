@@ -1,7 +1,8 @@
 <?php
 include_once('../../configuracion.php');
 
-$objSession= new C_Session();
+$objSession= new c_session();
+$menuRoles = [];
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -78,8 +78,7 @@ INSERT INTO `compraestadotipo` (`idCompraEstadoTipo`, `cetDescripcion`, `cetDeta
 (1, 'iniciada', 'cuando el usuario : cliente inicia la compra de uno o mas productos del carrito'),
 (2, 'aceptada', 'cuando el usuario administrador da ingreso a uno de las compras en estado = 1 '),
 (3, 'enviada', 'cuando el usuario administrador envia a uno de las compras en estado =2 '),
-(4, 'cancelada', 'un usuario administrador podra cancelar una compra en cualquier estado y un usuario cliente solo en estado=1 '),
-(5, 'borrador', 'se guarda antes de ser aceptada por el administrador');
+(4, 'cancelada', 'un usuario administrador podra cancelar una compra en cualquier estado y un usuario cliente solo en estado=1 ')
 
 -- --------------------------------------------------------
 
