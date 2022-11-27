@@ -301,3 +301,13 @@ values ('CRUCIFIJO', 'grabado y relieves en plata', 7, 800, 'https://www.antigue
 
 insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`)
 values ('EXORCISMO', 'viene un tipo a tu casa y te saca los fantasmas ', 20, 250,'https://pbs.twimg.com/media/EY1UeCdWkAEsJKX.jpg');
+
+
+
+/* probando */
+INSERT INTO usuario (idUsuario, usNombre, usPass, usMail, usDeshabilitado) VALUES ('', 'francisco','81dc9bdb52d04dc20036dbd8313ed055','francisco@gmail.com','');
+
+INSERT INTO `compra`(`idCompra`, `idUsuario`) VALUES (null,1);
+
+INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (2,1,5);
+
