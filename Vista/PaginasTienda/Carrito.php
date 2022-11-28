@@ -23,27 +23,53 @@ $base= new baseDatos();
 
 
 
-
-
-function cargarCarrito($id){
-  /* inicializo variables */
-$objCompra= new Compra();
-$objCompraItem= new CompraItem();
+/**
+ * devuelve el carrito iniciado de un usuario
+ */
+function carritoIniciado($id){
+/* inicializo variables */
+$compraIniciada= false;
 $objCompraEstado= new CompraEstado();
+$objCOmpra= new Compra();
+$objCOmpra->getIdCompra();
+
+$compraEstados1= $objCompraEstado->listar("idCompraEstadoTipo = 1");//todos las compras estados iniciadas 1
+
+foreach ($compraEstados1 as $compraE) {
+ $compra= $compraE->getObjCompra();
 
 
-$objCompraEstado->listar("idCompraEstadoTipo = 1");//si no tiene ninguna significa que el carrito esta vacio y una sola compra
-$idCompra= $objCompraEstado->getObjCompra()->getIdCompra();//las compras con estado 1 iniciada siempre tienen una sola compra;
-$comprasDeUnUsuario= $objCompra->listar("idCompra= {$idCompra} AND idUsuario={$id}")//lista todas las compras con un id y estado iniciado
+
+ if($compra->getObjUsuario()->getIdUsuario() == $id){
+    $compraIniciada= $compra;
+ }
+
+ return $compraIniciada;
+}
+
+function crearCarrito($id){
+  $carrito= carritoIniciado($id);
+  $idCompra= $carrito->getIdCompra();
+  $compraItem= new CompraItem();
+  $arrayCompraItems= $compraItem->listar("idCompra = {$idCompra}");
+
+
+  foreach ($arrayCompraItems as $items) {
+    formatoCarrito($items);
+  }
+}
+
+
 
 
 
 
 }
 /**
+ * crea el carrito con compraitem
  * @param obj $objCompraItem
  */
-function formato($objCompraItem){
+function formatoCarrito($objCompraItem){
   $objProducto= $objCompraItem->getObjProducto();
   echo "
   <tr>
@@ -86,7 +112,7 @@ function formato($objCompraItem){
     </tr>
 
     <div>
-      <!-- aca iria la funcion que crearia la tabla o no -->
+      <?php carritoIniciado(1); ?>
     </div>
   </tbody>
 </table>

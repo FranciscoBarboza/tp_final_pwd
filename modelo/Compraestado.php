@@ -141,8 +141,8 @@ class CompraEstado{
                     $objCompraEstadoTipo = new CompraEstadoTipo;
                     $objCompraEstadoTipo->buscar($compraEstado['idCompraEstadoTipo']);
                     $this->setObjCompraEstadoTipo($objCompraEstadoTipo);
-                    $this->setCeFechaINI($compraEstado['ceFechaINI']);
-                    $this->setCeFechaFIN($compraEstado['ceFechaFIN']);
+                    $this->setCeFechaINI($compraEstado['ceFechaIni']);
+                    $this->setCeFechaFIN($compraEstado['ceFechaFin']);
                     $resp = true;
                 }
             } else {
