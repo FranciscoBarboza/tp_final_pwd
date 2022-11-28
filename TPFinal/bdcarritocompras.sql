@@ -311,3 +311,4 @@ INSERT INTO `compra`(`idCompra`, `idUsuario`) VALUES (null,1);
 
 INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (2,1,5);
 
+INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (1,1, '0000-00-00 00:00:00');
