@@ -2,13 +2,6 @@
 include_once("../Menu/Cabecera.php");
 include_once("../../configuracion.php");
 
-/**
- * busca e imprime todos los productos que compro alguien segun un id
- *  @param int $id unico de un usuario
- */
-function cargarCarritoSegunId($id){
-  echo "hola";
-}
 
 /* ESTO DEL SESSION LO HACE MANU */
 $idUsuario= 1;// esto es provisional
@@ -16,13 +9,9 @@ $idUsuario= 1;// esto es provisional
 
 $base= new baseDatos();
 
-
-
-
-
-
-
-
+function hola(){
+  echo "hola";
+}
 /**
  * devuelve el carrito iniciado de un usuario
  */
@@ -46,7 +35,11 @@ foreach ($compraEstados1 as $compraE) {
 
  return $compraIniciada;
 }
+}
 
+/**
+ * crea carrito segun id usuario
+ */
 function crearCarrito($id){
   $carrito= carritoIniciado($id);
   $idCompra= $carrito->getIdCompra();
@@ -64,7 +57,7 @@ function crearCarrito($id){
 
 
 
-}
+
 /**
  * crea el carrito con compraitem
  * @param obj $objCompraItem
@@ -82,8 +75,10 @@ function formatoCarrito($objCompraItem){
   </tr>";
 }
 
-
 ?>
+
+
+
 <html>
 <head></head>
 <body>
@@ -112,7 +107,10 @@ function formatoCarrito($objCompraItem){
     </tr>
 
     <div>
-      <?php carritoIniciado(1); ?>
+<?php 
+  hola();
+  crearCarrito(1);
+?>
     </div>
   </tbody>
 </table>
