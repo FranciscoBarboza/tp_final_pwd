@@ -2,6 +2,61 @@
 include_once("../Menu/Cabecera.php");
 include_once("../../configuracion.php");
 
+/**
+ * busca e imprime todos los productos que compro alguien segun un id
+ *  @param int $id unico de un usuario
+ */
+function cargarCarritoSegunId($id){
+  echo "hola";
+}
+
+/* ESTO DEL SESSION LO HACE MANU */
+$idUsuario= 1;// esto es provisional
+
+
+$base= new baseDatos();
+
+
+
+
+
+
+
+
+
+
+function cargarCarrito($id){
+  /* inicializo variables */
+$objCompra= new Compra();
+$objCompraItem= new CompraItem();
+$objCompraEstado= new CompraEstado();
+
+
+$objCompraEstado->listar("idCompraEstadoTipo = 1");//si no tiene ninguna significa que el carrito esta vacio y una sola compra
+$idCompra= $objCompraEstado->getObjCompra()->getIdCompra();//las compras con estado 1 iniciada siempre tienen una sola compra;
+$comprasDeUnUsuario= $objCompra->listar("idCompra= {$idCompra} AND idUsuario={$id}")//lista todas las compras con un id y estado iniciado
+
+
+
+
+}
+/**
+ * @param obj $objCompraItem
+ */
+function formato($objCompraItem){
+  $objProducto= $objCompraItem->getObjProducto();
+  echo "
+  <tr>
+    <th scope=\"row\">{$objProducto->getIdProducto()}</th>
+    <td>{$objProducto->getProNombre()}</td>
+    <td>proximamente</td>
+    <td>{$objProducto->getProDetalle()}</td>
+    <td>{$objCompraItem->getCiCantidad()}</td>
+    <td>proximamente</td>
+  </tr>";
+}
+
+
 ?>
 <html>
 <head></head>
@@ -12,8 +67,9 @@ include_once("../../configuracion.php");
 <table class="table table-hover table-bordered">
   <thead class="">
     <thead class="table-dark">
-      <th colspan="4" scope="col">usuario</td>
-      <th colspan="1" scope="col">idusuario</td>
+      <th colspan="3" scope="col">usuario</td>
+      <th colspan="1" scope="col">fecha iniciado</td>
+      <th colspan="2" scope="col"> borrar_compra</th>
     </thead>
   </thead>
   
@@ -21,41 +77,17 @@ include_once("../../configuracion.php");
   
   <tbody>
     <tr class="table-primary">
-      <th scope="col">id</th>
-      <td scope="col">nombre_producto</td>
-      <td scope="col">foto_prod</td>
-      <td scope="col">descripcion_prod</td>
-      <td scope="col">acciones_dep</td>
-      
+      <th scope="col">id_p</th>
+      <th scope="col">nombre_producto</th>
+      <th scope="col">foto_prod</th>
+      <th scope="col">descripcion_prod</th>
+      <th scope="col">cant</th>
+      <th scope="col">acciones_cli</th>
     </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td scop>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>a</td>
-    </tr> 
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-      <td>hola</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+
+    <div>
+      <!-- aca iria la funcion que crearia la tabla o no -->
+    </div>
   </tbody>
 </table>
 </div>
