@@ -17,7 +17,7 @@ function hola(){
  */
 function carritoIniciado($id){
 /* inicializo variables */
-$compraIniciada= false;
+$compraIniciada= [];
 $objCompraEstado= new CompraEstado();
 $objCOmpra= new Compra();
 $objCOmpra->getIdCompra();
@@ -30,11 +30,12 @@ foreach ($compraEstados1 as $compraE) {
 
 
  if($compra->getObjUsuario()->getIdUsuario() == $id){
-    $compraIniciada= $compra;
+    array_push($compraIniciada, $compra);
  }
 
- return $compraIniciada;
+ 
 }
+return $compraIniciada;
 }
 
 /**
@@ -42,14 +43,21 @@ foreach ($compraEstados1 as $compraE) {
  */
 function crearCarrito($id){
   $carrito= carritoIniciado($id);
-  $idCompra= $carrito->getIdCompra();
-  $compraItem= new CompraItem();
-  $arrayCompraItems= $compraItem->listar("idCompra = {$idCompra}");
 
-
-  foreach ($arrayCompraItems as $items) {
-    formatoCarrito($items);
+  foreach ($carrito as $item) {
+    $idCompra= $item->getIdCompra();
+    $compraItem= new CompraItem();
+    $arrayCompraItems= $compraItem->listar("idCompra = {$idCompra}");
+    foreach ($arrayCompraItems as $items) {
+      formatoCarrito($items);
+    }
   }
+
+  
+  
+
+
+  
 }
 
 
@@ -108,7 +116,7 @@ function formatoCarrito($objCompraItem){
 
     <div>
 <?php 
-  hola();
+  
   crearCarrito(1);
 ?>
     </div>

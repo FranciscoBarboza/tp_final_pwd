@@ -306,7 +306,7 @@ values ('EXORCISMO', 'viene un tipo a tu casa y te saca los fantasmas ', 20, 250
 
 
 
-/* probando */
+/* probando  compra iniciada*/
 INSERT INTO usuario (idUsuario, usNombre, usPass, usMail, usDeshabilitado) VALUES ('', 'francisco','81dc9bdb52d04dc20036dbd8313ed055','francisco@gmail.com','');
 
 INSERT INTO `compra`(`idCompra`, `idUsuario`) VALUES (null,1);
@@ -314,3 +314,16 @@ INSERT INTO `compra`(`idCompra`, `idUsuario`) VALUES (null,1);
 INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (2,1,5);
 
 INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (1,1, '0000-00-00 00:00:00');
+/* otro iniciado */
+INSERT INTO `compra`(`idCompra`, `idUsuario`) VALUES (null,1);
+
+INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (4,3,1);
+
+INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (3,1, '0000-00-00 00:00:00');
+
+/* probando compra aceptada */
+insert into compra (`idCompra`, `idUsuario`) values (null , 1);
+
+INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (4,2,2);
+
+INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (2,2,'0000-00-00 00:00:00');
