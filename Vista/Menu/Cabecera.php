@@ -3,6 +3,13 @@ include_once('../../configuracion.php');
 
 $objSession= new c_session();
 $menuRoles = [];
+if ($objSession->activa()) {
+  $idRol = $objSession->getRol();
+  $objMenuRol = new c_menuRol();
+  $objRol = new c_rol();
+  $menuRoles = $objMenuRol->menuByIdRol($objSession->getVista());
+  $objRoles = $objRol->obtenerObj($idRoles);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +40,15 @@ $menuRoles = [];
           <li class="nav-item">
             <a class="nav-link active" href="../paginasTienda/inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
           </li>
+          <?php
+          foreach ($menuRoles as $objMenu) {
+            if ($objMenu->getMeDeshabilitado() == null) {
+          ?>
+              <li><a href='<?php echo $objMenu->getMeDescripcion() ?>' role="button" class="px-2 mx-1 btn btn-lg btn-outline-light"><?php echo $objMenu->getMeNombre() ?></a></li>
+          <?php
+            }
+          }
+          ?>
           <li class="nav-item">
             <a class="nav-link active" href="../paginasTienda/tienda.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
           </li>
