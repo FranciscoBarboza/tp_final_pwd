@@ -19,7 +19,7 @@ include_once("../../configuracion.php");
 <table class="table table-hover table-bordered">
   <thead class="">
     <thead class="table-dark">
-      <th colspan="3" scope="col">idCompra</td>
+      <th colspan="5" scope="col">idCompra</td>
       <th colspan="1" scope="col">fecha iniciado</td>
       <th colspan="1" scope="col">fecha terminada</th>
     </thead>
@@ -34,6 +34,8 @@ include_once("../../configuracion.php");
       <th scope="col">foto_prod</th>
       <th scope="col">descripcion_prod</th>
       <th scope="col">cant</th>
+      <th scope="col">total</th>
+      <th scope="col">estado</th>
       
     </tr>
 
