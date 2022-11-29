@@ -111,6 +111,10 @@ class baseDatos extends PDO {
    
    private function EjecutarInsert($sql){
        $resultado=parent::query($sql);
+       
+
+
+       
        if(!$resultado){
            //$this->analizarDebug(); <- NO SE LO COMENTE PORQUE SINO ME TIRABA ERROR 
            $id=0;

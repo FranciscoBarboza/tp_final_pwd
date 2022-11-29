@@ -6,6 +6,7 @@ class CompraItem
     private $objProducto;
     private $objCompra;
     private $ciCantidad;
+    
     private $mensajeFuncion;
 
     public function __construct()

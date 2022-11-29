@@ -11,7 +11,7 @@ class c_rol
     {
         $objRol = null;
         if (array_key_exists('idRol', $param)){
-            $objRol = new Rol();
+            $objRol = new rol();
             if(!$objRol->cargar(
                 $param['idRol'], 
                 $param['rolDescripcion'])){
@@ -30,7 +30,7 @@ class c_rol
     {
         $objRol = null;
         if (isset($param['idRol'])) {
-            $objRol = new Rol();
+            $objRol = new rol();
             $objRol->cargar($param['idRol'], null);
         }
         return $objRol;
