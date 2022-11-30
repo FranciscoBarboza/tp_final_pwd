@@ -40,7 +40,7 @@ include_once("../../configuracion.php");
                                         echo '<td>'. $usuario->getUsNombre().'</td>';
                                         echo '<td>'. $usuario->getUsPass().'</td>';
                                         echo '<td>'. $usuario->getUsMail().'</td>';
-                                        echo '<td>'. $usuario->getTelefono().'</td>';
+                                        /* echo '<td>'. $usuario->getTelefono().'</td>'; */
                                         echo '<td>'. $usuario->getUsDeshabilitado().'</td>';
                                         echo '<td><a class="btn btn-dark" href="accionHabilitacionUsuario.php>Habilitar/Deshabilitar</a></td>'; 
                                     }
