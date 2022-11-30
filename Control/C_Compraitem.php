@@ -123,4 +123,74 @@ class c_compraItem
         
         return $arreglo;
     }
+
+/* fran */
+
+/**
+ * devuelve el carrito iniciado de un usuario
+ */
+ public function carritoIniciado($id){
+    /* inicializo variables */
+    $compraIniciada= [];
+    $objCompraEstado= new CompraEstado();
+    $objCompra= new Compra();
+    $objCompra->getIdCompra();
+    
+    $compraEstados1= $objCompraEstado->listar("idCompraEstadoTipo = 1");//todos las compras estados iniciadas 1
+    
+    foreach ($compraEstados1 as $compraE) {
+     $compra= $compraE->getObjCompra();
+    
+    
+    
+     
+    }
+    return $compraIniciada;
+    }
+    
+    /**
+     * crea carrito segun id usuario
+     */
+    public function crearCarrito($id){
+      $carrito= $this->carritoIniciado($id);
+    
+      foreach ($carrito as $item) {
+        $idCompra= $item->getIdCompra();
+        $compraItem= new CompraItem();
+        $arrayCompraItems= $compraItem->listar("idCompra = {$idCompra}");
+        foreach ($arrayCompraItems as $items) {
+          $this->formatoCarrito($items);
+        }
+      }
+    
+      
+      
+    
+    
+      
+    }
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * crea el carrito con compraitem
+     * @param obj $objCompraItem
+     */
+    public function formatoCarrito($objCompraItem){
+      $objProducto= $objCompraItem->getObjProducto();
+      echo "
+      <tr>
+        <th scope=\"row\">{$objProducto->getIdProducto()}</th>
+        <td>{$objProducto->getProNombre()}</td>
+        <td>proximamente</td>
+        <td>{$objProducto->getProDetalle()}</td>
+        <td>{$objCompraItem->getCiCantidad()}</td>
+        <td>proximamente</td>
+      </tr>";
+    }
+    
 }

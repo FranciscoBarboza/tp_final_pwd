@@ -2,6 +2,41 @@
 include_once("../Menu/Cabecera.php");
 include_once("../../configuracion.php");
 
+function crearhistorial($id){
+
+}
+/**
+ * busca los compra items que no esten iniciados
+ * @param int $id
+ */
+function buscarCompraItems($id){
+    /* inicializo variables */
+    $compraIniciada= [];
+    $objCompraEstado= new CompraEstado();
+    $objCompra= new Compra();
+    $objCompra->getIdCompra();
+    
+    $compraEstados1= $objCompraEstado->listar("idCompraEstadoTipo = 2 OR idCompraEstadoTipo = 3 OR idCompraEstadoTipo = 4");//todos las compras estados iniciadas 1
+    
+    foreach ($compraEstados1 as $compraE) {
+     $compra= $compraE->getObjCompra();
+    
+    
+    
+     if($compra->getObjUsuario()->getIdUsuario() == $id){
+        array_push($compraIniciada, $compra);
+     }
+    
+     
+    }
+    return $compraIniciada;
+}
+
+function imprimirFormato($nosetodaviajeje){
+
+}
+
+
 ?>
 
 
@@ -19,7 +54,7 @@ include_once("../../configuracion.php");
 <table class="table table-hover table-bordered">
   <thead class="">
     <thead class="table-dark">
-      <th colspan="3" scope="col">idCompra</td>
+      <th colspan="5" scope="col">idCompra</td>
       <th colspan="1" scope="col">fecha iniciado</td>
       <th colspan="1" scope="col">fecha terminada</th>
     </thead>
@@ -34,6 +69,8 @@ include_once("../../configuracion.php");
       <th scope="col">foto_prod</th>
       <th scope="col">descripcion_prod</th>
       <th scope="col">cant</th>
+      <th scope="col">total</th>
+      <th scope="col">estado</th>
       
     </tr>
 
