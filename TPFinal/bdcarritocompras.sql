@@ -121,11 +121,13 @@ CREATE TABLE IF NOT EXISTS `menu` (
 --
 
 INSERT INTO `menu` (`idMenu`, `meNombre`, `meDescripcion`, `idPadre`, `meDeshabilitado`) VALUES
-(7, 'Productos', '../Cliente/productos.php', NULL, NULL),
-(8, 'Mis Compras', '../Cliente/compras.php', NULL, NULL),
-(9, 'Usuarios', '../Admin/listaUsuarios.php', NULL, NULL),
-(10, 'Permisos', '../Admin/gestionarPermisos.php', NULL, NULL),
-(11, 'Estado de Compras', '../Deposito/gestionarCompras.php', NULL, NULL);
+(1, 'Productos', '../cliente/productos.php', NULL, NULL),
+(2, 'Mis Compras', '../cliente/compras.php', NULL, NULL),
+(3, 'Mis datos', '../cliente/perfil.php', NULL, NULL),
+(4, 'Usuarios y permisos', '../menuAdmin/listaUsuarios.php', NULL, NULL),
+(5, 'Gestion de menues', '../menuAdmin/gestionarMenues.php', NULL, NULL),
+(6, 'Estado de Compras', '../menuDepo/gestionarCompras.php', NULL, NULL),
+(7, 'Listar Productos', '../menuDepo/listaProductos.php', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -225,6 +227,10 @@ CREATE TABLE IF NOT EXISTS `usuariorol` (
   KEY `idrol` (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `usuariorol` (`idRol`, `rolDescripcion`) VALUES
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_USER'),
+(3, 'ROLE_DEPOSITO');
 --
 -- Restricciones para tablas volcadas
 --

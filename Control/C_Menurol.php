@@ -118,7 +118,7 @@ class c_menuRol
         return $arreglo;
     }
 
-    public function menuesByIdRol($objRol)
+    public function menuByIdRol($objRol)
     {
         $param['idRol'] = $objRol->getIdRol();
         $objMenuObjRol = $this->buscar($param);

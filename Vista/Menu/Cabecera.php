@@ -3,6 +3,13 @@ include_once('../../configuracion.php');
 
 $objSession= new c_session();
 $menuRoles = [];
+if ($objSession->activa()) {
+  $idRol = $objSession->getRol();
+  $objMenuRol = new c_menuRol();
+  $objRol = new c_rol();
+  $menuRoles = $objMenuRol->menuByIdRol($objSession->getVista());
+  $objRoles = $objRol->obtenerObj($idRoles);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,12 +36,12 @@ $menuRoles = [];
 
       <div class="collapse navbar-collapse" id="navbarsExample03">
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-          
           <li class="nav-item">
-            <a class="nav-link active" href="../paginasTienda/inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
+            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../paginasTienda/inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
           </li>
+          <!-- aca va todo lo de cambio de menu -->
           <li class="nav-item">
-            <a class="nav-link active" href="../paginasTienda/tienda.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
+            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../paginasTienda/tienda.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
           </li>
           <?php
           /*switch($rol){
@@ -42,10 +49,10 @@ $menuRoles = [];
             case "Administrador":; */
           ?>
           <li class="nav-item">
-            <a class="nav-link active" href="../menuRoles/administrador.php" style="font-family: 'Chivo', sans-serif;">administrar</a>
+            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../menuAdmin/listaUsuarios.php" style="font-family: 'Chivo', sans-serif;">administrar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="../login/login.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
+            <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../login/login.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
           </li>
           <?php /*
             case "Deposito":;

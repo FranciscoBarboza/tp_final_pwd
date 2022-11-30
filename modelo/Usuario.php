@@ -79,22 +79,22 @@ class Usuario
 
     //INSERTAR
     public function insertar(){
-        $base = new baseDatos();
         $resp = false;
-
-        //Creo la consulta 
-        $consulta = "INSERT INTO usuario (idUsuario, usNombre, usPass, usMail, usDeshabilitado) VALUES ('".$this->getIdUsuario()."', '".$this->getUsNombre()."',
-        '".$this->getUsPass()."',
-        '".$this->getUsMail()."',
-        '".$this->getUsDeshabilitado()."')";
+        $base = new baseDatos();
+        $sql = "INSERT INTO usuario (usNombre, usPass, usMail) 
+                VALUES(
+                '" .$this->getUsNombre(). "',
+                '" .$this->getUsPass(). "',
+                '" .$this->getUsMail(). "');";
         if ($base->Iniciar()) {
-            if ($base->Ejecutar($consulta)) {
+            if ($ejecucion = $base->Ejecutar($sql)) {
+                $this->setIdUsuario($ejecucion);
                 $resp = true;
             } else {
-                $this->setMensajeFuncion($base->getError());
+                $this->setMensajeFuncion("usuario->insertar: " . $base->getError());
             }
         } else {
-            $this->setMensajeFuncion($base->getError());
+            $this->setMensajeFuncion("usuario->insertar: " . $base->getError());
         }
         return $resp;
     }
