@@ -115,7 +115,10 @@
     })
 })()
 </script>
-<script src="javascript/tienda.js"></script>
+
 </body>
+
+<script src="js/agregarAlCarrito.js"></script>
+
 </html>
 
