@@ -12,7 +12,9 @@ $controlCompraItem= new c_compraItem();
 
 
 <html>
-<head></head>
+<head>
+  
+</head>
 <body>
 
 <div class="container align-items-center " style="margin-top: 50px;">

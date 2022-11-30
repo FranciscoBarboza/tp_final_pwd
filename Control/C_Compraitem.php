@@ -140,7 +140,10 @@ class c_compraItem
     
     foreach ($compraEstados1 as $compraE) {
      $compra= $compraE->getObjCompra();
-    
+         
+     if ($compraE->getObjCompra()->getObjUsuario()->getIdUsuario() == $id) {
+        array_push($compraIniciada, $compraE);
+     }
     
     
      
@@ -153,16 +156,31 @@ class c_compraItem
      */
     public function crearCarrito($id){
       $carrito= $this->carritoIniciado($id);
-    
-      foreach ($carrito as $item) {
-        $idCompra= $item->getIdCompra();
+      $carrito= [];
+
+     $i= 0;
+
+     foreach ($carrito as $item) {
+        $idCompra= $item->getObjCompra()->getIdCompra();
         $compraItem= new CompraItem();
         $arrayCompraItems= $compraItem->listar("idCompra = {$idCompra}");
+
+        
+        
+        
         foreach ($arrayCompraItems as $items) {
           $this->formatoCarrito($items);
         }
+
+        $i++;
       }
-    
+
+      if ($i == 0) {
+      echo "
+      <tr>
+        <th scope=\"row\" colspan=\"6\">no hay nada en el carrito</th>
+      </tr>";
+      }
       
       
     
