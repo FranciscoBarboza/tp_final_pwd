@@ -41,9 +41,6 @@ include_once("../../configuracion.php");
                             </thead>
                             <tbody>
                             <?php
-                                while ($i < $cantUsuarios){
-                            ?>
-                            <?php
                                 if(isset($arrayProductos)){ //isset se fija si la variable tiene algo
                                     foreach ($arrayProductos as $producto){ 
                                         echo '<tr>';
@@ -61,9 +58,6 @@ include_once("../../configuracion.php");
                                     echo '<p class="lead"> Actualmente no hay personas registradas </p>';
                                 }
                             ?>
-                            <?php
-                                $i++;
-                            } ?>
                         </tbody>
                     </table>
                     <?php

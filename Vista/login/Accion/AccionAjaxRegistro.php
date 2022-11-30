@@ -6,11 +6,6 @@ $objPersona = new c_usuario();
 $objUsuarioRol = new c_usuarioRol();
     if ($objPersona->alta($datos)) {
         echo json_encode(array('success'=>1));
-        if ($objUsuarioRol->alta($datos)) {
-            echo json_encode(array('success'=>1));
-        } else {
-            echo json_encode(array('success'=>0));
-        }
     } else {
         echo json_encode(array('success'=>0));
     }

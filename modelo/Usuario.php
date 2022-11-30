@@ -87,8 +87,8 @@ class Usuario
                 '" .$this->getUsPass(). "',
                 '" .$this->getUsMail(). "');";
         if ($base->Iniciar()) {
-            if ($ejecucion = $base->Ejecutar($sql)) {
-                $this->setIdUsuario($ejecucion);
+            if ($idIncersion = $base->Ejecutar($sql)) {
+                $this->setIdUsuario($idIncersion);
                 $resp = true;
             } else {
                 $this->setMensajeFuncion("usuario->insertar: " . $base->getError());
