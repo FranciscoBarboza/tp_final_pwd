@@ -13,7 +13,7 @@ $controlCompraItem= new c_compraItem();
 
 <html>
 <head>
-  
+
 </head>
 <body>
 
@@ -47,8 +47,6 @@ $controlCompraItem= new c_compraItem();
   </tbody>
 </table>
 </div>
-
-
 
 
 

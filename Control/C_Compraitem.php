@@ -156,7 +156,6 @@ class c_compraItem
      */
     public function crearCarrito($id){
       $carrito= $this->carritoIniciado($id);
-      $carrito= [];
 
      $i= 0;
 
@@ -204,11 +203,44 @@ class c_compraItem
       <tr>
         <th scope=\"row\">{$objProducto->getIdProducto()}</th>
         <td>{$objProducto->getProNombre()}</td>
-        <td>proximamente</td>
+
+        <td style=\"text-align:center;\">
+            <img width='65px' src=\"{$objProducto->getUrlItem()}\" alt='eliminar' class='img_producto'>        
+        </td>
+
         <td>{$objProducto->getProDetalle()}</td>
         <td>{$objCompraItem->getCiCantidad()}</td>
-        <td>proximamente</td>
+        <td>
+        
+            <button onclick=\"alert('eliminar');background-color= 'none'; \" style=\"border: none; background-color: transparent;\" alt='eliminar'><img width='24px' src=\"css/img/Skull-icon.png\" alt='eliminar'></button>
+            <button onclick=\"alert('eliminar');background-color= 'none'; \" style=\"border: none; background-color: transparent;\" alt='editar'><img width='24px' src=\"css/img/editar.png\" alt='editar'></button>
+            
+            
+        </td>
       </tr>";
     }
     
 }
+
+?>
+
+<style>
+    .img_producto:hover{
+        scale: 2;
+        transition: 300ms;
+    }
+    
+    .img_producto{
+        transition: 300ms;
+    }
+
+    button{
+        transition: 300ms;
+    }
+
+    button:active{
+        scale: 0.8;
+        transition: 300ms;
+    }
+</style>
+
