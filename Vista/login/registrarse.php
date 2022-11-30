@@ -41,7 +41,7 @@ include_once("../menu/cabecera.php");
                 </div>
             </div>
             <div>
-                <label>Repetir la Contraseña: </label><input type="password" name="contrasenaRep" id="input_contrasenaRep" class="form-control" required>
+                <label>Repetir la Contraseña: </label><input type="password" name="usPassRep" id="input_contrasenaRep" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una contraseña!
                 </div>
