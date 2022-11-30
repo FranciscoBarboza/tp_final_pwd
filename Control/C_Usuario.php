@@ -142,6 +142,18 @@ class c_usuario
         return $arreglo;
     }
 
+    //Preguntar (no debería haber una fecha?)
+    function habilitar($param){
+        $resp = false;
+        $arrayObjUsuarios = $this->buscar($param);
+        $objUsuario = $arrayObjUsuarios[0];
+        $objUsuario->setUsDeshabilitado('habilitar');
+        if ($objUsuario != null and $objUsuario->modificar()) {
+            $resp = true;
+        }
+        return $resp;
+    }
+
     function deshabilitar($param){
         $resp = false;
         $arrayObjUsuarios = $this->buscar($param);

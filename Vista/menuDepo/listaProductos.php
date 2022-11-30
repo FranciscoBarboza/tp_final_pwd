@@ -1,16 +1,8 @@
 <?php
 include_once("../Menu/Cabecera.php");
 include_once("../../configuracion.php");
-    $objUsuario = new c_usuario();
-    $arrayUsuarios = $objUsuario->buscar(null);
-    $objAuto = new c_usuarioRol();
-    $arrayUsuarios = $objUsuario->buscar(null);
-    if ($arrayUsuarios != null) {
-        $cantUsuarios = count($arrayUsuarios);
-    } else {
-        $cantUsuarios = -1;
-    }
-    $i = 0;
+    $objProducto = new c_producto();
+    $arrayProductos = $objProducto->buscar(null);
 ?>
 
 <!DOCTYPE html>
@@ -26,17 +18,23 @@ include_once("../../configuracion.php");
 <body>
     <div  class="container-fluid">
             <div class="container col-md-10">
-                <h2>Lista de todos los usuarios</h2>
+                <h2>Lista de todos los productos de la plataforma</h2>
                 <div class="mb-3">
+                    <div class="mt-3 mb-3">
+                        <a class="btn text-decoration-none btn btn-outline-light" href="cargarProducto.php">AGREGAR PRODUCTO</a>
+                    </div>
+                    <?php
+                        if ($arrayProductos != null) {
+                    ?>
                         <table class="table table-hover">
                             <thead class="text-center">
                                 <tr>
-                                    <th>ID usuario</th>
-                                    <th>Usuario</th>
-                                    <th>Contraseña</th>
-                                    <th>Mail Usuario</th>
-                                    <th>Roles</th>
-                                    <th>Habilitado</th>
+                                    <th>ID producto</th>
+                                    <th>Nombre</th>
+                                    <th>Detalle</th>
+                                    <th>Precio</th>
+                                    <th>En stock</th>
+                                    <th>URL imagen</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
@@ -46,15 +44,15 @@ include_once("../../configuracion.php");
                                 while ($i < $cantUsuarios){
                             ?>
                             <?php
-                                if(isset($arrayUsuarios)){ //isset se fija si la variable tiene algo
-                                    foreach ($arrayUsuarios as $usuario){ 
+                                if(isset($arrayProductos)){ //isset se fija si la variable tiene algo
+                                    foreach ($arrayProductos as $producto){ 
                                         echo '<tr>';
-                                        echo '<td>'. $usuario->getIdUsuario().'</td>';
-                                        echo '<td>'. $usuario->getUsNombre().'</td>';
-                                        echo '<td>'. $usuario->getUsPass().'</td>';
-                                        echo '<td>'. $usuario->getUsMail().'</td>';
-                                        /* echo '<td>'. $usuario->getTelefono().'</td>'; */
-                                        echo '<td>'. $usuario->getUsDeshabilitado().'</td>';
+                                        echo '<td>'. $producto->getIdProducto().'</td>';
+                                        echo '<td>'. $producto->getProNombre().'</td>';
+                                        echo '<td>'. $producto->getProDetalle().'</td>';
+                                        echo '<td>'. $producto->getProPrecio().'</td>';
+                                        echo '<td>'. $producto->getProCantStock().'</td>';
+                                        echo '<td>'. $producto->getUrlItem().'</td>';
                                         echo '<td><a class="btn btn-dark" href="accionHabilitacionUsuario.php>Habilitar/Deshabilitar</a></td>'; 
                                     }
                                 }else{
