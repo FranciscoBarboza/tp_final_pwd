@@ -227,6 +227,10 @@ CREATE TABLE IF NOT EXISTS `usuariorol` (
   KEY `idrol` (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `usuariorol` (`idRol`, `rolDescripcion`) VALUES
+(1, 'ROLE_ADMIN'),
+(2, 'ROLE_USER'),
+(3, 'ROLE_DEPOSITO');
 --
 -- Restricciones para tablas volcadas
 --

@@ -60,12 +60,26 @@ class c_usuario
     public function alta($param)
     {
         $resp = false;
-        $param['idUsuario'] = null;
-        $param['usDeshabilitado'] = null;
-        $obj = $this->cargarObjeto($param);
-        if ($obj != null and $obj->insertar()) {
-            $resp = true;
+        $usuarioNombre['usNombre'] = $param['usNombre'];
+        if ($this->buscar($usuarioNombre) == null){
+            $param['idUsuario'] = null;
+            $param['usDeshabilitado'] = null;
+            $obj = $this->cargarObjeto($param);
+            if ($obj != null and $obj->insertar()) {
+                $this->altaRol($obj);
+                $resp = true;
+            }
         }
+        return $resp;
+    }
+
+    public function altaRol($objUsuario){
+        $idUsuario = $objUsuario->getIdUsuario();
+        $usRol = new c_usuarioRol();
+        //por defecto al crearse el usuario se le asigna el rol de USER (id:2)
+        $datosUsuarioRol['idRol'] = 2;
+        $datosUsuarioRol['idUsuario'] = $idUsuario;
+        $resp = $usRol->alta($datosUsuarioRol);
         return $resp;
     }
 
