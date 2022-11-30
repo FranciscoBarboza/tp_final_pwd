@@ -320,8 +320,7 @@ INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (4,3,1)
 INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (3,1, '0000-00-00 00:00:00');
 
 /* probando compra aceptada */
-insert into compra (`idCompra`, `idUsuario`) values (null , 1);
 
-INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (4,2,2);
+INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (4,1,2);
 
 INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (2,2,'0000-00-00 00:00:00');

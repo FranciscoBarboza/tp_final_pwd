@@ -2,6 +2,41 @@
 include_once("../Menu/Cabecera.php");
 include_once("../../configuracion.php");
 
+function crearhistorial($id){
+
+}
+/**
+ * busca los compra items que no esten iniciados
+ * @param int $id
+ */
+function buscarCompraItems($id){
+    /* inicializo variables */
+    $compraIniciada= [];
+    $objCompraEstado= new CompraEstado();
+    $objCompra= new Compra();
+    $objCompra->getIdCompra();
+    
+    $compraEstados1= $objCompraEstado->listar("idCompraEstadoTipo = 2 OR idCompraEstadoTipo = 3 OR idCompraEstadoTipo = 4");//todos las compras estados iniciadas 1
+    
+    foreach ($compraEstados1 as $compraE) {
+     $compra= $compraE->getObjCompra();
+    
+    
+    
+     if($compra->getObjUsuario()->getIdUsuario() == $id){
+        array_push($compraIniciada, $compra);
+     }
+    
+     
+    }
+    return $compraIniciada;
+}
+
+function imprimirFormato($nosetodaviajeje){
+
+}
+
+
 ?>
 
 

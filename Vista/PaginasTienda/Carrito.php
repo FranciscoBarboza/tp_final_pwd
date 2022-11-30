@@ -20,9 +20,8 @@ $controlCompraItem= new c_compraItem();
 <table class="table table-hover table-bordered">
   <thead class="">
     <thead class="table-dark">
-      <th colspan="3" scope="col">usuario</td>
-      <th colspan="1" scope="col">fecha iniciado</td>
-      <th colspan="2" scope="col"> borrar_compra</th>
+      <th colspan="3" scope="col" id="nombreCliente">usuario</td>
+      <th colspan="3" scope="col" >botones</td>  
     </thead>
   </thead>
   
@@ -40,7 +39,7 @@ $controlCompraItem= new c_compraItem();
 
     <div>
 <?php 
-  $controlCompraItem->crearCarrito(1);
+  $controlCompraItem->crearCarrito($idUsuario);
 ?>
     </div>
   </tbody>

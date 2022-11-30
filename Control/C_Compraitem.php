@@ -133,8 +133,8 @@ class c_compraItem
     /* inicializo variables */
     $compraIniciada= [];
     $objCompraEstado= new CompraEstado();
-    $objCOmpra= new Compra();
-    $objCOmpra->getIdCompra();
+    $objCompra= new Compra();
+    $objCompra->getIdCompra();
     
     $compraEstados1= $objCompraEstado->listar("idCompraEstadoTipo = 1");//todos las compras estados iniciadas 1
     
@@ -142,10 +142,6 @@ class c_compraItem
      $compra= $compraE->getObjCompra();
     
     
-    
-     if($compra->getObjUsuario()->getIdUsuario() == $id){
-        array_push($compraIniciada, $compra);
-     }
     
      
     }
