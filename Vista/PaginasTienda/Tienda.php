@@ -26,7 +26,7 @@
         echo "
         <div class=\"col-12 col-sm-12 col-md-4 col-lg-3 container py-2\" style=\"background-color: blue;\">
         <div class=\"caja_producto id container col-9 col-sm-12 col-md-12 py-2\">
-            <div class=\"img_producto\">
+            <div class=\"img_productos\">
                 <img src=\"{$urlItem}\" class=\"img-thumbnail rounded col-8 col-md-11 col-sm-9 \"  style=\"width: auto;height: 260px\">
             </div>
             <div class=\"titulo_producto text-center\"><h4 style=\"display: inline-block;\">{$proNombre}-{$proPrecio}</h4></div>
@@ -98,7 +98,7 @@ $controlCompraItem= new c_compraItem();
 
 
 <div class="modal fade" id="CARRITO_MODAL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog">
+  <div class="modal-dialog col-11" style="max-width: 1000px;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">carrito</h5>
@@ -207,6 +207,11 @@ $controlCompraItem= new c_compraItem();
 </script>
 
 <script src="js/agregarAlCarrito.js"></script>
+
+<link rel="stylesheet" href="css/tienda.css">
+
+
+
 
 </html>
 

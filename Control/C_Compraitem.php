@@ -224,23 +224,4 @@ class c_compraItem
 
 ?>
 
-<style>
-    .img_producto:hover{
-        scale: 2;
-        transition: 300ms;
-    }
-    
-    .img_producto{
-        transition: 300ms;
-    }
-
-    button{
-        transition: 300ms;
-    }
-
-    button:active{
-        scale: 0.8;
-        transition: 300ms;
-    }
-</style>
 
