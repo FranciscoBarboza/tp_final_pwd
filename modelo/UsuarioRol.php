@@ -126,7 +126,7 @@ class UsuarioRol
     //LISTAR (REVISAR)
     public function listar($condicion = '')
     {
-        $arregloUsuarioRol = null;
+        $arregloUsuarioRol = [];
         $base = new baseDatos();
         $consultaUserRol =  "SELECT * from usuariorol ";
         if ($condicion != '') {
@@ -138,8 +138,8 @@ class UsuarioRol
                 $arregloUsuarioRol = array();
                 while ($usuarioRol = $base->Registro()) {
                     $objUsuarioRol = new UsuarioRol();
-                    $objUsuarioRol->buscar($usuarioRol['idUsuario'], $usuarioRol['idRol']);
-                    array_push($arregloUsuarioRol, $objUsuarioRol);
+                    $resUsRol= $objUsuarioRol->buscar($usuarioRol['idUsuario'], $usuarioRol['idRol']);
+                    array_push($arregloUsuarioRol, $resUsRol);
                 }
             } else {
                 $this->setMensajeFuncion($base->getError());
