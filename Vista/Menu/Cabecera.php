@@ -6,8 +6,8 @@ if ($objSession->activa()) {
   $idRol = $objSession->getRol();
   $objMenuRol = new c_menuRol();
   $objRol = new c_rol();
-  $menuRoles = $objMenuRol->menuByIdRol($objSession->getVista());
-  $objRoles = $objRol->obtenerObj($idRoles);
+  // $menuRoles = $objMenuRol->menuByIdRol($objSession->getVista());
+  // $objRoles = $objRol->obtenerObj($idRoles);
 }
 ?>
 <!DOCTYPE html>
