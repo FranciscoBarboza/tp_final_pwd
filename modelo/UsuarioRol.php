@@ -107,10 +107,10 @@ class UsuarioRol
                 if ($usuarioRol = $base->Registro()) {
                     //Creo un objeto para buscar al id y setear el objeto
                     $objUsuario = new Usuario();
-                    $objUsuario->buscar($usuarioRol['idusuario']);
+                    $objUsuario->buscar($usuarioRol['idUsuario']);
                     $this->setObjUsuario($objUsuario);
                     $objRol = new Rol();
-                    $objRol->buscar($usuarioRol['idrol']);
+                    $objRol->buscar($usuarioRol['idRol']);
                     $this->setObjRol($objRol);
                     $resp = true;
                 }
