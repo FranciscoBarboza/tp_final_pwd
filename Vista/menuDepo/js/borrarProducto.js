@@ -1,7 +1,7 @@
 function registerSuccess() {
     Swal.fire({
         icon: 'success',
-        title: 'El usuario se ha eliminado correctamente!',
+        title: 'El producto se ha eliminado correctamente!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -13,7 +13,7 @@ function registerSuccess() {
 function registerFailure() {
     Swal.fire({
         icon: 'error',
-        title: 'No se ha podido eliminar el usuario!',
+        title: 'No se ha podido eliminar el producto!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -26,15 +26,35 @@ function recargarPagina() {
     location.reload();
 }
 
-var cantidadBorrar;
-$(document).on('click', '.remove', function () {
+$(document).on('click', '.remove', function() {
 
     var fila = $(this).closest('tr');
-    console.log();
+    var img = fila[0].children[4].innerHTML;
+
+    Swal.fire({
+        title: '¿Estás seguro de que desea eliminar este producto?',
+        imageUrl: img,
+        showDenyButton: true,
+        confirmButtonText: 'Eliminar',
+        denyButtonText: 'Cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            eliminar(fila);
+        } else if (result.isDenied) {
+        
+        }
+      })
+    
+});
+
+function eliminar(fila){
+    
+    var idProducto = fila[0].children[0].innerHTML;    
     $.ajax({
         type: "POST",
-        url: 'accion/accionEliminarUsuario.php',
-        data: { idUsuario: fila[0].children[0].innerHTML},
+        url: 'accion/accionEliminarProducto.php',
+        data: {idProducto:idProducto},
+        
         success: function (respuesta) {
             var jsonData = JSON.parse(respuesta);
 
@@ -45,8 +65,8 @@ $(document).on('click', '.remove', function () {
             }
             else if (jsonData.success == "0") {
                 registerFailure();
-            }
+            } 
         }
     });
 
-});
+};

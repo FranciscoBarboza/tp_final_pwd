@@ -58,11 +58,14 @@ if ($objSession->activa()) {
             case "Administrador":; */
           ?>
           <li class="nav-item">
-            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../menuAdmin/listaUsuarios.php" style="font-family: 'Chivo', sans-serif;">administrar</a>
+            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../menuAdmin/listaUsuarios.php" style="font-family: 'Chivo', sans-serif;">Admin.usuarios</a>
           </li>
           <li class="nav-item">
             <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../login/login.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
-          </li>          
+          </li>
+          <li class="nav-item">
+            <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../menuDepo/listaProductos.php" style="font-family: 'Chivo', sans-serif;">Admin.productos</a>
+          </li>                 
         </ul>
       </div>
     </div>
