@@ -55,6 +55,12 @@
         ";
     };
 
+    
+
+/* ESTO DEL SESSION LO HACE MANU */
+$idUsuario= 1;// esto es provisional
+
+$controlCompraItem= new c_compraItem();
 
 
 ?>
@@ -74,28 +80,112 @@
     
 <body>
 
-    <!-- menu principal -->
-    <!--
-    <div class="fondoLogo" id="fondo">
-    <a href="inicio.html"></a>
-    <div class="logo" id="pnglogo">
-        <p><a href="curriculum.html">quieres trabajar <br> con nosotros?</a></p>
-        <img src="./css/imagenes/logo.png"></div>
-    </a>
-    <div class="navegacion">
-        <a href="inicio.php">Inicio</a>
-        <a href="sobre_nosotros.php">Sobre nosotros</a>
-        <a href="tienda.php">Tienda</a>
-        <a href="calculadora2.php">pedido</a>
-    </div>
+<!-- boton carrito -->
+<div class="col-12 d-flex align-items-center" style="align-items: end; padding-right: 30px; margin-top: 10px; margin-bottom: 10px; justify-content: space-between; text-align: center;">
+    <h1>CARRITO</h1>
+    <button type="button" class="" data-bs-toggle="modal" data-bs-target="#CARRITO_MODAL">
+        <img src="css/img/carrito.png" alt="" srcset="" width="60px">
+    </button>
 </div>
-
--->
+    
 <div class="container-fluid" >  
     <div class="row" id="tienda_productos">
     <?php crearTienda() ?>
     </div>
 </div> 
+
+
+
+
+<div class="modal fade" id="CARRITO_MODAL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">carrito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container align-items-center " style="margin-top: 50px;">
+<table class="table table-hover table-bordered">
+  <thead class="">
+    <thead class="table-dark">
+      <th colspan="3" scope="col" id="nombreCliente">usuario</td>
+      <th colspan="3" scope="col" >botones</td>  
+    </thead>
+  </thead>
+  
+    
+  
+  <tbody>
+    <tr class="table-primary">
+      <th scope="col">id_p</th>
+      <th scope="col">nombre_producto</th>
+      <th scope="col">foto_prod</th>
+      <th scope="col">descripcion_prod</th>
+      <th scope="col">cant</th>
+      <th scope="col">acciones_cli</th>
+    </tr>
+
+    <div>
+<?php 
+  $controlCompraItem->crearCarrito($idUsuario);
+?>
+    </div>
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
+        <button type="button" class="btn btn-primary">COMPRAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
 <script>
     (function () {
   'use strict'
@@ -115,8 +205,6 @@
     })
 })()
 </script>
-
-</body>
 
 <script src="js/agregarAlCarrito.js"></script>
 
