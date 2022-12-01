@@ -4,10 +4,13 @@ include_once("../../configuracion.php");
     $objUsuario = new c_usuario();
     $arrayUsuarios = $objUsuario->buscar(null);
     $objUsuarioRol = new c_usuarioRol();
-    $arrayUsuarios = $objUsuario->buscar(null);
+    $arrayRolesUsuario = $objUsuarioRol->buscar(null);
+    /* echo '<pre>';
+        var_dump($arrayRolesUsuario);
+    echo '</pre>'; */
     if ($arrayUsuarios != null) {
         $cantUsuarios = count($arrayUsuarios);
-        $rolesDesc = $objUsuarioRol->darDescripcionRoles($arrayUsuarios);
+        // $rolesDesc = $objUsuarioRol->darDescripcionRoles($arrayUsuarios);
     } else {
         $cantUsuarios = -1;
     }
@@ -37,13 +40,16 @@ include_once("../../configuracion.php");
                                     <th>Contraseña</th>
                                     <th>Mail Usuario</th>
                                     <th>Roles</th>
-                                    <th>Habilitado</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Estado actual</th>
+                                    <th>Editar Usuario</th>
+                                    <th>Deshabilitar/Habilitar</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
+                                /* echo '<pre>';
+                                var_dump($arrayRolesUsuario);
+                                echo '</pre>'; */
                                 if(isset($arrayUsuarios)){ //isset se fija si la variable tiene algo
                                     foreach ($arrayUsuarios as $usuario){ 
                                         echo '<tr>';
@@ -51,13 +57,18 @@ include_once("../../configuracion.php");
                                         echo '<td>'. $usuario->getUsNombre().'</td>';
                                         echo '<td>'. $usuario->getUsPass().'</td>';
                                         echo '<td>'. $usuario->getUsMail().'</td>';
-                                        echo '<td>' .
-                                        $sepRoles = "-";
-                                        foreach ($rolesDesc[$i]as $rol) {
-                                            $sepRoles = $sepRoles . $rol . "-";
+                                    foreach($arrayRolesUsuario as $usRol){
+                                        echo '<td>';
+                                            echo $usRol->getIdRol();
+                                            $sepRoles = "-";
+                                            $usRol= $objUsuarioRol->buscar(['idUsuario' => $usuario->getIdUsuario()]);
+                                            foreach ($arrayUsRol[0] as $rol) {
+                                                $sepRoles = $sepRoles . $rol->getObjRol()->getRolDescripcion() . "-";
+                                            }
+                                            echo $sepRoles .
+                                            '</td>';
                                         }
-                                        echo $sepRoles .
-                                        '</td>';
+                                        
                                         /* echo '<td>'. $usuario->getTelefono().'</td>'; */
                                         echo '<td>'. $usuario->getUsDeshabilitado().'</td>';
                                         // echo '<td><a class="btn btn-dark" href="accionHabilitacionUsuario.php>Habilitar/Deshabilitar</a></td>'; 

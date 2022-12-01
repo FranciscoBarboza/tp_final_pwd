@@ -111,7 +111,7 @@ class c_usuarioRol
 
     public function buscar($param){
         $where = " true ";
-        if ($param <> NULL) {
+        if ($param <> null) {
             if (isset($param['idUsuario']))
                 $where .= " and idUsuario='" . $param['idUsuario'] . "'";
             if (isset($param['idRol']))
