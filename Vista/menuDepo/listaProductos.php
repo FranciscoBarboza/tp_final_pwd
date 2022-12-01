@@ -16,6 +16,49 @@ include_once("../../configuracion.php");
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 </head>
 <body>
+
+<div class="container col-md-10">
+    <form action="" class="form-control needs-validation" method="POST" novalidate>         
+    <table id="formulario_CrearProducto" class="table table-bordered">
+        <thead class="table-primary">
+            <tr>
+                <th>Nombre</th>
+                <th>Detalle</th>
+                <th>Url Imagen</th>
+                <th>Stock</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" name="nombre" id="" class="form-control" required>
+                    <div class="valid-feedback mb-1">bien</div>
+                    <div class="invalid-feedback mb-1">ingrese un nombre valido</div>
+                </td>
+                <td>
+                    <input type="text" name="detalle" id="" minlength="10" class="form-control" required>
+                    <div class="valid-feedback mb-1">biem</div>
+                    <div class="invalid-feedback mb-1">ingrese una descripcion 10 letras min</div>
+                </td>
+                <td>
+                    <input type="url" name="urlImagen" id="" class="form-control" required>
+                    <div class="valid-feedback mb-1">bien</div>
+                    <div class="invalid-feedback mb-1">ingrese un url</div>
+                </td>   
+                <td>
+                    <input type="number" name="stock" id="" min="1" class="form-control" required>
+                    <div class="valid-feedback mb-1">bien</div>
+                    <div class="invalid-feedback mb-1">stock minimo "1"</div>
+                </td>
+                <td><input class="btn btn-success me-2" type="submit" name="boton_enviar" value="Agregar" class="form-control"></td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+</div>
+
     <div  class="container-fluid">
             <div class="container col-md-10">
                 <h2>Lista de todos los productos de la plataforma</h2>
@@ -68,7 +111,31 @@ include_once("../../configuracion.php");
                     ?>
                 </div>
             </div>
-    </div>
+
+
+<script>
+    (function () {
+  'use strict'
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
+
+
+
+
 </body>
 </html>
 <?php
