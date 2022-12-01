@@ -116,8 +116,7 @@ class c_session
         return $rol;
     } */
 
-    public function getRoles()
-    {
+    public function getRoles(){
         $usuarioActual = $this->getUsuario();
         $objUsuarioRol = new c_usuarioRol();
         $param = ['idUsuario' => $usuarioActual->getIdUsuario()];
