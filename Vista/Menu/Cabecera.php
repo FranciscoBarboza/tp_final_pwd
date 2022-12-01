@@ -65,7 +65,10 @@ if ($objSession->activa()) {
           </li>
           <li class="nav-item">
             <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../menuDepo/listaProductos.php" style="font-family: 'Chivo', sans-serif;">Admin.productos</a>
-          </li>                 
+          </li>
+          <li class="nav-item">
+            <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../menuCliente/perfil.php" style="font-family: 'Chivo', sans-serif;">Perfil</a>
+          </li>                  
         </ul>
       </div>
     </div>
