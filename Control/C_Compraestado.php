@@ -16,7 +16,7 @@ class c_compraEstado{
                 $param['idCompra'],
                 $param['idCompraEstadotipo'],
                 $param['ceFechaINI'],
-                $param['cefechaFIN'],
+                $param['cefechaFIN']
             );
         }
         return $obj;
@@ -125,7 +125,7 @@ class c_compraEstado{
         return $arreglo;
     }
 
-    public function buscarCompraBorrador($arrayCompra)
+    public function buscarCompraIniciada($arrayCompra)
     {
         $objCompraEstadoInciada = null;
         $i = 0;
@@ -133,7 +133,7 @@ class c_compraEstado{
         while (($objCompraEstadoInciada == null) && ($i < count($arrayCompra))) {
             $idCompra["idCompra"] = $arrayCompra[$i]->getIdCompra();
             $arrayCompraEstado = $this->buscar($idCompra);
-            if ($arrayCompraEstado[0]->getCompraEstadoTipo()->getCetDescripcion() == "borrador") {
+            if ($arrayCompraEstado[0]->getCompraEstadoTipo()->getCetDescripcion() == "iniciado") {
                 $objCompraEstadoInciada = $arrayCompraEstado[0];
             } else {
                 $i++;
@@ -163,5 +163,8 @@ class c_compraEstado{
         }
         return $arrayCompraIniciadas;
     }
+
+
+    
     
 }   

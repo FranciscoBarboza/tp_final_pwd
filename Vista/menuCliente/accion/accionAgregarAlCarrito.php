@@ -3,25 +3,38 @@ include_once("../../../configuracion.php");
 include_once("../../menu/cabecera.php");
 
 $datos = data_submitted();
+$objCompraEstadoIniciado= [];
+$objCompra= new c_compra();
+$objCompraEstado= new c_compraEstado();
 
-$idProducto= $datos["idProducto"];
-$cantidadStock= $datos["ciCantidad"];
+$objsession= new c_session();
+$objusuario= $objsession->getUsuario();
 
-var_dump($datos);
-
-$objProducto= new Producto();
-$objProducto->buscar($idProducto);
-
-echo $objProducto
+$idUsuario["idUsuario"]= $objusuario->getObjUsuario();
 
 
+$arrayCompras= buscarComprasUsuario($idUsuario);
+
+if ($arrayCompra !=null){
+    $objCompraEstadoIniciado= $objCompraEstado->buscarCompraIniciada($arrayCompra);
+    if ($objCompraEstadoBorrador != null) {
+        
+    }
+}
+
+
+
+function buscarComprasUsuario($idUsuario){
+    $objCompra = new c_compra();
+    $arrayCompra= $objCompra->buscar($idUsuario);
+    return $arrayCompra;
+}
 
 
 
 
-?>
 
 
 
-<link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.min.css">
-<script src="../../bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
+
+
