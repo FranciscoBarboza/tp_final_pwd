@@ -1,12 +1,13 @@
 <?php
-include_once("../Menu/Cabecera.php");
+include_once("../menu/cabecera.php");
 include_once("../../configuracion.php");
     $objUsuario = new c_usuario();
     $arrayUsuarios = $objUsuario->buscar(null);
-    $objAuto = new c_usuarioRol();
+    $objUsuarioRol = new c_usuarioRol();
     $arrayUsuarios = $objUsuario->buscar(null);
     if ($arrayUsuarios != null) {
         $cantUsuarios = count($arrayUsuarios);
+        $rolesDesc = $objUsuarioRol->darDescripcionRoles($arrayUsuarios);
     } else {
         $cantUsuarios = -1;
     }
@@ -50,6 +51,13 @@ include_once("../../configuracion.php");
                                         echo '<td>'. $usuario->getUsNombre().'</td>';
                                         echo '<td>'. $usuario->getUsPass().'</td>';
                                         echo '<td>'. $usuario->getUsMail().'</td>';
+                                        echo '<td>' .
+                                        $sepRoles = "-";
+                                        foreach ($rolesDesc[$i]as $rol) {
+                                            $sepRoles = $sepRoles . $rol . "-";
+                                        }
+                                        echo $sepRoles .
+                                        '</td>';
                                         /* echo '<td>'. $usuario->getTelefono().'</td>'; */
                                         echo '<td>'. $usuario->getUsDeshabilitado().'</td>';
                                         // echo '<td><a class="btn btn-dark" href="accionHabilitacionUsuario.php>Habilitar/Deshabilitar</a></td>'; 

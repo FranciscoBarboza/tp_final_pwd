@@ -168,4 +168,7 @@ $controlCompraItem= new c_compraItem();
 <script src="js/agregarAlCarrito.js"></script>
 <link rel="stylesheet" href="css/tienda.css">
 </html>
+<?php
+include_once("../menu/pie.php")
+?>
 

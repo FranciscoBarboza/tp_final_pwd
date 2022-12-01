@@ -82,12 +82,12 @@ class c_session{
         return $cerrado;
     }
 
-    public function getVista(){
+    /* public function getVista(){
         $resp = null;
         if($_SESSION["vista"] != null){
             $resp = $_SESSION["vista"];
         }
         return $resp;
-    }
+    } */
 }
 ?>

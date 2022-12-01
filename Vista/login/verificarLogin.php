@@ -2,7 +2,7 @@
 include_once("../menu/cabecera.php");
 $metodo = data_submitted();
 $metodo['usPass'] = md5($metodo["usPass"]);
-$objUsuario = new C_Usuario();
+$objUsuario = new c_usuario();
 if($objSession->validar($metodo)){
     ?>
     <script>
