@@ -30,7 +30,7 @@
                 <img src=\"{$urlItem}\" class=\"img-thumbnail rounded col-8 col-md-11 col-sm-9 \"  style=\"width: auto;height: 260px\">
             </div>
             <div class=\"titulo_producto text-center\"><h6 style=\"display: inline-block;\">{$proNombre}-/$ {$proPrecio}</h6></div>
-            <form action=\"acciones/accionAgregarAlCarrito.php\" method=\"post\" class=\"needs-validation\" novalidate>
+            <form action=\"accion/accionAgregarAlCarrito.php\" method=\"post\" class=\"needs-validation\" novalidate>
                 <input type=\"text\" name=\"idProducto\" id=\"idProducto\" class=\"d-none\" value=\"{$idProducto}\">
                 <div class='container-fluid'>
                    <div class='col-4 d-inline-block'>
