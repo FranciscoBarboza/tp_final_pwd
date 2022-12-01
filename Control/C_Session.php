@@ -12,7 +12,7 @@ class c_session{
 
     public function __construct(){
         session_start();
-        $this->setObjUsuario(new C_Usuario());
+        $this->setObjUsuario(new c_usuario());
         
         if(isset($_SESSION["nombreUsuario"])){
             $usNombre["usNombre"] = $_SESSION["nombreUsuario"];
@@ -24,7 +24,7 @@ class c_session{
     private function iniciar($nombreUsuario, $arrayRoles){
         $_SESSION["nombreUsuario"] = $nombreUsuario;
         $_SESSION["roles"] = $arrayRoles;
-        $objRol = new C_Rol();
+        $objRol = new c_rol();
         $param = [2];
         $_SESSION["vista"] = $objRol->obtenerObj($param)[0];
     }
@@ -59,7 +59,7 @@ class c_session{
     public function getRol(){
         $arrayRolesUsuario = null;
         if($this->getObjUsuario() != null){
-            $objUsuarioRol = new C_usuarioRol();
+            $objUsuarioRol = new c_usuarioRol();
             $param["idUsuario"] = $this->getObjUsuario()->getIdUsuario();
             $arrayRolesUsuario = $objUsuarioRol->buscar($param);
             $arrayRoles = [];
