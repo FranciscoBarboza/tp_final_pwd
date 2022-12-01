@@ -1,14 +1,11 @@
 <?php
-class c_menuRol
-{
-
+class c_menuRol{
     /**
      * Espera como parametro un arreglo asociativo donde las claves coinciden con los nombres de las variables instancias del objeto
      * @param array $param
      * @return Menurol
      */
-    private function cargarObjeto($param)
-    {
+    private function cargarObjeto($param){
         $objMenuRol = null;
         $objMenu = null;
         $objRol = null;
@@ -118,24 +115,29 @@ class c_menuRol
         return $arreglo;
     }
 
-    public function menuByIdRol($objRol)
-    {
-        $param['idRol'] = $objRol->getIdRol();
-        $objMenuObjRol = $this->buscar($param);
-        $menuesRoles = [];
-        foreach ($objMenuObjRol as $objMenuRol) {
-            if (is_array($objMenuRol)) {
-                foreach ($objMenuRol as $objMR) {
-                    array_push($menuesRoles, $objMR);
+    public function menusByIdRol($idRoles){
+        $arrayMenuRol= [];
+        foreach ($idRoles as $idRol){
+            $idRolActual= $idRol->getObjRol()->getIdRol();
+            $param= ['idRol' => $idRolActual];
+            $arrayDeMenuRol[]= $this->buscar($param);
+        }
+        $menuRoles= [];
+        foreach($arrayDeMenuRol as $menuRol){
+            if(is_array($menuRol)){
+                //Si es un array, recorre sus posiciones y las agrega
+                foreach($menuRol as $posicion){
+                    $menuRoles[] = $posicion;
                 }
             } else {
-                array_push($menuesRoles, $objMenuRol);
+                //Si no es array, simplemente lo agrega.
+                $menuRoles[] = $menuRol;
             }
         }
-        $menues = [];
-        foreach ($menuesRoles as $objetos) {
-            array_push($menues, $objetos->getMenu());
+        foreach($menuRoles as $menuRol){
+            $arrayDeMenues[] = $menuRol->getIdMenu();
         }
-        return $menues;
+        $arrayDeMenues = array_unique($arrayDeMenues); //Elimina elementos repetidos del array
+        return $arrayDeMenues;
     }
 }

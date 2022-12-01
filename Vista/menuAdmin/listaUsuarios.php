@@ -7,7 +7,7 @@ include_once("../../configuracion.php");
     $arrayUsuarios = $objUsuario->buscar(null);
     if ($arrayUsuarios != null) {
         $cantUsuarios = count($arrayUsuarios);
-        $rolesDesc = $objUsuarioRol->darDescripcionRoles($arrayUsuarios);
+        // $rolesDesc = $objUsuarioRol->darDescripcionRoles($arrayUsuarios);
     } else {
         $cantUsuarios = -1;
     }
@@ -53,8 +53,9 @@ include_once("../../configuracion.php");
                                         echo '<td>'. $usuario->getUsMail().'</td>';
                                         echo '<td>' .
                                         $sepRoles = "-";
-                                        foreach ($rolesDesc[$i]as $rol) {
-                                            $sepRoles = $sepRoles . $rol . "-";
+                                        $arraryRolesUsuario= $objUsuarioRol->buscar(['idUsuario' => $usuario->getIdUsuario()]);
+                                        foreach ($arraryRolesUsuario as $rol) {
+                                            $sepRoles = $sepRoles . $rol->getObjRol()->getRolDescripcion() . "-";
                                         }
                                         echo $sepRoles .
                                         '</td>';
