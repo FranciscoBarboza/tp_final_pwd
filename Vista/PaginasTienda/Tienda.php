@@ -24,7 +24,7 @@
         $urlItem= $objProducto->getUrlItem();
 
         echo "
-        <div class=\"col-12 col-sm-12 col-md-4 col-lg-3 container py-2\" style=\"background-color: blue;\">
+        <div class=\"col-12 col-sm-12 col-md-4 col-lg-3 container py-2\" >
         <div class=\"caja_producto id container col-9 col-sm-12 col-md-12 py-2\">
             <div class=\"img_productos\">
                 <img src=\"{$urlItem}\" class=\"img-thumbnail rounded col-8 col-md-11 col-sm-9 \"  style=\"width: auto;height: 260px\">
@@ -32,8 +32,8 @@
             <div class=\"titulo_producto text-center\"><h4 style=\"display: inline-block;\">{$proNombre}-{$proPrecio}</h4></div>
             <form action=\"acciones/accionAgregarAlCarrito.php\" method=\"post\" class=\"needs-validation\" novalidate>
                 <input type=\"text\" name=\"idProducto\" id=\"idProducto\" class=\"d-none\" value=\"{$idProducto}\">
-                <div>
-                    <input type=\"number\" name=\"ciCantidad\" id=\"cantidad_input\" min=\"1\" max=\"{$proCantStock}\" class=\"form-control\" placeholder=\"cant\" required cols=\"2\">
+                <div class='container'>
+                    <input type=\"number\" name=\"ciCantidad\" id=\"cantidad_input\" min=\"1\" max=\"{$proCantStock}\" class=\"form-control col-10\" placeholder=\"cant\" required cols=\"2\">
                     <div class=\"invalid-feedback mb-1\">
                         sin stock
                     </div>
