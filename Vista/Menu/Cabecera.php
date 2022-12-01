@@ -1,6 +1,5 @@
 <?php
 include_once('../../configuracion.php');
-
 $objSession= new c_session();
 $menuRoles = [];
 if ($objSession->activa()) {
@@ -29,7 +28,7 @@ if ($objSession->activa()) {
 <body>
   <nav class="navbar navbar-expand-xl navbar-light  barra_navegacion" aria-label="Third navbar example"  id="header" style="background-color: #4B515D">
     <div class="container-fluid">
-    <span class="navbar-brand" style="font-family: 'Chivo', sans-serif;">Trabajo Final</span>
+    <span class="navbar-brand card-title text-danger fw-bold text-center" style="font-family: 'Chivo', sans-serif; margin-top: 5px">MonsterPaths</span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -37,7 +36,7 @@ if ($objSession->activa()) {
       <div class="collapse navbar-collapse" id="navbarsExample03">
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
           <li class="nav-item">
-            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../paginasTienda/inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
+            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../paginaSegura/inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
           </li>
           <!-- aca va todo lo de cambio de menu -->
           <?php
@@ -68,7 +67,10 @@ if ($objSession->activa()) {
           </li>
           <li class="nav-item">
             <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../menuCliente/perfil.php" style="font-family: 'Chivo', sans-serif;">Perfil</a>
-          </li>                  
+          </li>
+          <li class="nav-item">
+            <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../menuAdmin/listaMenues.php" style="font-family: 'Chivo', sans-serif;">Admin.menues</a>
+          </li>                    
         </ul>
       </div>
     </div>
