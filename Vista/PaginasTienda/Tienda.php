@@ -61,7 +61,7 @@
 $idUsuario= 1;// esto es provisional
 
 $controlCompraItem= new c_compraItem();
-
+//hola
 
 ?>
 
