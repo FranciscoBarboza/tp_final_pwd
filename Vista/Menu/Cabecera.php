@@ -40,6 +40,15 @@ if ($objSession->activa()) {
             <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../paginasTienda/inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
           </li>
           <!-- aca va todo lo de cambio de menu -->
+          <?php
+          foreach ($menuRoles as $objMenu) {
+            if ($objMenu->getMeDeshabilitado() == null) {
+          ?>
+              <li><a href='<?php echo $objMenu->getMeDescripcion() ?>' role="button" class="px-2 mx-1 btn btn-danger btn-outline-light"><?php echo $objMenu->getMeNombre()?></a></li>
+          <?php
+            }
+          }
+          ?>
           <li class="nav-item">
             <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../paginasTienda/tienda.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
           </li>
@@ -53,12 +62,7 @@ if ($objSession->activa()) {
           </li>
           <li class="nav-item">
             <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../login/login.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
-          </li>
-          <?php /*
-            case "Deposito":;
-          }*/
-          ?>
-          
+          </li>          
         </ul>
       </div>
     </div>
