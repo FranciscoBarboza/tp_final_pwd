@@ -30,11 +30,11 @@
                 <img src=\"{$urlItem}\" class=\"img-thumbnail rounded col-8 col-md-11 col-sm-9 \"  style=\"width: auto;height: 260px\">
             </div>
             <div class=\"titulo_producto text-center\"><h6 style=\"display: inline-block;\">{$proNombre}-/$ {$proPrecio}</h6></div>
-            <form action=\"accion/accionAgregarAlCarrito.php\" method=\"post\" class=\"needs-validation\" novalidate>
+            <form action=\"accion/comprar.php\" method=\"post\" class=\"needs-validation\" novalidate>
                 <input type=\"text\" name=\"idProducto\" id=\"idProducto\" class=\"d-none\" value=\"{$idProducto}\">
                 <div class='container-fluid'>
                    <div class='col-4 d-inline-block'>
-                    <input type=\"number\" name=\"ciCantidad\" id=\"cantidad_input\" min=\"1\" max=\"{$proCantStock}\" class=\"form-control col-sm-2\" placeholder=\"cant\" required cols=\"2\" width='60px'>
+                    <input type=\"number\" value='1' name=\"ciCantidad\" id=\"cantidad_input\" min=\"1\" max=\"{$proCantStock}\" class=\"form-control col-sm-2\" placeholder=\"cant\" required cols=\"2\" width='60px'>
                     
                     <div class=\"invalid-feedback mb-1\">
                         sin stock
@@ -70,7 +70,7 @@ $controlCompraItem= new c_compraItem();
 
 ?>
 
-
+<form action="./accion/comprar.php"></form>
 
 
 <html>
@@ -165,8 +165,9 @@ $controlCompraItem= new c_compraItem();
     })
 })()
 </script>
-<script src="js/agregarAlCarrito.js"></script>
+<script src="js/comprar.js"></script>
 <link rel="stylesheet" href="css/tienda.css">
+
 </html>
 <?php
 include_once("../menu/pie.php")
