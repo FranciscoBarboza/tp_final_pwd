@@ -99,9 +99,6 @@ $controlCompraItem= new c_compraItem();
     </div>
 </div> 
 
-
-
-
 <div class="modal fade" id="CARRITO_MODAL" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog col-11" style="max-width: 1000px;">
     <div class="modal-content">
@@ -111,18 +108,6 @@ $controlCompraItem= new c_compraItem();
       </div>
       <div class="modal-body">
         
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="container align-items-center " style="margin-top: 50px;">
 <table class="table table-hover table-bordered">
   <thead class="">
@@ -131,8 +116,6 @@ $controlCompraItem= new c_compraItem();
       <th colspan="3" scope="col" >botones</td>  
     </thead>
   </thead>
-  
-    
   
   <tbody>
     <tr class="table-primary">
@@ -153,22 +136,6 @@ $controlCompraItem= new c_compraItem();
 </table>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
@@ -177,19 +144,7 @@ $controlCompraItem= new c_compraItem();
     </div>
   </div>
 </div>
-
-
-
 </body>
-
-
-
-
-
-
-
-
-
 
 <script>
     (function () {
@@ -210,13 +165,7 @@ $controlCompraItem= new c_compraItem();
     })
 })()
 </script>
-
 <script src="js/agregarAlCarrito.js"></script>
-
 <link rel="stylesheet" href="css/tienda.css">
-
-
-
-
 </html>
 

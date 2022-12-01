@@ -50,7 +50,7 @@ if ($objSession->activa()) {
           }
           ?>
           <li class="nav-item">
-            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../paginasTienda/tienda.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
+            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../menuCliente/tienda.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
           </li>
           <?php
           /*switch($rol){
