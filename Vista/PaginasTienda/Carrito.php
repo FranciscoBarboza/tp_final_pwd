@@ -5,12 +5,8 @@ include_once("../../configuracion.php");
 
 /* ESTO DEL SESSION LO HACE MANU */
 $idUsuario= 1;// esto es provisional
-
 $controlCompraItem= new c_compraItem();
 ?>
-
-
-
 <html>
 <head>
 
@@ -54,11 +50,6 @@ $controlCompraItem= new c_compraItem();
 </table>
 </div>
 
-
-
-
-
-
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="carrito">
   Launch demo modal
@@ -82,15 +73,10 @@ $controlCompraItem= new c_compraItem();
     </div>
   </div>
 </div>
-
-
-
 </body>
 <?php
 include_once("../Menu/Pie.php");
 ?>
-
-
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 <script src="../bootstrap/js/bootstrap.min.js"></script>    
 </html>
