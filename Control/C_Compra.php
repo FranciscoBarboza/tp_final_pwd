@@ -7,7 +7,7 @@ class c_compra
      * @param array $param
      * @return Compra
      */
-    private function cargarObjeto($param)
+    public function cargarObjeto($param)
     {
         $obj = null;
         if (array_key_exists('idcompra', $param)) {
@@ -119,5 +119,32 @@ class c_compra
         $arreglo =  $obj->listar($where);  
         
         return $arreglo;
+    }
+
+    public function obtener_compra_borrador_de_usuario($id_usuario){
+        $obj_compra = new C_Compra();
+        $compra_borrador = null;
+
+        //Respuesta para marti, no se usaar el listar si vos sabes usarlo y esta segura de que va a andar cambialo xd
+        // yo lo hice como pude sin entender nwn
+
+
+        //acá querés encontrar un array de compras? no te convendría usar listar("idusuario = '$id_usuario'") para que te retorne un array con todas las compras del usuario?
+        $compras_usuario = $obj_compra->buscar(array('idusuario' =>$id_usuario));
+
+		if(is_array($compras_usuario) && $compras_usuario != null){
+			foreach($compras_usuario as $compra){
+				$estado = new C_Compraestado();
+                //acá creo que te sería útil hacer lo mismo de antes listar("idcompra = $compra->getIdcompra(), idcompraestadotipo = 0, cefechafin = NULL"), creo que así funciona
+                //tal vez las comillas no estén del todo bien, me basé en cómo usé el listar en el tp final de ipoo jeje 
+				$estado_borrador = $estado->buscar(array('idcompra' => $compra->getIdcompra(), 'idcompraestadotipo' => 0,'cefechafin' => NULL ));
+	
+				if( $estado_borrador != null && $estado_borrador[0]->getCefechafin() == '0000-00-00 00:00:00'){
+					$compra_borrador = $obj_compra->buscar(array('idcompra' =>$compra->getIdcompra(),'idusuario' =>$id_usuario));
+				}
+			}
+		}
+
+        return $compra_borrador;
     }
 }

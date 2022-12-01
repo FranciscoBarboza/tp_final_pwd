@@ -1,18 +1,142 @@
 <?php
 include_once("../../../configuracion.php");
-include_once("../../menu/cabecera.php");
+include_once("../../Menu/Cabecera.php");
+
 
 $datos = data_submitted();
+$obj_producto = new C_Producto();
 
-$idProducto= $datos["idProducto"];
-$cantidadStock= $datos["ciCantidad"];
+$producto = $obj_producto->buscar(array( 'idproducto' => $datos['id_producto']));
 
-var_dump($datos);
+if($producto != null){
+	//aca se valida el stock de productos, no se donde mas se debe validar
+	if($producto[0]->getProcantstock() >= $datos['cantidad'] || $producto[0]->getProcantstock() <= $datos['cantidad']){
+		$obj_compra = new C_Compra();
+		$compra_borrador = $obj_compra->obtener_compra_borrador_de_usuario($sesion->getIdUser());
+	
+		if(is_array($compra_borrador) && $compra_borrador != null){
+			$obj_compra_item = new C_Compraitem();
+		
+            $productoitem = $obj_compra_item->buscar(['idproducto' => $datos['id_producto'],'idcompra' => $compra_borrador[0]->getIdcompra()]);
+            
+			if(is_array($productoitem) && $productoitem != null){
+				$productoitem = $productoitem[0];
+				$productoitem->setCicantidad($productoitem->getCicantidad()+$datos['cantidad']);
+				
+				$param = array(
+					'idcompraitem' => $productoitem->getIdcompraitem(),
+					'idproducto' =>  $datos['id_producto'],
+					'idcompra' => $compra_borrador[0]->getIdcompra(),
+					'cicantidad' =>$productoitem->getCicantidad()
+				);
+				$obj_compra_item->modificacion($param);
+			}else{
+				$obj_compra_item->alta(['idcompraitem'=>NULL, 'idproducto'=>$datos['id_producto'], 'idcompra'=>$compra_borrador[0]->getIdcompra(), 'cicantidad'=>$datos['cantidad']]);
+		    }
 
-$objProducto= new Producto();
-$objProducto->buscar($idProducto);
+		}else{
 
-echo $objProducto
+			$compra_borrado = new C_Compra();
+            $compra_estado = new C_Compraestado();
+			$objCompraItem = new C_Compraitem();
+
+            $param_compra = array(
+                'idcompra'  => NULL,
+                'cofecha'  => date('Y-m-d H:i:s'),
+                'idusuario'  => $sesion->getIdUser(),
+            );
+
+            $compra_borrado->alta($param_compra);
+            $compra = $compra_borrado->buscar(['cofecha'=> $param_compra['cofecha'], 'idusuario'=>$param_compra['idusuario']]);
+     
+            $compra_estado->alta(['idcompraestado'=>NULL, 'idcompra'=>$compra[0]->getIdcompra(), 'idcompraestadotipo'=>0, 'cefechaini'=>$param_compra['cofecha'], 'cefechafin'=>NULL]);
+
+			$objCompraItem->alta(['idcompraitem'=>NULL, 'idproducto'=>$datos['id_producto'], 'idcompra'=>$compra[0]->getIdcompra(), 'cicantidad'=>$datos['cantidad']]);
+		 
+		}
+	}
+}
+	
+
+
+
+/*
+
+function buscarComprasUsuario($idUsuario)
+{
+    $objCompra = new C_Compra();
+    $arrayCompra = $objCompra->buscar($idUsuario);
+    return $arrayCompra;
+}
+
+function cargarProducto($objCompraEstadoBorrador, $datos)
+{
+    $objCompraItem = new C_CompraItem();
+    $arrayCompraItem = $objCompraItem->buscar($datos);
+    $datos["idCompra"] = $objCompraEstadoBorrador->getCompra()->getIdCompra();
+    $objCompraItemRepetido = productoRepetido($arrayCompraItem, $datos["idCompra"]);
+    if ($objCompraItemRepetido == null) {
+        if ($objCompraItem->alta($datos)) {
+            echo json_encode(array('success' => 1));
+        } else {
+            echo json_encode(array('success' => 0));
+        }
+    } else {
+        $cantStockDisp = $objCompraItemRepetido->getObjProducto()->getCantStock();
+        $cantTot = $datos["ciCantidad"] + $objCompraItemRepetido->getCantidad();
+        if ($cantTot > $cantStockDisp) {
+            echo json_encode(array('success' => 0));
+        } else {
+            $param = [
+                "idCompraItem" => $objCompraItemRepetido->getIdCompraItem(),
+                "idProducto" => $objCompraItemRepetido->getObjProducto()->getIdProducto(),
+                "idCompra" => $objCompraItemRepetido->getObjCompra()->getIdCompra(),
+                "ciCantidad" => $cantTot
+            ];
+            $objCompraItem->modificacion($param);
+            echo json_encode(array('success' => 1));
+        }
+    }
+}
+
+function productoRepetido($arrayCompraItem, $idCompra)
+{
+    $resp = null;
+    if ($arrayCompraItem != null) {
+        foreach ($arrayCompraItem as $compraItem) {
+            if ($compraItem->getObjCompra()->getIdCompra() == $idCompra) {
+                $resp = $compraItem;
+            }
+        }
+    }
+    return $resp;
+}
+
+function crearCompra($idUsuario)
+{
+    $objCompra = new C_Compra();
+    $objCompraEstado = new C_CompraEstado();
+    $arrayObjCompraEstado = null;
+    if ($objCompra->alta($idUsuario)) {
+        $arrayCompra = $objCompra->buscar($idUsuario);
+        $fecha = new DateTime();
+        $fechaStamp = $fecha->format('Y-m-d H:i:s');
+        $paramCompraEstado = [
+            "idCompra" => end($arrayCompra)->getIdCompra(),
+            "idCompraEstadoTipo" => 1,
+            "ceFechaIni" => $fechaStamp,
+            "ceFechaFin" => null
+        ];
+        if ($objCompraEstado->alta($paramCompraEstado)) {
+            $idCompra["idCompra"] = end($arrayCompra)->getIdCompra();
+            $arrayObjCompraEstado = $objCompraEstado->buscar($idCompra);
+        }
+    }
+    return $arrayObjCompraEstado[0];
+}
+
+*/
+
 
 
 
@@ -21,7 +145,6 @@ echo $objProducto
 
 ?>
 
-
-
-<link rel="stylesheet" href="../../bootstrap-5.1.3-dist/css/bootstrap.min.css">
-<script src="../../bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
+<script>
+window.history.back();
+</script>

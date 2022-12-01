@@ -17,7 +17,7 @@ class c_usuario
                 $param['usNombre'],
                 $param['usPass'],
                 $param['usMail'],
-                $param['usDeshabilitado'],
+                $param['usDeshabilitado']
             );
         }
         return $obj;
