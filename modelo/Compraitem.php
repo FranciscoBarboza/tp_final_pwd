@@ -76,7 +76,7 @@ class CompraItem
     
         //Creo la consulta 
         $consulta = "INSERT INTO compraitem (idCompraItem, idProducto, idCompra, ciCantidad) VALUES (
-        '".$this->getIdCompraItem()."',
+         DEFAULT ,
         '".$this->getObjProducto()->getIdProducto()."',
         '".$this->getObjCompra()->getIdCompra()."',
         '".$this->getCiCantidad()."')"; 
