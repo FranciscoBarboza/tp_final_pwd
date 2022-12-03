@@ -5,11 +5,69 @@ include_once("../../Menu/Cabecera.php");
 
 $datos = data_submitted();
 $obj_producto = new C_Producto();
+$sesion= new c_session();
+$obj_compra= new c_compra();
 
+$idUsuario= 1; //completar cosa
+
+/* buscar ultima compra de un usuario */
+$arrayCompras= $obj_compra->buscar(['idUsuario' => $idUsuario]);
+
+if (count($arrayCompra) == 0) {
+    
+}
+
+/*
 $producto = $obj_producto->buscar(array( 'idproducto' => $datos['id_producto']));
+
+if ($producto != null) {//en caso de no existir el producto
+    $producto= new Producto;
+    if(intval($producto[0]->getProCantStock()) >= intval($dato['ciCantidad'])){
+        $obj_compra= new c_compra();
+        $compra_iniciada= $obj_compra->buscarComprasEstadosIniciado($sesion->getIdUsuario());
+
+        if (is_array($compra_iniciada) && $compra_iniciada != null) {
+            $obj_compra_item= new c_compraItem();
+
+            $productoitem=  $obj_compra_item->buscar(['idProducto'=> $datos['idProducto'],'idCompra'=> $compra_iniciada[0]->getIdCompra()]);
+
+            if(is_array($productoitem) && $productoitem != null){
+                $productoitem= $productoitem[0];
+
+                $productoitem->setCiCantidad(intval($productoitem->getCiCantidad()) + intval($datos['ciCantidad']));
+
+
+                $productoitem= new CompraItem();
+
+                $param= [
+                    'idCompraItem'=> $productoitem->getIdCompraItem(),
+                    'idProducto'=> $compra_iniciada[0]->getIdCompra(),
+                    'ciCantidad'=>$productoitem->getCiCantidad()
+                ];
+                $obj_compra_item->modificacion($param);
+            } else {
+                $obj_compra_item->alta(['idCompraItem'=>NULL, 'idProducto'=>$datos['idProducto'],
+                'idCompra'=>$compra_iniciada[0]->getIdCompra
+                ])
+            }
+        }
+
+
+
+    }
+
+}
 
 if($producto != null){
 	//aca se valida el stock de productos, no se donde mas se debe validar
+
+
+
+
+
+
+
+    //no es mio
 	if($producto[0]->getProcantstock() >= $datos['cantidad'] || $producto[0]->getProcantstock() <= $datos['cantidad']){
 		$obj_compra = new C_Compra();
 		$compra_borrador = $obj_compra->obtener_compra_borrador_de_usuario($sesion->getIdUser());

@@ -8,6 +8,10 @@ $probando= new c_producto();
 $objCompraItem= new CompraItem();
 
 
+/* primero una forma de saber si ya tiene alguna compra iniciada */
+
+
+
 $objProducto= new Producto();
 $objProducto->buscar($datos['idProducto']);
 $objCompra= new Compra();
