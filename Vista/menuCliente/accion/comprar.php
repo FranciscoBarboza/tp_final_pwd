@@ -5,6 +5,20 @@ $datos = data_submitted();
 
 
 $probando= new c_producto();
+$objCompraItem= new CompraItem();
+
+
+/* primero una forma de saber si ya tiene alguna compra iniciada */
+
+
+
+$objProducto= new Producto();
+$objProducto->buscar($datos['idProducto']);
+$objCompra= new Compra();
+$objCompra->buscar(1);
+$objCompraItem->cargar(null, $objProducto, $objCompra, intval($datos["ciCantidad"]));
+$objCompraItem->insertar();
+
 
 $array= $probando->buscar($datos);
 
@@ -22,7 +36,12 @@ if (intval($datos["ciCantidad"] < intval($array[0]->getProCantStock()))) {
 } else {
 $array[0]->modificar();
 echo json_encode(array('success'=>0));
+
+
 }
+
+
+
 
 
 

@@ -125,6 +125,40 @@ class c_compraEstado{
         return $arreglo;
     }
 
+    /**
+     * permite buscar el objeto compra estado con fecha fin en null
+     * este null significa que la compra sigue activa
+     * devuelve el array vacio en caso de no tener ninguna compra estado en estado 1 
+     * @param array $param
+     * @return CompraEstado
+     */
+    public function buscarCompraEstadoNull($id){
+
+        $where = " true "; 
+        
+            $where .= '';
+            $where.=" and ceFechaFin is null";
+            $where.= "and idCompraEstadoTipo= 1";
+        
+        $obj = new Compraestado();
+        $arreglo =  $obj->listar($where);
+        
+        /* ahora que tengo el arreglo con las compra estados iniciadas filtro las que tengan el id compra que quiero*/
+        $arregloFiltrado= [];
+        
+        foreach ($arreglo as $compraEstado) {
+            
+            $objCompraAux= $compraEstado->getObjCompra();
+
+            if (intval($objCompraAux->getObjUsuario()->getIdUsuario()) == intval($id)) {
+                array_push($arregloFiltrado, $compraEstado);
+            }
+
+        }
+
+        return $arregloFiltrado;
+    }
+
     public function buscarCompraIniciada($arrayCompra)
     {
         $objCompraEstadoInciada = null;

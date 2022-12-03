@@ -108,12 +108,12 @@ class c_compra
         $where = " true "; 
         if ($param<>NULL){
             $where .= '';
-            if  (isset($param['idcompra']))
-                $where.=" and idcompra ='".$param['idcompra']."'"; 
-            if  (isset($param['cofecha']))
-                    $where.=" and cofecha ='".$param['cofecha']."'";
-            if  (isset($param['idusuario']))
-                    $where.=" and idusuario ='".$param['idusuario']."'";
+            if  (isset($param['idCompra']))
+                $where.=" and idCompra ='".$param['idcompra']."'"; 
+            if  (isset($param['coFecha']))
+                    $where.=" and coFecha ='".$param['cofecha']."'";
+            if  (isset($param['idUsuario']))
+                    $where.=" and idUsuario ='".$param['idusuario']."'";
         }
         $obj = new Compra();
         $arreglo =  $obj->listar($where);  
@@ -147,4 +147,33 @@ class c_compra
 
         return $compra_borrador;
     }
+
+
+    /**
+     * busca todas las compras con estado iniciado y con la fechaFIN en 0000-00-00 00:00:00
+     * @param int $id_usuario
+     */
+    public function buscarComprasEstadosIniciadofalso($id_usuario){
+        $obj_Ccompra= new c_compra();
+        $compra_iniciada= null;
+
+        $compras_usuario= $obj_Ccompra->buscar(['idUsuario'=>$id_usuario]);//le doy a buscar compra jeje
+
+        if (is_array($compras_usuario) && $compras_usuario != null) {
+            foreach($compras_usuario as $compra){
+                $estado = new c_compraEstado();
+
+
+                $estado_iniciado= $estado->buscar(['idCompra' => $compra->getIdCompra(), 'idCompraEstadoTipo'=> 0, 'ceFechaFin'=> NULL]);
+
+                if ($estado_iniciado != null && $estado_iniciado[0]->getCeFechaFIN()== '0000-00-00 00:00:00') {
+                    $compra_iniciada= $obj_Ccompra->buscar(['idCompra'=>$compra->getIdCompra(),'idUsuario'=>$id_usuario]);
+                }
+
+            }
+        }
+
+        return $compra_iniciada;
+    }
+    
 }
