@@ -175,5 +175,27 @@ class c_compra
 
         return $compra_iniciada;
     }
+
+
+    /**
+     * crea una nueva compra con un id de usuario
+     */
+    public function crearNuevaCompra($id_usuario){
+        $objUsuario= new c_usuario();
+        $objUsuario->buscar(["idUsuario" => intval($id_usuario)]);
+
+        $objcompra= new compra();
+        $objcompra->cargar("DEFAULT","DEFAULT", $objUsuario[0]->getIdUsuario());
+
+        $objcompra->insertar();
+    }
+
+    public function buscarUltimaCompraCreada(){
+        $objCompra= new Compra();
+
+        $objCompra->listar("`idCompra` = (SELECT MAX(idCompra) FROM compra)");
+
+        return $objCompra[0];
+    }
     
 }

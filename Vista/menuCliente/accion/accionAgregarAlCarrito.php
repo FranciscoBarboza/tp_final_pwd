@@ -4,17 +4,65 @@ include_once("../../Menu/Cabecera.php");
 
 
 $datos = data_submitted();
+$idUsuario= 1; //manu completa esto
+
 $obj_producto = new C_Producto();
 $sesion= new c_session();
 $obj_compra= new c_compra();
+$objCompraEstado= new c_compraEstado();
 
-$idUsuario= 1; //completar cosa
+
 
 /* buscar ultima compra de un usuario */
-$arrayCompras= $obj_compra->buscar(['idUsuario' => $idUsuario]);
+$array_compraEstadoIniciada= $objCompraEstado->buscarCompraEstadoNull($id);
 
-if (count($arrayCompra) == 0) {
+
+if (count($array_compraEstadoIniciada) <> 0) {
+    /* en caso e tener una compra iniciada significa que la compra se tiene que agregar a esa compra */
+    $objCompraEstado= $array_compraEstadoIniciada[0];
+
+    $objCompraEstado= new CompraEstado();
+
+    $idCompraActual= $objCompraEstado->getObjCompra()->getIdCompra();
+
+    $objCompraItem= new c_compraItem();
+
+    if ($obj_producto->hayStock($datos["idProducto"], $datos["ciCantidad"] )) {//valido si hay stock de ese producto
+        $objCompraItem->alta(['idcompraitem'=> null,
+        "idproducto"=> $datos["idProducto"],
+        "idcompra"=>intval($idCompraActual),
+        "cicantidad"=> intval($datos["ciCantidad"])
+        ]);
+
+
+        $obj_producto->restarStock(intval($datos['idProducto']), $datos["ciCantidad"]);
+
+
+        echo json_encode(array('success'=>1));
+        
+    } else {
+        echo json_encode(array('success'=>0));
+    }
     
+} else{//en caso de no encontrar ninguna compra estado iniciada creariamos una nueva compra
+    $obj_compra= new c_compra();
+    $obj_compra->crearNuevaCompra($idUsuario);
+
+    /* ahora una forma de buscar la ultima compra */
+    //SELECT * FROM `compra` WHERE `idCompra` = (SELECT MAX(idCompra) FROM compra)
+
+    $ultimaCompraCreada= $obj_compra->buscarUltimaCompraCreada();
+
+
+    $idCompraCreada= $ultimaCompraCreada->getIdCompra();//obtengoo el id de la ultima compra creada
+
+    /* ahora creada la compra le asigno el producto comprado */
+    $objCompraItemAux= new c_compraItem();
+
+    $objCompraItemAux->crearCompraItem($datos['idProducto'], $datos['ciCantidad'], $idCompraCreada);
+
+    echo json_encode(array('success'=>1));
+
 }
 
 /*

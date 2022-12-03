@@ -143,4 +143,30 @@ class c_producto
 
 
     } */
+
+
+    public function hayStock($idProducto, $pedido){
+        $objProducto= new Producto();
+        $resp= false;
+        $objProducto->buscar($idProducto);
+
+        if (intval($objProducto->getProCantStock()) >= intval($pedido)) {
+            $resp= true;
+        }
+
+        return $resp;
+    }
+
+    public function restarStock($idProducto, $cantidad){
+        $objProducto= new Producto();
+        
+        
+        $objProducto->buscar(intval($idProducto));
+
+
+        $nuevaCantidad= intval($objProducto->getProCantStock()) - intval($cantidad);
+        $objProducto->setProCantStock($nuevaCantidad);
+
+        $objProducto->modificar();
+    }
 }

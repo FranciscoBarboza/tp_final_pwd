@@ -219,6 +219,23 @@ class c_compraItem
         </td>
       </tr>";
     }
+
+    public function crearCompraItem($idProducto, $cantidad, $idCompra){
+        $objCompraitem= new CompraItem();
+        $objCompraAux= new c_compra();
+        $objProducto= new c_producto();
+
+        $objProducto->buscar(["idProducto"=>$idProducto]);
+
+        $compraEncontrada= $objCompraAux->buscar(["idCompra"=> intval($idCompra)]);
+
+        
+
+        $objCompraitem->cargar(null, $objProducto, $compraEncontrada[0], intval($cantidad));
+
+        $objCompraitem->insertar();
+
+    }
     
 }
 

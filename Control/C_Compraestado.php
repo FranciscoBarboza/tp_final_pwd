@@ -130,7 +130,7 @@ class c_compraEstado{
      * este null significa que la compra sigue activa
      * devuelve el array vacio en caso de no tener ninguna compra estado en estado 1 
      * @param array $param
-     * @return CompraEstado
+     * @return array
      */
     public function buscarCompraEstadoNull($id){
 

@@ -92,6 +92,7 @@ class CompraItem
         return $resp;
     }
 
+    
     //MODIFICAR
     public function modificar()
     {
