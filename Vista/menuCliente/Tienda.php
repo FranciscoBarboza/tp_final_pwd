@@ -73,7 +73,7 @@ $controlCompraItem= new c_compraItem();
 <form action="./accion/comprar.php"></form>
 
 
-<html>
+<!-- <html>
     <head>
         <title>tienda</title>
         <link rel="stylesheet" href="../css/tienda.css">
@@ -83,7 +83,7 @@ $controlCompraItem= new c_compraItem();
 
     
     
-<body>
+<body> -->
 
 <!-- boton carrito -->
 <div class="col-12 d-flex align-items-center" style="align-items: end; padding-right: 30px; margin-top: 10px; margin-bottom: 10px; justify-content: space-between; text-align: center;">
@@ -144,7 +144,7 @@ $controlCompraItem= new c_compraItem();
     </div>
   </div>
 </div>
-</body>
+<!-- </body> -->
 
 <script>
     (function () {
@@ -168,7 +168,7 @@ $controlCompraItem= new c_compraItem();
 <script src="js/comprar.js"></script>
 <link rel="stylesheet" href="css/tienda.css">
 
-</html>
+<!-- </html> -->
 <?php
 include_once("../menu/pie.php")
 ?>

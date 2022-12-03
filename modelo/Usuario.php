@@ -1,7 +1,8 @@
 <?php
 //TERMINADO (ver situación de modificar)
-class Usuario
+class Usuario extends baseDatos
 {
+    use Condicion;
     private $idUsuario;
     private $usNombre;
     private $usPass;
@@ -18,8 +19,7 @@ class Usuario
         $this->usDeshabilitado = "";
     }
 
-    public function cargar($idUsuario, $usNombre, $usPass, $usMail, $usDeshabilitado)
-    {
+    public function cargar($idUsuario, $usNombre, $usPass, $usMail, $usDeshabilitado){
         $this->setIdUsuario($idUsuario);
         $this->setUsNombre($usNombre);
         $this->setUsPass($usPass);
@@ -81,11 +81,12 @@ class Usuario
     public function insertar(){
         $resp = false;
         $base = new baseDatos();
-        $sql = "INSERT INTO usuario (usNombre, usPass, usMail) 
+        $sql = "INSERT INTO usuario (usNombre, usPass, usMail, usDeshabilitado) 
                 VALUES(
                 '" .$this->getUsNombre(). "',
                 '" .$this->getUsPass(). "',
-                '" .$this->getUsMail(). "');";
+                '" .$this->getUsMail(). "',
+                default);";
         if ($base->Iniciar()) {
             if ($idIncersion = $base->Ejecutar($sql)) {
                 $this->setIdUsuario($idIncersion);
@@ -100,17 +101,20 @@ class Usuario
     }
 
     //MODIFICAR
-    public function modificar()
-    {
+    public function modificar(){
         $base = new baseDatos();
         $resp = false;
-        
         //Hago consulta sql
+        if($this->getUsDeshabilitado() == null){
+            $param = "Default";
+        }else{
+            $param = $this->getUsDeshabilitado();
+        }
         $consulta = "UPDATE usuario SET
         usNombre= '".$this->getUsNombre()."',
         usPass= '".$this->getUsPass()."',
         usMail= '".$this->getUsMail()."',
-        usDeshabilitado = ".$this->getUsDeshabilitado()."
+        usDeshabilitado = ". $param ."
         WHERE idUsuario= ". $this->getIdUsuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
@@ -150,8 +154,7 @@ class Usuario
     }
 
     //LISTAR
-    public function listar($condicion = '')
-    {
+    /* public function listar($condicion = ''){
         $arregloUsuarios = null;
         $base = new baseDatos();
         $consultaUsuario =  "SELECT * from usuario";
@@ -174,6 +177,58 @@ class Usuario
             $this->setMensajeFuncion($base->getError());
         }
         return $arregloUsuarios;
+    } */
+
+    public function listar($arrayBusqueda){
+        //seteo de respuesta
+        $respuesta['respuesta'] = false;
+        $respuesta['errorInfo'] = '';
+        $respuesta['codigoError'] = null;
+        $arregloUsuario = null;
+        $base = new baseDatos();
+        //seteo de busqueda
+        $stringBusqueda = $this->SB($arrayBusqueda);
+        $sql = "SELECT * FROM usuario";
+        if($stringBusqueda != ''){
+            $sql.= ' WHERE ';
+            $sql.= $stringBusqueda;
+        }
+        try {
+            if($base->Iniciar()){
+                if($base->Ejecutar($sql)){
+                    $arregloUsuario = array();
+                    while($row2 = $base->Registro()){
+                        $objUsuario = new Usuario();
+                        $objUsuario->setIdusuario($row2['idUsuario']);
+                        $objUsuario->setUsnombre($row2['usNombre']);
+                        $objUsuario->setUspass($row2['usPass']);
+                        $objUsuario->setUsmail($row2['usMail']);
+                        $objUsuario->setUsdeshabilitado($row2['usDeshabilitado']);
+                        array_push($arregloUsuario, $objUsuario);
+                    }
+                    $respuesta['respuesta'] = true;
+                }else{
+                   /*  Usuario::setMensajeStatic($base->getError()); */
+                    $respuesta['respuesta'] = false;
+                    $respuesta['errorInfo'] = 'Hubo un error con la consulta';
+                    $respuesta['codigoError'] = 1;
+                }
+            }else{
+                /* Usuario::setMensajeStatic($base->getError()); */
+                $respuesta['respuesta'] = false;
+                $respuesta['errorInfo'] = 'Hubo un error con la conexión de la base de datos';
+                $respuesta['codigoError'] = 0;
+            }
+        } catch (\Throwable $th) {
+            $respuesta['respuesta'] = false;
+            $respuesta['errorInfo'] = $th;
+            $respuesta['codigoError'] = 3;
+        }
+        $base = null;
+        if($respuesta['respuesta']){
+            $respuesta['array'] = $arregloUsuario;
+        }
+        return $respuesta;
     }
 
     //ELIMINAR
@@ -182,7 +237,25 @@ class Usuario
         $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "DELETE FROM usuario WHERE idUsuario = " . $this->getIdUsuario();
+            // $consulta = "DELETE FROM usuario WHERE idUsuario = " . $this->getIdUsuario();
+            $consulta = "UPDATE usuario SET usDeshabilitado = CURRENT_TIMESTAMP WHERE idUsuario =" .$this->getIdUsuario();
+            if ($base->Ejecutar($consulta)){
+                $resp = true;
+            } else {
+                $this->setMensajeFuncion($base->getError());
+            }
+        } else {
+            $this->setMensajeFuncion($base->getError());
+        }
+        return $resp;
+    }
+
+    public function noEliminar(){
+        $base = new baseDatos();
+        $resp = false;
+        if ($base->Iniciar()) {
+            // $consulta = "DELETE FROM usuario WHERE idUsuario = " . $this->getIdUsuario();
+            $consulta = "UPDATE usuario SET usDeshabilitado = DEFAULT WHERE idUsuario =" .$this->getIdUsuario();
             if ($base->Ejecutar($consulta)){
                 $resp = true;
             } else {

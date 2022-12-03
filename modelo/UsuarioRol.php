@@ -1,6 +1,6 @@
 <?php
 //REVISAR LISTAR
-class UsuarioRol
+class UsuarioRol extends baseDatos
 {
     private $objUsuario;
     private $objRol;

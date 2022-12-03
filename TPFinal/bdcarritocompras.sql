@@ -121,13 +121,11 @@ CREATE TABLE IF NOT EXISTS `menu` (
 --
 
 INSERT INTO `menu` (`idMenu`, `meNombre`, `meDescripcion`, `idPadre`, `meDeshabilitado`) VALUES
-(1, 'Productos', '../cliente/productos.php', NULL, NULL),
-(2, 'Mis Compras', '../cliente/compras.php', NULL, NULL),
-(3, 'Mis datos', '../cliente/perfil.php', NULL, NULL),
-(4, 'Usuarios y permisos', '../menuAdmin/listaUsuarios.php', NULL, NULL),
-(5, 'Gestion de menues', '../menuAdmin/gestionarMenues.php', NULL, NULL),
-(6, 'Estado de Compras', '../menuDepo/gestionarCompras.php', NULL, NULL),
-(7, 'Listar Productos', '../menuDepo/listaProductos.php', NULL, NULL);
+(1, 'Tienda.cliente', '../menuCliente/tienda.php', NULL, NULL),
+(2, 'Usuarios.admin', '../menuAdmin/listaUsuarios.php', NULL, NULL),
+(3, 'Productos.depo', '../menuDepo/listaProductos.php', NULL, NULL),
+(4, 'Perfil.cliente', '../menuCliente/perfil.php', NULL, NULL),
+(6, 'Menus.admin', '../menuAdmin/listaMenues.php', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -148,11 +146,11 @@ CREATE TABLE IF NOT EXISTS `menurol` (
 --
 
 INSERT INTO `menurol` (`idMenu`, `idRol`) VALUES
-(9, 1),
-(10, 1),
-(7, 2),
-(8, 2),
-(11, 3);
+(1, 2),
+(5, 2);
+(2, 1),
+(6, 1);
+(4, 3),
 -- --------------------------------------------------------
 
 --
@@ -325,7 +323,9 @@ INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (4,3,1)
 
 INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (3,1, '0000-00-00 00:00:00');
 
-/* probando compra aceptada */
+/* probando compra aceptada 
+INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (2,2,'0000-00-00 00:00:00');
+*/
 
 INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (4,1,2);
 

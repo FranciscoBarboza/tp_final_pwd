@@ -1,5 +1,5 @@
 <?php
-class MenuRol{
+class MenuRol extends baseDatos{
     private $objMenu;
     private $objRol;
     private $mensajeFuncion;

@@ -1,5 +1,5 @@
 <?php
-class CompraEstado{
+class CompraEstado extends baseDatos{
     private $idCompraEstado;
     private $objCompra;
     private $objCompraEstadoTipo;

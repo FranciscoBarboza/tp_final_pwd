@@ -2,13 +2,13 @@
 class c_session
 {
     /** CONSTRUCTOR **/
-    public function __construct()
-    {
-        session_start();
+    public function __construct(){
+        if(session_status() == 1){
+            session_start();
+        }
     }
 
-    public function getIdUsuario()
-    {
+    public function getIdUsuario(){
         if (isset($_SESSION['idUsuario'])) {
             return $_SESSION['idUsuario'];
         }
@@ -20,9 +20,14 @@ class c_session
         $_SESSION['idUsuario'] = $idUsuario;
     }
 
-    public function getUsNombre()
-    {
-        return $_SESSION['usNombre'];
+    public function getUsNombre(){
+        if(array_key_exists('usNombre', $_SESSION)){
+            $param = $_SESSION['usNombre'];
+        }
+        else{
+            $param = null;
+        }
+        return $param;
     }
 
     public function setUsNombre($usNombre)
@@ -48,8 +53,7 @@ class c_session
     }
 
     /** VALIDAR **/
-    public function validar()
-    {
+    /* public function validar(){
         $inicia = false;
         $nombreUsuario = $this->getUsNombre();
         $passUsuario = $this->getUsPass();
@@ -60,7 +64,7 @@ class c_session
         $filtro2 = array();
         $filtro2['usPass'] = $passUsuario;
         $where['usNombre'] = $nombreUsuario;
-        $where['usPass'] = $passUsuario;
+        $where['usPass'] = $passUsuario;//solo guarda IDUSUARIO
         $listaUsuarios = $controlUsuario->buscar($where);
         $username = $controlUsuario->buscar($filtro1);
         $pass =  $controlUsuario->buscar($filtro2);
@@ -79,6 +83,13 @@ class c_session
             }
         }
         return array($inicia, $error);
+    } */
+
+    public function validar(){
+        $resp = false;
+        if($this->activa() && isset($_SESSION['idusuario']))
+            $resp=true;
+        return $resp;
     }
 
     /** ACTIVA **/
@@ -89,10 +100,15 @@ class c_session
     }
 
     /** GET USUARIO **/
-    public function getUsuario()
-    {
+    public function getUsuario(){
         $controlUsuario = new c_usuario();
-        $where = ['idUsuario' => $_SESSION['idUsuario']];
+        if(array_key_exists('idUsuario', $_SESSION)){
+            $where = ['idUsuario' => $_SESSION['idUsuario']];
+        }
+        else{
+            $where = [];
+        }
+
         $listaUsuarios = $controlUsuario->buscar($where);
         if ($listaUsuarios >= 1) {
             $usuarioLog = $listaUsuarios[0];
@@ -124,19 +140,19 @@ class c_session
         return $listaRoles;
     }
 
-       public function administrador()
-       {
-           $arrayRoles = $this->getRoles();
-           $admin = false;
-           $i = 0;
-           while ($i < count($arrayRoles) && !$admin) {
-               if ($arrayRoles[$i]->getObjRol()->getIdRol() == 1) {
-                   $admin = true;
-               }
-               $i++;
-           }
-           return $admin;
-       }
+    public function administrador()
+    {
+        $arrayRoles = $this->getRoles();
+        $admin = false;
+        $i = 0;
+        while ($i < count($arrayRoles) && !$admin) {
+            if ($arrayRoles[$i]->getObjRol()->getIdRol() == 1) {
+                $admin = true;
+            }
+            $i++;
+        }
+        return $admin;
+    }
 
     public function cliente()
     {

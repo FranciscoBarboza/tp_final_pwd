@@ -1,7 +1,7 @@
 <?php
 include_once("../menu/cabecera.php");
 $metodo = data_submitted();
-$metodo['usPass'] = md5($metodo["usPass"]);
+$metodo['usPass'] = md5($metodo["usPass"]); //Encriptar en el cliente como en el registro
 $objUsuario = new c_usuario();
 if($objSession->validar($metodo)){
     ?>

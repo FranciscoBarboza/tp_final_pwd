@@ -1,7 +1,7 @@
 function registerSuccess() {
     Swal.fire({
         icon: 'success',
-        title: 'El usuario se ha eliminado correctamente!',
+        title: 'El usuario se ha deshabilitado correctamente!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -13,7 +13,7 @@ function registerSuccess() {
 function registerFailure() {
     Swal.fire({
         icon: 'error',
-        title: 'No se ha podido eliminar el usuario!',
+        title: 'No se ha podido deshabilitado el usuario!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -33,7 +33,7 @@ $(document).on('click', '.remove', function () {
     console.log();
     $.ajax({
         type: "POST",
-        url: 'accion/accionEliminarUsuario.php',
+        url: 'accion/accionDeshabilitarUsuario.php',
         data: { idUsuario: fila[0].children[0].innerHTML},
         success: function (respuesta) {
             var jsonData = JSON.parse(respuesta);

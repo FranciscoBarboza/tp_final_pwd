@@ -1,6 +1,6 @@
 <?php
 //TERMINADO (ver situación de modificar)
-class Rol
+class Rol extends baseDatos
 {
     private $idRol;
     private $rolDescripcion;

@@ -1,6 +1,6 @@
 <?php
 //REVISAR COSAS
-class Compra{
+class Compra extends baseDatos{
     private $idCompra;
     private $coFecha;
     private $objUsuario; //Delegación 

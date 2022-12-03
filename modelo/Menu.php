@@ -1,5 +1,5 @@
 <?php
-class Menu{
+class Menu extends baseDatos{
     private $idMenu;
     private $meNombre;
     private $meDescripcion;

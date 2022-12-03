@@ -100,6 +100,17 @@ class c_usuario
         return $resp;
     }
 
+    public function noBaja($param){
+        $resp = false;
+        if ($this->seteadosCamposClaves($param)) {
+            $obj = $this->cargarObjetoConClave($param);
+            if ($obj != null and $obj->noEliminar()) {
+                $resp = true;
+            }
+        }
+        return $resp;
+    }
+
     /**
      * permite modificar un objeto
      * @param array $param
@@ -143,7 +154,7 @@ class c_usuario
     }
 
     //Preguntar (no debería haber una fecha?)
-    function habilitar($param){
+    /* public function habilitar($param){
         $resp = false;
         $arrayObjUsuarios = $this->buscar($param);
         $objUsuario = $arrayObjUsuarios[0];
@@ -154,7 +165,7 @@ class c_usuario
         return $resp;
     }
 
-    function deshabilitar($param){
+    public function deshabilitar($param){
         $resp = false;
         $arrayObjUsuarios = $this->buscar($param);
         $fecha = new DateTime();
@@ -165,5 +176,16 @@ class c_usuario
             $resp = true;
         }
         return $resp;
+    } */
+
+    public function listar ($arrayBusqueda){
+        $objUsuario = new Usuario();
+        $resp = $objUsuario->listar($arrayBusqueda);
+        if(array_key_exists('array', $resp)){
+            $arrayUsuarios = $resp['array'];
+        }else{
+            $arrayUsuarios = [];
+        }
+        return $arrayUsuarios;
     }
 }
