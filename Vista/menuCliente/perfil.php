@@ -1,6 +1,6 @@
 <?php
-include "../../configuracion.php";
-include_once "../menu/cabecera.php";
+include_once ("../../configuracion.php");
+include_once ("../menu/cabecera.php");
     $usuario = new c_usuario;
     $usuario = $usuario->buscar($datos)[0];
 ?>

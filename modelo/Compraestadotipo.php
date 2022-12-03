@@ -1,6 +1,6 @@
 <?php
 //REVISAR MODIFICAR
-class CompraEstadoTipo
+class CompraEstadoTipo extends baseDatos
 {
     private $idCompraEstadoTipo;
     private $cetDescripcion;

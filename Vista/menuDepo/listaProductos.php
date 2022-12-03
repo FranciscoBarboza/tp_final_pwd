@@ -1,5 +1,5 @@
 <?php
-include_once("../Menu/Cabecera.php");
+include_once("../menu/cabecera.php");
 include_once("../../configuracion.php");
     $objProducto = new c_producto();
     $arrayProductos = $objProducto->buscar(null);
@@ -11,7 +11,7 @@ include_once("../../configuracion.php");
     $i = 0;
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,9 +20,8 @@ include_once("../../configuracion.php");
     <title>Document</title>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-</head>
-<body>
-
+</head> -->
+<!-- <body> -->
 <div class="container col-md-10">
     <form action="" class="form-control needs-validation" method="POST" novalidate>         
     <table id="formulario_CrearProducto" class="table table-bordered">
@@ -138,7 +137,7 @@ include_once("../../configuracion.php");
                     </table>
                 </div>
             </div>
-</body>
+<!-- </body> -->
 <script>
     (function () {
   'use strict'
@@ -158,7 +157,7 @@ include_once("../../configuracion.php");
     })
 })()
 </script>
-</html>
+<!-- </html> -->
 <?php
     include_once("../menu/pie.php")
 ?>

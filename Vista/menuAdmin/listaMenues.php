@@ -12,7 +12,7 @@ include_once("../../configuracion.php");
     }
     $i = 0;
 ?>
-<body>
+<!-- <body> -->
     <div class="container-fluid mx-auto m-5">
     <?php
         // if ($cantPermisos > -1) {
@@ -90,9 +90,9 @@ include_once("../../configuracion.php");
                 </div>
             </div>
     </div>
-</body>
+<!-- </body> -->
 <script src="js/borrarUsuario.js"></script>;
-</html>
+<!-- </html> -->
 <?php
     include_once("../menu/pie.php");
 ?>

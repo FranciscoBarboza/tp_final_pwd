@@ -1,6 +1,6 @@
 <?php
 //TERMINADO (ver situación de modificar)
-class CompraItem
+class CompraItem extends baseDatos
 {
     private $idCompraItem;
     private $objProducto;

@@ -1,6 +1,5 @@
 <?php
 include_once('../../configuracion.php');
-require_once('preCabecera.php');
 $objSession= new c_session();
 $menuRoles = [];
 if ($objSession->activa()) {
@@ -39,6 +38,12 @@ if ($objSession->activa()) {
 
       <div class="collapse navbar-collapse" id="navbarsExample03">
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+          <li class="nav-item">
+            <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../paginaSegura/inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../login/login.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
+          </li>
           <!-- aca va todo lo de cambio de menu -->
           <?php
           foreach ($menuRoles as $objMenu) {
@@ -51,9 +56,6 @@ if ($objSession->activa()) {
           ?>
           <li class="nav-item">
             <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../menuCliente/tienda.php" style="font-family: 'Chivo', sans-serif;">Tienda</a>
-          </li>
-          <li class="nav-item">
-            <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../login/login.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
           </li>
           <?php
           /*switch($rol){

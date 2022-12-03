@@ -1,6 +1,6 @@
 <?php
 //TERMINADO (ver situación de modificar)
-class Producto{
+class Producto extends baseDatos{
     private $idProducto;
     private $proNombre;
     private $proDetalle;
