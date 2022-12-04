@@ -1,7 +1,6 @@
 <?php
 //TERMINADO (ver situación de modificar)
-class Usuario extends baseDatos
-{
+class Usuario extends baseDatos{
     use Condicion;
     private $idUsuario;
     private $usNombre;

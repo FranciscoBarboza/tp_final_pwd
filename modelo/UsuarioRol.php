@@ -82,7 +82,7 @@ class UsuarioRol extends baseDatos
         $consulta = "UPDATE usuariorol SET 
         idUsuario = '".$this->getObjUsuario()->getIdUsuario()."', 
         idRol = ".$this->getObjRol()->getIdRol()." 
-        WHERE idUsuario = ".$this->getObjUsuario()->getIdUsuario();
+        WHERE idUsuario = '".$this->getObjUsuario()->getIdUsuario()."' AND idRol = '".$this->getObjRol()->getIdRol()."'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
@@ -96,12 +96,11 @@ class UsuarioRol extends baseDatos
     }
 
     //BUSCAR
-    public function buscar($idUsuario, $idRol)
-    {
+    public function buscar($idUsuario, $idRol){
         $base = new baseDatos();
         $resp = false;
         //PROBLEMA, NO ESTÁ BIEN ESCRITO
-        $consulta = "SELECT * FROM usuariorol WHERE idUsuario = $idUsuario AND idRol =" . $idRol;
+        $consulta = "SELECT * FROM usuariorol WHERE idUsuario ='".$idUsuario."' AND idRol = '". $idRol."'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 if ($usuarioRol = $base->Registro()) {
@@ -124,9 +123,8 @@ class UsuarioRol extends baseDatos
     }
 
     //LISTAR (REVISAR)
-    public function listar($condicion = '')
-    {
-        $arregloUsuarioRol = [];
+    public function listar($condicion = ''){
+        $arregloUsuarioRol = null;
         $base = new baseDatos();
         $consultaUserRol =  "SELECT * from usuariorol ";
         if ($condicion != '') {
@@ -138,8 +136,8 @@ class UsuarioRol extends baseDatos
                 $arregloUsuarioRol = array();
                 while ($usuarioRol = $base->Registro()) {
                     $objUsuarioRol = new UsuarioRol();
-                    $resUsRol= $objUsuarioRol->buscar($usuarioRol['idUsuario'], $usuarioRol['idRol']);
-                    array_push($arregloUsuarioRol, $resUsRol);
+                    $objUsuarioRol->buscar($usuarioRol['idUsuario'], $usuarioRol['idRol']);
+                    array_push($arregloUsuarioRol, $objUsuarioRol);
                 }
             } else {
                 $this->setMensajeFuncion($base->getError());
@@ -157,7 +155,7 @@ class UsuarioRol extends baseDatos
         $resp = false;
         if ($base->Iniciar()) {
             $consulta = "DELETE FROM usuariorol WHERE idUsuario= '". $this->getObjUsuario()->getIdUsuario()."' 
-            AND idRol= " . $this->getObjRol()->getIdRol();
+            AND idRol= '" . $this->getObjRol()->getIdRol() ."'";
             if ($base->Ejecutar($consulta)) {
                 $resp = true;
             } else {

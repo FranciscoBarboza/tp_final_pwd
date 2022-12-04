@@ -89,8 +89,7 @@ class Rol extends baseDatos
     }
     
     //BUSCAR
-    public function buscar($idRol)
-    {
+    public function buscar($idRol){
         $base = new baseDatos();
         $resp = false;
         $consulta = "SELECT * FROM rol WHERE idRol =" . $idRol;

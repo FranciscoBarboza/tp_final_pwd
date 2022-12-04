@@ -9,7 +9,7 @@ include_once("../../configuracion.php");
     echo '</pre>'; */
     /* die();  */
     $objUsuarioRol = new c_usuarioRol();
-    $arrayRolesUsuario = $objUsuarioRol->buscar(null);
+    /* $arrayRolesUsuario = $objUsuarioRol->buscar(null); */
     /* echo '<pre>';
         var_dump($arrayRolesUsuario);
     echo '</pre>'; */
@@ -62,23 +62,26 @@ include_once("../../configuracion.php");
                                         echo '<td>'. $usuario->getUsNombre().'</td>';
                                         echo '<td>'. $usuario->getUsPass().'</td>';
                                         echo '<td>'. $usuario->getUsMail().'</td>';
-                                        // echo '<td>'. 
-                                    /* foreach($arrayRolesUsuario as $usRol){
+                                    /* foreach($arrayRolesUsuario as $usRol){ */
                                         echo '<td>';
-                                            echo $usRol->getIdRol();
+                                            /* echo $usRol->getIdRol(); */
                                             $sepRoles = "-";
-                                            $idUsuario= intval($usuario->getIdUsuario());
-                                            $usRol= $objUsuarioRol->buscar(['idUsuario' => $idUsuario]);
-                                            foreach ($arrayUsRol[0] as $rol) {
-                                                $sepRoles = $sepRoles . $rol->getObjRol()->getRolDescripcion() . "-";
+                                            /* $idUsuario= intval($usuario->getIdUsuario());  */
+                                            $usRol= $objUsuarioRol->buscar(['idUsuario' => $usuario->getIdUsuario()]);
+                                            /* echo '<pre>';
+                                            var_dump($usRol);
+                                            echo '</pre>'; */
+                                            foreach ($usRol as $rol) {
+                                                $sepRoles = $rol->getObjRol()->getRolDescripcion() . "-";
                                             }
                                             echo $sepRoles .
                                             '</td>';
-                                        } */
+                                        /* } */
                                         /* echo '<td>'. $usuario->getTelefono().'</td>'; */
+                                        /* echo '<td>'. $usuario->getIdUsuario(). '</td>'; */
                                         echo '<td>'. $usuario->getUsDeshabilitado().'</td>';
-                                        // echo '<td><a class="btn btn-dark" href="accionHabilitacionUsuario.php>Habilitar/Deshabilitar</a></td>'; 
-                                        echo '<td><button type="button" class="btn btn-primary" data-bs-toggle="modal"data-bs-target="#exampleModal" data-bs-whatever="@mdo">Editar Usuario</button>';
+                                        
+                                        echo '<td><button type="button" class="btn btn-success editarBoton" data-bs-toggle="modal"data-bs-target="#exampleModal" data-bs-whatever="@mdo">Editar Usuario</button>';
                                         echo '<td><button type="button" class="btn btn-warning remove">Deshabilitar</button></td>';
                                         echo '<td><button type="button" class="btn btn-warning unRemove">Habilitar</button></td>';
                                         echo '</tr>';
@@ -87,40 +90,52 @@ include_once("../../configuracion.php");
                                     echo '<p class="lead"> Actualmente no hay personas registradas </p>';
                                 }
                             ?>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role= "document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Modifique datos usuario</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                 </div>
+
+                                <form action="actualizarDatos.php" method="POST">
+
                                 <div class="modal-body">
-                                    <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
+                                    <div class="form-group">
+                                        <label>Nombre Usuario</label>
+                                        <input type="text" name="usNombre" id="usNombre" class="form-control" placeholder="Ingrese nuevo nombre de usuario">
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Message:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
+                                    <div class="form-group">
+                                        <label>Mail Usuario</label>
+                                        <input type="email" name="usMail" id="usMail" class="form-control" placeholder="Ingrese nuevo mail del usuario">
                                     </div>
-                                    </form>
+                                    <div class="form-group">
+                                        <label>Roles Usuario</label>
+                                        <br>
+                                        <label>Rol Administrador<input type="checkbox" id="cbox1" value="rolAdmin"></label>
+                                        <br>
+                                        <label>Rol Cliente<input type="checkbox" id="cbox2" value="rolCliente"></label>
+                                        <br>
+                                        <label>Rol Deposito<input type="checkbox" id="cbox3" value="rolDepo"></label>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" name="insertData" class="btn btn-primary actualizar">Guardar</button>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Send message</button>
-                                </div>
-                                </div>
-                            </div>
+                                </form>
                             </div>
                         </tbody>
                     </table>
-                </div>
-            </div>
     </div>
 <!-- </body> -->
-<script src="js/deshabilitarUsuario.js"></script>;
-<script src="js/habilitarUsuario.js"></script>;
+<script src="js/deshabilitarUsuario.js"></script>
+<script src="js/habilitarUsuario.js"></script>
+<script src="js/actualizarUsuario.js"></script>
 <!-- </html> -->
 <?php
     include_once("../menu/pie.php");

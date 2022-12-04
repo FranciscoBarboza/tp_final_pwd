@@ -33,7 +33,7 @@ class c_usuarioRol
         //print_R ($param);
         if (isset($param['idUsuario']) && isset($param['idRol'])) {
             $objUsuarioRol = new UsuarioRol();
-            $objUsuarioRol->cargar($param['idUsuario'], $$param['idRol']);
+            $objUsuarioRol->cargar($param['idUsuario'], $param['idRol']);
         }
         return $objUsuarioRol;
     }
@@ -45,12 +45,10 @@ class c_usuarioRol
      * @return boolean
      */
 
-    private function seteadosCamposClaves($param)
-    {
-
+    private function seteadosCamposClaves($param){
         $resp = false;
         if (isset($param['idUsuario']) && isset($param['idRol']));
-        $resp = true;
+            $resp = true;
         return $resp;
     }
 
@@ -111,15 +109,16 @@ class c_usuarioRol
 
     public function buscar($param){
         $where = " true ";
-        if ($param <> null) {
+        if ($param <> null){
+            $where .= '';
             if (isset($param['idUsuario']))
                 $where .= " and idUsuario='" . $param['idUsuario'] . "'";
             if (isset($param['idRol']))
                 $where .= " and idRol ='" . $param['idRol'] . "'";
         }
-        $arreglo = new UsuarioRol();
-        $arreglo->listar($where, "");
-        return $arreglo;
+        $objUsuarioRol = new UsuarioRol();
+        $arrayUsuarioRol = $objUsuarioRol->listar($where);
+        return $arrayUsuarioRol;
     }
 
     //esta funcion me devuelve un array de descripcion de roles de un array de usuarios:
