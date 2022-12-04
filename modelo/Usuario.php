@@ -109,12 +109,7 @@ class Usuario extends baseDatos{
         }else{
             $param = $this->getUsDeshabilitado();
         }
-        $consulta = "UPDATE usuario SET
-        usNombre= '".$this->getUsNombre()."',
-        usPass= '".$this->getUsPass()."',
-        usMail= '".$this->getUsMail()."',
-        usDeshabilitado = ". $param ."
-        WHERE idUsuario= ". $this->getIdUsuario();
+        $consulta = "UPDATE usuario SET usNombre= '".$this->getUsNombre()."', usPass= '".$this->getUsPass()."', usMail= '".$this->getUsMail()."', usDeshabilitado = ". $param ." WHERE idUsuario= ". $this->getIdUsuario();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;

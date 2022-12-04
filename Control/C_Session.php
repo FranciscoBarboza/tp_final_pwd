@@ -1,12 +1,5 @@
 <?php
-class c_session
-{
-    /** CONSTRUCTOR **/
-    public function __construct(){
-        if(session_status() == 1){
-            session_start();
-        }
-    }
+class c_session{
 
     public function getIdUsuario(){
         if (isset($_SESSION['idUsuario'])) {
@@ -15,8 +8,7 @@ class c_session
         return null;
     }
 
-    public function setIdUsuario($idUsuario)
-    {
+    public function setIdUsuario($idUsuario){
         $_SESSION['idUsuario'] = $idUsuario;
     }
 
@@ -30,19 +22,31 @@ class c_session
         return $param;
     }
 
-    public function setUsNombre($usNombre)
-    {
+    public function setUsNombre($usNombre){
         $_SESSION['usNombre'] = $usNombre;
     }
 
-    public function getUsPass()
-    {
+    public function getUsPass(){
         return $_SESSION['usPass'];
     }
 
-    public function setUsPass($usPass)
-    {
+    public function setUsPass($usPass){
         $_SESSION['usPass'] = $usPass;
+    }
+
+    /** CONSTRUCTOR **/
+    public function __construct(){
+        if (session_status() == 1) {
+            session_start();
+        }
+        /* $objUsuario = new c_usuario();
+        if (isset($_SESSION["nombreUsuario"])) {
+            $usNombre["usNombre"] = $_SESSION["nombreUsuario"];
+            $usuarioId = $objUsuario->buscar($usNombre);
+            $this->setIdUsuario($usuarioId);
+         if(session_status() == 1){
+            session_start();
+        } */
     }
 
     /** INICIAR **/
@@ -93,9 +97,8 @@ class c_session
     }
 
     /** ACTIVA **/
-    public function activa()
-    {
-        $resp = isset($_SESSION['usNombre']) ? true : false;
+    public function activa(){
+        $resp = isset($_SESSION['nombreUsuario'])? true : false;
         return $resp;
     }
 

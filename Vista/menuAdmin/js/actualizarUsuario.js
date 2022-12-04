@@ -10,27 +10,25 @@ $(document).ready(function () {
 
         console.log(data);
 
+        $('#idUsuario').val(data[0]);
         $('#usNombre').val(data[1]);
+        $('#usPass').val(data[2]);
         $('#usMail').val(data[3]);
+        $('#usDeshabilitado').val(data[5]);
     });
 });
 
-/* $(document).ready(function () {
+$(document).ready(function () {
     $('form').submit(function (e) {
         e.preventDefault();
         const forms = document.querySelectorAll('.needs-validation');
         if (forms[0].checkValidity()) {
-            if(document.getElementById('input_contrasena').value == document.getElementById('input_contrasenaRep').value){
-            var password = document.getElementById("input_contrasena").value;
-            var passhash = hex_md5(password).toString();
-            document.getElementById("input_contrasena").value = passhash;
             $.ajax({
                 type: "POST",
                 url: 'accion/accionActualizarUsuario.php',
                 data: $(this).serialize(),
                 success: function (response) {
                     var jsonData = JSON.parse(response);
-
                     // user is logged in successfully in the back-end
                     // let's redirect
                     if (jsonData.success == "1") {
@@ -41,12 +39,32 @@ $(document).ready(function () {
                     }
                 }
             });
-            } else { 
-                document.getElementsByClassName('invalid-password')[0].style = "display: block; color:red";
-                document.getElementsByClassName('invalid-password')[1].style = "display: block; color:red";
-            }
         } else {
             forms[0].classList.add('was-validated');
         }
     });
-}); */
+});
+
+function registerSuccess() {
+    Swal.fire({
+        icon: 'success',
+        title: 'La cuenta se editó correctamente!',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    setTimeout(function () {
+        recargarPagina();
+    }, 1500);
+}
+
+function registerFailure() {
+    Swal.fire({
+        icon: 'error',
+        title: 'La cuenta no se pudo editar en la base de datos!',
+        showConfirmButton: false,
+        timer: 1500
+    })
+    setTimeout(function () {
+        recargarPagina();
+    }, 1500);
+}
