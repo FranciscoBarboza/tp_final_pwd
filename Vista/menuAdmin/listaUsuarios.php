@@ -62,6 +62,7 @@ include_once("../../configuracion.php");
                                         echo '<td>'. $usuario->getUsNombre().'</td>';
                                         echo '<td>'. $usuario->getUsPass().'</td>';
                                         echo '<td>'. $usuario->getUsMail().'</td>';
+                                        // echo '<td>'. 
                                     /* foreach($arrayRolesUsuario as $usRol){
                                         echo '<td>';
                                             echo $usRol->getIdRol();
