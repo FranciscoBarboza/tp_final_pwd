@@ -180,6 +180,29 @@ class Compra extends baseDatos{
             "\n Fecha de compra: " . $this->getCoFecha() .
             "\n ID del usuario que realizó la compra: " . $this->getObjUsuario()->getIdUsuario() . "\n");
     }
-    
+
+    public function ultimaCompra(){
+        $base = new baseDatos();
+        $resp = false;
+        if ($base->Iniciar()) {
+            $consulta = "SELECT * FROM compra WHERE idcompra IN (SELECT MAX(idcompra) AS idcompra FROM compra)";
+            if ($base->Ejecutar($consulta)) {
+                if ($compra = $base->Registro()) {
+                    $this->setIdCompra($compra['idCompra']);
+                    $this->setCoFecha($compra['coFecha']);
+                    //Creo un objeto para buscar al id y setear el objeto
+                    $objUsuario = new Usuario();
+                    $objUsuario->buscar($compra['idUsuario']);
+                    $this->setObjUsuario($objUsuario);
+                    $resp = true;
+                }
+            } else {
+                $this->setMensajeFuncion($base->getError());
+            }
+        } else {
+            $this->setMensajeFuncion($base->getError());
+        }
+        return $resp;
+    }
 }
 ?>

@@ -165,7 +165,7 @@ $controlCompraItem= new c_compraItem();
     })
 })()
 </script>
-<script src="js/comprar.js"></script>
+<!-- <script src="js/comprar.js"></script> -->
 <link rel="stylesheet" href="css/tienda.css">
 
 <!-- </html> -->
