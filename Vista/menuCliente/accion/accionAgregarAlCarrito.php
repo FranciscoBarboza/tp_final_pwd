@@ -1,6 +1,6 @@
 <?php
 include_once("../../../configuracion.php");
-include_once("../../Menu/Cabecera.php");
+
 
 
 $datos = data_submitted();
@@ -14,23 +14,29 @@ $objCompraEstado= new c_compraEstado();
 
 
 /* buscar ultima compra de un usuario */
-$array_compraEstadoIniciada= $objCompraEstado->buscarCompraEstadoNull($id);
+$array_compraEstadoIniciada= $objCompraEstado->buscarCompraEstadoNull($idUsuario);
 
 
 if (count($array_compraEstadoIniciada) <> 0) {
     /* en caso e tener una compra iniciada significa que la compra se tiene que agregar a esa compra */
     $objCompraEstado= $array_compraEstadoIniciada[0];
-
-    $objCompraEstado= new CompraEstado();
+    
 
     $idCompraActual= $objCompraEstado->getObjCompra()->getIdCompra();
 
     $objCompraItem= new c_compraItem();
 
+    /* lo necesario para el alta */
+
+    $objProductoAux= new Producto;
+    $objProductoAux->buscar(intval($datos["idProducto"]));
+    
+    
+
     if ($obj_producto->hayStock($datos["idProducto"], $datos["ciCantidad"] )) {//valido si hay stock de ese producto
         $objCompraItem->alta(['idcompraitem'=> null,
-        "idproducto"=> $datos["idProducto"],
-        "idcompra"=>intval($idCompraActual),
+        "idproducto"=> $objProductoAux,
+        "idcompra"=> $objCompraEstado->getObjCompra(),
         "cicantidad"=> intval($datos["ciCantidad"])
         ]);
 

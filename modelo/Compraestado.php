@@ -138,7 +138,7 @@ class CompraEstado extends baseDatos{
                     $objCompra = new Compra();
                     $objCompra->buscar($compraEstado['idCompra']);
                     $this->setObjCompra($objCompra);
-                    $objCompraEstadoTipo = new CompraEstadoTipo;
+                    $objCompraEstadoTipo = new CompraEstadoTipo();
                     $objCompraEstadoTipo->buscar($compraEstado['idCompraEstadoTipo']);
                     $this->setObjCompraEstadoTipo($objCompraEstadoTipo);
                     $this->setCeFechaINI($compraEstado['ceFechaIni']);
@@ -163,7 +163,7 @@ class CompraEstado extends baseDatos{
         if ($condicion != '') {
             $consultaCET = $consultaCET . ' WHERE ' . $condicion;
         }
-        $consultaCET.=" ORDER BY idCompraEstado ";
+                    $consultaCET.=" ORDER BY idCompraEstado ";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consultaCET)) {
                 $arrayCET = array();

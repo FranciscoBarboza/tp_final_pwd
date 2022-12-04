@@ -5,7 +5,7 @@ $(document).ready(function () {
         if (forms[0].checkValidity()) {
             $.ajax({
                 type: "POST",
-                url: 'accion/comprar.php',
+                url: 'accion/accionAgregarAlCarrito.php',
                 data: $(this).serialize(),
                 success: function (response) {
                     var jsonData = JSON.parse(response);
@@ -14,7 +14,6 @@ $(document).ready(function () {
                     // let's redirect
                     if (jsonData.success == "1") {
                         cargaExitosa();
-                       
                     }
                     else if (jsonData.success == "0") {
                         cargaFallida();

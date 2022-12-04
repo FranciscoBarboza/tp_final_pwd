@@ -73,13 +73,17 @@ class CompraItem extends baseDatos
     public function insertar(){
         $base = new baseDatos();
         $resp = false;
+        $objCompra= $this->getObjCompra();
+        $objProducto= $this->getObjProducto();
+       
+        
     
         //Creo la consulta 
         $consulta = "INSERT INTO compraitem (idCompraItem, idProducto, idCompra, ciCantidad) VALUES (
          DEFAULT ,
-        '".$this->getObjProducto()->getIdProducto()."',
-        '".$this->getObjCompra()->getIdCompra()."',
-        '".$this->getCiCantidad()."')"; 
+        '{$objProducto->getIdProducto()}',
+        '{$objCompra->getIdCompra()}',
+        '{$this->getCiCantidad()}')"; 
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;

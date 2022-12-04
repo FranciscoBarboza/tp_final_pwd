@@ -1,5 +1,5 @@
 <?php
-include_once('../../configuracion.php');
+
 require_once('preCabecera.php');
 $objSession= new c_session();
 $menuRoles = [];

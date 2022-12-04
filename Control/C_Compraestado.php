@@ -138,10 +138,10 @@ class c_compraEstado{
         
             $where .= '';
             $where.=" and ceFechaFin is null";
-            $where.= "and idCompraEstadoTipo= 1";
+            $where.= " and idCompraEstadoTipo= 1";
         
         $obj = new Compraestado();
-        $arreglo =  $obj->listar($where);
+        $arreglo =  $obj->listar($where);//analizar esto
         
         /* ahora que tengo el arreglo con las compra estados iniciadas filtro las que tengan el id compra que quiero*/
         $arregloFiltrado= [];
