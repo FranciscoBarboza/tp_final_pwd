@@ -12,9 +12,9 @@ $(document).ready(function () {
 
         $('#idUsuario').val(data[0]);
         $('#usNombre').val(data[1]);
-        $('#usPass').val(data[2]);
-        $('#usMail').val(data[3]);
-        $('#usDeshabilitado').val(data[5]);
+        /* $('#usPass').val(data[2]); */
+        $('#usMail').val(data[2]);
+        $('#usDeshabilitado').val(data[4]);
     });
 });
 
@@ -67,4 +67,8 @@ function registerFailure() {
     setTimeout(function () {
         recargarPagina();
     }, 1500);
+}
+
+function recargarPagina() {
+    location.reload();
 }

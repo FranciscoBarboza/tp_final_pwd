@@ -1,14 +1,14 @@
 function redireccionarPaginaInicio() {
-    location.href = 'index.php'
+    location.href = '../paginaSegura/inicio.php'
 }
 function redireccionarInicioSesion() {
-    location.href = 'iniciarSesion.php'
+    location.href = 'login.php'
 }
 
 function comprobarCuenta(){
     let usuarioIngresado = localStorage.getItem('usuarioIngresado')
-    let contraseñaIngresada = localStorage.getItem('contraseniaIngresada')
-    if (localStorage.getItem('contrasenia') != null && localStorage.getItem('nombre') != null){
+    let contraseñaIngresada = localStorage.getItem('contrasenaIngresada')
+    if (localStorage.getItem('contrasena') != null && localStorage.getItem('nombre') != null){
         if(localStorage.getItem('nombre') == usuarioIngresado && localStorage.getItem('contrasenia') == contraseñaIngresada){
             localStorage.setItem('inicio', 'si');
             Swal.fire({

@@ -6,12 +6,11 @@ include_once("../menu/cabecera.php");
         background-color: rgb(70, 70, 70);
     }
 </style>
-
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 80px;">
     <div class="container col-md-5">
         <form action="accion/accionRegistrarse.php" method="get" class="needs-validation row-md-4 text-white mb-4" novalidate>
             <div>
-                <label>Nombre: </label><input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="usNombre" minlength="3" id="input_nombre" class="form-control text" required>
+                <label>Nombre: </label><input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="usNombre" minlength="3" id="usNombre" class="form-control text" required>
                 <div class="invalid-feedback">
                     Porfavor ingrese un nombre valido! No se aceptan numeros y tiene que ser mayor a 3 letras.
                 </div>
@@ -19,8 +18,9 @@ include_once("../menu/cabecera.php");
                     Correcto!
                 </div>
             </div>
+            <br>
             <div>
-                <label>Email: </label><input type="email" name="usMail" id="input_email" class="form-control text" required>
+                <label>Email: </label><input type="email" name="usMail" id="usMail" class="form-control text" required>
                 <div class="invalid-feedback">
                     Porfavor ingrese un e-mail valido! Es requerido que contenga numeros y letras.
                 </div>
@@ -28,8 +28,9 @@ include_once("../menu/cabecera.php");
                     Correcto!
                 </div>
             </div>
+            <br>
             <div>
-                <label>Contraseña: </label><input type="password" name="usPass" id="input_contrasena" class="form-control" required>
+                <label>Contraseña: </label><input type="password" name="usPass" id="usPass" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una contraseña!
                 </div>
@@ -40,8 +41,9 @@ include_once("../menu/cabecera.php");
                     Correcto!
                 </div>
             </div>
+            <br>
             <div>
-                <label>Repetir la Contraseña: </label><input type="password" name="usPassRep" id="input_contrasenaRep" class="form-control" required>
+                <label>Repetir la Contraseña: </label><input type="password" name="usPassRep" id="usPassRep" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una contraseña!
                 </div>
@@ -52,7 +54,7 @@ include_once("../menu/cabecera.php");
                     Correcto!
                 </div>
             </div>
-            <input type="submit" name="boton_enviar" onclick="return verificarContraseñaIgual(document.getElementById('input_contrasena'), document.getElementById('input_contrasenaRep'))" class="btn btn-dark mt-2" id="boton_enviar" value="Cargar">
+            <input type="submit" name="boton_enviar" class="btn btn-dark mt-2" id="boton_enviar" value="Registrarme">
         </form>
         <a href="login.php" class="link-warning">Ya estoy registrado</a>
     </div>

@@ -1,4 +1,4 @@
-function registerSuccess() {
+function registerSuccessD() {
     Swal.fire({
         icon: 'success',
         title: 'El usuario se ha deshabilitado correctamente!',
@@ -10,7 +10,7 @@ function registerSuccess() {
     }, 1500);
 }
 
-function registerFailure() {
+function registerFailureD() {
     Swal.fire({
         icon: 'error',
         title: 'No se ha podido deshabilitado el usuario!',
@@ -41,10 +41,10 @@ $(document).on('click', '.remove', function () {
             // user is logged in successfully in the back-end
             // let's redirect
             if (jsonData.success == "1") {
-                registerSuccess();
+                registerSuccessD();
             }
             else if (jsonData.success == "0") {
-                registerFailure();
+                registerFailureD();
             }
         }
     });

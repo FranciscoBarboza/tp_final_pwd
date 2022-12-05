@@ -1,17 +1,17 @@
 <?php
 include_once('../../configuracion.php');
-$objSession= new c_session();
+/* $objSession= new c_session();
 $menuRoles = [];
 if ($objSession->activa()) {
-  $idRol = $objSession->getRoles();
-  $objMenuRol = new c_menuRol();
+  $idRol = $objSession->getRol();
+  $objMenuRol = new c_menuRol(); */
   /* $objRol = new c_session();
   $objUsRol = $objRol->getRoles();
   $idRol = $objUsRol[1]->getIdRol(); */ //solo utilizar los idroles y metodo buscar de MenuRol
   // $objMenuRol->buscar($idRol);
   // $menuRoles = $objMenuRol->menuByIdRol($objSession->getVista());
   // $objRoles = $objRol->obtenerObj($idRoles);
-}
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,11 +36,11 @@ if ($objSession->activa()) {
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarsExample03">
+      <!-- <div class="collapse navbar-collapse" id="navbarsExample03">
         <ul class="navbar-nav me-auto mb-2 mb-sm-0">
           <li class="nav-item">
             <a class="px-2 mx-1 btn btn-danger  btn-outline-light" href="../paginaSegura/inicio.php" style="font-family: 'Chivo', sans-serif;">Inicio</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../login/login.php" style="font-family: 'Chivo', sans-serif;">Ingresar</a>
           </li>

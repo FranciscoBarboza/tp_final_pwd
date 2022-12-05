@@ -3,10 +3,10 @@ $(document).ready(function () {
         e.preventDefault();
         const forms = document.querySelectorAll('.needs-validation');
         if (forms[0].checkValidity()) {
-            if(document.getElementById('input_contrasena').value == document.getElementById('input_contrasenaRep').value){
-            var password = document.getElementById("input_contrasena").value;
+            if(document.getElementById('usPass').value == document.getElementById('usPassRep').value){
+            var password = document.getElementById("usPass").value;
             var passhash = hex_md5(password).toString();
-            document.getElementById("input_contrasena").value = passhash;
+            document.getElementById("usPass").value = passhash;
             $.ajax({
                 type: "POST",
                 url: 'accion/accionAjaxRegistro.php',
@@ -43,7 +43,7 @@ function registerSuccess() {
         timer: 1500
     })
     setTimeout(function () {
-        window.location.href = "../paginasTienda/inicio.php";
+        window.location.href = "../paginaSegura/inicio.php";
     }, 1500);
 }
 
@@ -51,18 +51,6 @@ function registerFailure() {
     Swal.fire({
         icon: 'error',
         title: 'La cuenta no se pudo crear en la base de datos!',
-        showConfirmButton: false,
-        timer: 1500
-    })
-    setTimeout(function () {
-        recargarPagina();
-    }, 1500);
-}
-
-function captchaFailure() {
-    Swal.fire({
-        icon: 'error',
-        title: 'El captcha no se realizo correctamente!',
         showConfirmButton: false,
         timer: 1500
     })

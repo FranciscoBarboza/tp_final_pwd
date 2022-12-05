@@ -35,6 +35,7 @@ include_once("../../configuracion.php");
 <body> -->
 <div  class="container-fluid">
             <div class="container col-md-10">
+                <br>
                 <h2>Lista de todos los usuarios</h2>
                 <div class="mb-3">
                         <table class="table table-hover">
@@ -42,7 +43,7 @@ include_once("../../configuracion.php");
                                 <tr>
                                     <th>ID usuario</th>
                                     <th>Usuario</th>
-                                    <th>Contraseña</th>
+                                    <!-- <th>Contraseña</th> -->
                                     <th>Mail Usuario</th>
                                     <th>Roles</th>
                                     <th>Estado actual</th>
@@ -60,7 +61,7 @@ include_once("../../configuracion.php");
                                         echo '<tr>';
                                         echo '<td>'. $usuario->getIdUsuario().'</td>';
                                         echo '<td>'. $usuario->getUsNombre().'</td>';
-                                        echo '<td>'. $usuario->getUsPass().'</td>';
+                                        // echo '<td>'. $usuario->getUsPass().'</td>';
                                         echo '<td>'. $usuario->getUsMail().'</td>';
                                     /* foreach($arrayRolesUsuario as $usRol){ */
                                         echo '<td>';
@@ -83,6 +84,7 @@ include_once("../../configuracion.php");
                                         
                                         echo '<td><button type="button" class="btn btn-success editarBoton" data-bs-toggle="modal"data-bs-target="#exampleModal" data-bs-whatever="@mdo">Editar Usuario</button>';
                                         echo '<td><button type="button" class="btn btn-warning remove">Deshabilitar</button></td>';
+                                        
                                         echo '<td><button type="button" class="btn btn-warning unRemove">Habilitar</button></td>';
                                         echo '</tr>';
                                     }
@@ -97,9 +99,6 @@ include_once("../../configuracion.php");
                                     <div class="modal-content">
                                         <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Modifique datos usuario</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
                                 </div>
 
                                 <form action="accionActualizarUsuario.php" class="needs-validation" method="POST">
@@ -108,15 +107,15 @@ include_once("../../configuracion.php");
                                     <input type="hidden" name="idUsuario" id="idUsuario">
                                     <input type="hidden" name="usPass" id="usPass">
                                     <input type="hidden" name="usDeshabilitado" id="usDeshabilitado">
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 10px ;">
                                         <label>Nombre Usuario</label>
                                         <input type="text" name="usNombre" id="usNombre" class="form-control" placeholder="Ingrese nuevo nombre de usuario" required>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 10px ;">
                                         <label>Mail Usuario</label>
                                         <input type="email" name="usMail" id="usMail" class="form-control" placeholder="Ingrese nuevo mail del usuario" required>
                                     </div>
-                                    <!-- div class="form-group">
+                                    <!-- div class="form-group" style="margin-bottom: 10px ;">
                                         <label>Roles Usuario</label>
                                         <br>
                                         <label>Rol Administrador<input type="checkbox" id="cbox1" value="rolAdmin"></label>
@@ -134,6 +133,9 @@ include_once("../../configuracion.php");
                             </div>
                         </tbody>
                     </table>
+                </div>
+            </div>
+
 </div>
 <!-- </body> -->
 <script src="js/deshabilitarUsuario.js"></script>

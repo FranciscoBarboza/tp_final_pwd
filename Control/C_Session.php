@@ -47,14 +47,6 @@ class c_session{
         if (session_status() == 1) {
             session_start();
         }
-        /* $objUsuario = new c_usuario();
-        if (isset($_SESSION["nombreUsuario"])) {
-            $usNombre["usNombre"] = $_SESSION["nombreUsuario"];
-            $usuarioId = $objUsuario->buscar($usNombre);
-            $this->setIdUsuario($usuarioId);
-         if(session_status() == 1){
-            session_start();
-        } */
     }
 
     /** INICIAR **/
@@ -62,7 +54,7 @@ class c_session{
         $this->setUsNombre($nombreUsuario);
         $this->setUsPass($passUsuario);
     } */
-    public function iniciar($nombreUsuario, $passUsuario) {
+    /* public function iniciar($nombreUsuario, $passUsuario) {
         $resp = false;
         $obj = new c_usuario();
         $param['usNombre'] = $nombreUsuario;
@@ -79,40 +71,15 @@ class c_session{
             $this->cerrar();
         }
         return $resp;
-    }
-
-    /** VALIDAR **/
-    /* public function validar(){
-        $inicia = false;
-        $nombreUsuario = $this->getUsNombre();
-        $passUsuario = $this->getUsPass();
-        $controlUsuario = new c_usuario();
-        $where = array();
-        $filtro1 = array();
-        $filtro1['usNombre'] = $nombreUsuario;
-        $filtro2 = array();
-        $filtro2['usPass'] = $passUsuario;
-        $where['usNombre'] = $nombreUsuario;
-        $where['usPass'] = $passUsuario;//solo guarda IDUSUARIO
-        $listaUsuarios = $controlUsuario->buscar($where);
-        $username = $controlUsuario->buscar($filtro1);
-        $pass =  $controlUsuario->buscar($filtro2);
-        $error = "";
-        if ($username == null) {
-            $error .= "Este usuario no existe";
-        } elseif ($pass == null) {
-            $error .= "Contraseña incorrecta";
-        }
-        if (is_array($listaUsuarios) && count($listaUsuarios) > 0) {
-            if ($listaUsuarios[0]->getUsDeshabilitado() != '0000-00-00 00:00:00') {
-                $error .= "El usuario está deshabilitado";
-            } else {
-                $inicia = true;
-                $this->setIdUsuario($listaUsuarios[0]->getIdUsuario());
-            }
-        }
-        return array($inicia, $error);
     } */
+
+    private function iniciar($nombreUsuario, $arrayRoles){
+        $_SESSION["nombreUsuario"] = $nombreUsuario;
+        $_SESSION["roles"] = $arrayRoles;
+        $objRol = new C_Rol();
+        $param = [2];
+        $_SESSION["vista"] = $objRol->obtenerObj($param)[0];
+    }
 
     public function validar(){
         $resp = false;
@@ -145,27 +112,35 @@ class c_session{
 
 
     /** GET ROL **/
-    public function getRolActual(){
+    /* public function getRolActual(){
         $rolActual = null;
         if (isset($_SESSION['idRol'])) {
             $rolActual = $_SESSION['idRol'];
         }
         return $rolActual;
-    }
+    } */
 
     public function getRol() {
-        $list_rol = null;
+        // $list_rol = null;
         if ($this->validar()) {
             $obj = new c_usuarioRol();
-            $param['idUsuario'] = $_SESSION['idUsuario'];
-            $param['idRol'] = $_SESSION['idRol'];
-
-            $resultado = $obj->buscar($param);
-            if (count($resultado) > 0) {
+            $param['idUsuario'] = $this->getIdUsuario();
+            /* $param['idUsuario'] = $_SESSION['idUsuario']; */
+            // $param['idRol'] = $_SESSION['idRol'];
+            $arrayResultado = $obj->buscar($param);
+            $roles = [];
+                foreach($arrayResultado as $rol){
+                    array_push($roles, $rol->getRol());
+                }
+                $idRoles=[];
+                foreach($roles as $objRol){
+                    array_push($idRoles, $objRol->getIdRol());
+                }
+            /* if (count($resultado) > 0) {
                 $list_rol = $resultado;
-            }
+            } */
         }
-        return $list_rol;
+        return $idRoles;
     }
 
     /* public function getRoles(){
@@ -174,47 +149,6 @@ class c_session{
         $param = ['idUsuario' => $usuarioActual->getIdUsuario()];
         $listaRoles = $objUsuarioRol->buscar($param);
         return $listaRoles;
-    } */
-
-    /* public function administrador(){
-        $arrayRoles = $this->getRoles();
-        $admin = false;
-        $i = 0;
-        while ($i < count($arrayRoles) && !$admin) {
-            if ($arrayRoles[$i]->getObjRol()->getIdRol() == 1) {
-                $admin = true;
-            }
-            $i++;
-        }
-        return $admin;
-    }
-
-    public function cliente()
-    {
-        $arrayRoles = $this->getRoles();
-        $cliente = false;
-        $i = 0;
-        while ($i < count($arrayRoles) && !$cliente) {
-            if ($arrayRoles[$i]->getObjRol()->getIdrol() == 2) {
-                $cliente = true;
-            }
-            $i++;
-        }
-        return $cliente;
-    }
-
-    public function deposito()
-    {
-        $arrayRoles = $this->getRoles();
-        $depo = false;
-        $i = 0;
-        while ($i < count($arrayRoles) && !$depo) {
-            if ($arrayRoles[$i]->getObjRol()->getIdRol() == 3) {
-                $depo = true;
-            }
-            $i++;
-        }
-        return $depo;
     } */
 
     public function tienePermisos(){
@@ -243,7 +177,51 @@ class c_session{
         return $resp;
     }
 
+    /**
+     * Devuelve el rol del usuario logeado.
+     */
+    /* public function getRolLogin() {
+        $list_rol = null;
+        if ($this->validar()) {
+            $obj = new c_usuarioRol();
+            $param['idUsuario'] = $_SESSION['idUsuario'];
+            $param['idRol'] = $_SESSION['idRol'];
 
+            $resultado = $obj->buscar($param);
+            if (count($resultado) > 0) {
+                $list_rol = $resultado;
+            }
+        }
+        return $list_rol;
+    }
+
+    public function getColRol() {
+        $list = null;
+        if ($this->validar()) {
+            $obj = new c_usuarioRol();
+            $param['idUsuario'] = $_SESSION['idUsuario'];
+            $resultado = $obj->buscar($param);
+            if (count($resultado) > 0) {
+                $list = $resultado;
+            }
+        }
+        $res = $this->filtrarRoles($list);
+        return $res;
+    }
+    private function filtrarRoles($list) {
+        foreach ($list as $rol) {
+            $res[] = $rol->getObjRol();
+        }
+        return $res;
+    } */
+
+    public function getVista(){
+        $resp= null;
+        if($_SESSION['vista']!= null){
+            $resp= $_SESSION['vista'];
+        }
+        return $resp;
+    }
 
     /** CERRAR **/
     public function cerrar(){

@@ -37,6 +37,10 @@ CREATE TABLE IF NOT EXISTS `compra` (
   KEY `fkcompra_1` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `compra` (`idCompra`, `idUsuario`) VALUES
+(1, '2022-11-19 18:51:56', 1),
+(2, '2022-11-22 19:51:56', 1),
+(3, '2022-11-25 18:03:56', 1);
 -- --------------------------------------------------------
 
 --
@@ -55,6 +59,12 @@ CREATE TABLE IF NOT EXISTS `compraestado` (
   KEY `fkcompraestado_1` (`idCompra`),
   KEY `fkcompraestado_2` (`idCompraEstadoTipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `compraestado`('idCompraEstado', `idCompra`, `idCompraEstadoTipo`, `ceFechaIni`, `ceFechaFin`) VALUES
+(1, 1, 1, '2021-11-19 02:54:15', '2021-11-19 09:54:18'),
+(2, 2, 2, '2021-11-20 02:54:15', '2021-11-20 11:54:18'),
+(3, 3, 4, '2021-11-21 02:54:15', '2021-11-21 15:54:18');
 
 -- --------------------------------------------------------
 
@@ -98,6 +108,11 @@ CREATE TABLE IF NOT EXISTS `compraitem` (
   KEY `fkcompraitem_2` (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `compraitem`(`idCompraItem`, `idProducto`, `idCompra`, `ciCantidad`) VALUES
+(1, 1, 1, 2),
+(2, 3, 2, 4),
+(3, 2, 3, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -121,11 +136,18 @@ CREATE TABLE IF NOT EXISTS `menu` (
 --
 
 INSERT INTO `menu` (`idMenu`, `meNombre`, `meDescripcion`, `idPadre`, `meDeshabilitado`) VALUES
-(1, 'Tienda.cliente', '../menuCliente/tienda.php', NULL, NULL),
-(2, 'Usuarios.admin', '../menuAdmin/listaUsuarios.php', NULL, NULL),
-(3, 'Productos.depo', '../menuDepo/listaProductos.php', NULL, NULL),
-(4, 'Perfil.cliente', '../menuCliente/perfil.php', NULL, NULL),
-(6, 'Menus.admin', '../menuAdmin/listaMenues.php', NULL, NULL);
+(1, 'Administración', '#', NULL, NULL),
+(2, 'Cliente', '#', NULL, NULL),
+(3, 'Depósito', '#', NULL, NULL),
+(4, 'Tienda', '../menuCliente/tienda.php', 2, NULL),
+(5, 'Perfil', '../menuCliente/perfil.php', 2, NULL),
+(6, 'Historial mis compras', '../menuCliente/historialCompras.php', 2, '0000-00-00 00:00:00'),
+(7, 'Lista usuarios', '../menuAdmin/listaUsuarios.php', 1, NULL),
+(8, 'Lista menus', '../menuAdmin/listaMenues.php', 1, NULL),
+(9, 'Lista productos', '../menuDepo/listaProductos.php', 3, NULL),
+(10, 'Cargar producto', '../menuDepo/nuevoProducto.php', 3, NULL),
+(11, 'Historial compras', '../menuDepo/historialCompras.php', 3, NULL);
+
 
 -- --------------------------------------------------------
 
@@ -146,11 +168,9 @@ CREATE TABLE IF NOT EXISTS `menurol` (
 --
 
 INSERT INTO `menurol` (`idMenu`, `idRol`) VALUES
-(1, 2),
-(5, 2);
-(2, 1),
-(6, 1);
-(4, 3),
+(1, 1),
+(2, 2),
+(3, 3);
 -- --------------------------------------------------------
 
 --
@@ -168,6 +188,11 @@ CREATE TABLE IF NOT EXISTS `producto` (
   PRIMARY KEY (`idProducto`),
   UNIQUE KEY `idproducto` (`idProducto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO 'producto' (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`) VALUES ('ESTACAS CAZAVAMPIROS', '35cm de pino tallado', 25, 500, 'https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg'),
+('BALAS DE PLATA', 'bendecidas', 100, 50, 'https://comunaslitoral.com.ar/06-2016/resize_1465306129.jpg'),
+('BALAS DE PLATA', 'bendecidas', 100, 50, 'https://comunaslitoral.com.ar/06-2016/resize_1465306129.jpg'),
+('EXORCISMO', 'viene un tipo a tu casa y te saca los fantasmas ', 20, 250,'https://pbs.twimg.com/media/EY1UeCdWkAEsJKX.jpg');
 
 -- --------------------------------------------------------
 
@@ -189,9 +214,9 @@ CREATE TABLE IF NOT EXISTS `rol` (
 --
 
 INSERT INTO `rol` (`idRol`, `rolDescripcion`) VALUES
-(1, 'ROLE_ADMIN'),
-(2, 'ROLE_USER'),
-(3, 'ROLE_DEPOSITO');
+(1, 'Administrador'),
+(2, 'Cliente'),
+(3, 'Deposito');
 
 -- --------------------------------------------------------
 
@@ -210,7 +235,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   UNIQUE KEY `idusuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE 'usuario' MODIFY 'usNombre' varchar(50) NOT NULL UNIQUE;
+INSERT INTO 'usuario' ('idUsuario', 'usNombre', 'usPass', 'usMail', 'usDeshabilitado') VALUES
+('', 'francisco','81dc9bdb52d04dc20036dbd8313ed055','francisco@gmail.com', null),
+('', 'tino', 'fcea920f7412b5da7be0cf42b8c93759','tino@hotmail.com', null),
+('', 'petalos', 'e10adc3949ba59abbe56e057f20f883e','rosita@yahoo.com', null);
+
+
+
+/* ALTER TABLE 'usuario' MODIFY 'usNombre' varchar(50) NOT NULL UNIQUE; */
 -- --------------------------------------------------------
 
 --
@@ -226,10 +258,10 @@ CREATE TABLE IF NOT EXISTS `usuariorol` (
   KEY `idrol` (`idRol`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `usuariorol` (`idRol`, `rolDescripcion`) VALUES
-(1, 'ROLE_ADMIN'),
-(2, 'ROLE_USER'),
-(3, 'ROLE_DEPOSITO');
+INSERT INTO `usuariorol` (`idUsuario`, `idRol`) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
 --
 -- Restricciones para tablas volcadas
 --
@@ -279,55 +311,10 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-/*
-
-DROP TABLE IF EXISTS `producto`;
-CREATE TABLE IF NOT EXISTS `producto` (
-  `idProducto` bigint(20) NOT NULL AUTO_INCREMENT,
-  `proNombre` varchar(30) NOT NULL,
-  `proDetalle` varchar(512) NOT NULL,
-  `proCantStock` int(11) NOT NULL,
-  `proPrecio` int(11) NOT NULL,
-  `urlImagen` varchar(200) NOT NULL,
-  PRIMARY KEY (`idProducto`),
-  UNIQUE KEY `idproducto` (`idProducto`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-*/
-
-
-insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`)
-values ('ESTACAS CAZAVAMPIROS', '35cm de pino tallado', 25, 500, 'https://i.pinimg.com/originals/3b/01/4a/3b014ad3e88e199cea4862a0efddca4b.jpg');
-
-insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`)
-values ('BALAS DE PLATA', 'bendecidas', 100, 50, 'https://comunaslitoral.com.ar/06-2016/resize_1465306129.jpg');
-
-insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`)
-values ('CRUCIFIJO', 'grabado y relieves en plata', 7, 800, 'https://www.antiguedadestecnicas.com/fotos/prin/AR-B-898/AR-B-898-1.jpg');
-
-insert into producto (`pronombre`,`prodetalle`, `proCantStock`, `proPrecio`, `urlItem`)
-values ('EXORCISMO', 'viene un tipo a tu casa y te saca los fantasmas ', 20, 250,'https://pbs.twimg.com/media/EY1UeCdWkAEsJKX.jpg');
-
-
-
-/* probando  compra iniciada*/
-INSERT INTO usuario (idUsuario, usNombre, usPass, usMail, usDeshabilitado) VALUES ('', 'francisco','81dc9bdb52d04dc20036dbd8313ed055','francisco@gmail.com','');
-
-INSERT INTO `compra`(`idCompra`, `idUsuario`) VALUES (null,1);
-
-INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (2,1,5);
-
-INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (1,1, '0000-00-00 00:00:00');
-/* otro iniciado */
-INSERT INTO `compra`(`idCompra`, `idUsuario`) VALUES (null,1);
-
-INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (4,3,1);
-
-INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (3,1, '0000-00-00 00:00:00');
 
 /* probando compra aceptada 
 INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (2,2,'0000-00-00 00:00:00');
 */
 
-INSERT INTO `compraitem`( `idProducto`, `idCompra`, `ciCantidad`) VALUES (4,1,2);
 
-INSERT INTO `compraestado`( `idCompra`, `idCompraEstadoTipo`, `ceFechaFin`) VALUES (2,2,'0000-00-00 00:00:00');
+
