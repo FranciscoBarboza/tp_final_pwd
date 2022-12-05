@@ -138,16 +138,19 @@ class c_compraItem
     
     $compraEstados1= $objCompraEstado->listar("idCompraEstadoTipo = 1");//todos las compras estados iniciadas 1
     
-    foreach ($compraEstados1 as $compraE) {
-     $compra= $compraE->getObjCompra();
-         
-     if ($compraE->getObjCompra()->getObjUsuario()->getIdUsuario() == $id) {
-        array_push($compraIniciada, $compraE);
-     }
-    
-    
-     
+    if ($compraEstados1 != null) {
+        foreach ($compraEstados1 as $compraE) {
+            $compra= $compraE->getObjCompra();
+                
+            if ($compraE->getObjCompra()->getObjUsuario()->getIdUsuario() == $id) {
+               array_push($compraIniciada, $compraE);
+            }
+           
+           
+            
+           }
     }
+    
     return $compraIniciada;
     }
     
@@ -224,14 +227,14 @@ class c_compraItem
         $objCompraitem= new CompraItem();
         $objCompraAux= new c_compra();
         $objProducto= new c_producto();
-
-        $objProducto->buscar(["idProducto"=>$idProducto]);
+        //posible error
+        $objProductoAux= $objProducto->buscar(["idProducto"=>$idProducto]);
 
         $compraEncontrada= $objCompraAux->buscar(["idCompra"=> intval($idCompra)]);
 
         
 
-        $objCompraitem->cargar(null, $objProducto, $compraEncontrada[0], intval($cantidad));
+        $objCompraitem->cargar(null, $objProductoAux[0], $compraEncontrada[0], intval($cantidad));
 
         $objCompraitem->insertar();
 

@@ -61,6 +61,8 @@ class Compra extends baseDatos{
     {
         $base = new baseDatos();
         $resp = false;
+
+        $objque= $this->getObjUsuario();
         
         //Creo la consulta 
         $consulta = "INSERT INTO compra (idCompra, coFecha, idUsuario) VALUES ('".
@@ -78,6 +80,30 @@ class Compra extends baseDatos{
         }
         return $resp;
     }
+
+    public function nuevaCompra()
+    {
+        $base = new baseDatos();
+        $resp = false;
+
+        $objque= $this->getObjUsuario();
+        
+        //Creo la consulta 
+        $consulta = "INSERT INTO compra (idCompra, coFecha, idUsuario) VALUES (DEFAULT,DEFAULT,{$this->getObjUsuario()->getIdUsuario()})";
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($consulta)) {
+                $resp = true;
+            } else {
+                $this->setMensajeFuncion($base->getError());
+            }
+        } else {
+            $this->setMensajeFuncion($base->getError());
+        }
+        return $resp;
+    }
+
+
+    
 
     //MODIFICAR
     public function modificar()
@@ -185,7 +211,7 @@ class Compra extends baseDatos{
         $base = new baseDatos();
         $resp = false;
         if ($base->Iniciar()) {
-            $consulta = "SELECT * FROM compra WHERE idcompra IN (SELECT MAX(idcompra) AS idcompra FROM compra)";
+            $consulta = "SELECT * FROM compra WHERE  idcompra in (SELECT MAX(idcompra) AS idcompra FROM compra)";
             if ($base->Ejecutar($consulta)) {
                 if ($compra = $base->Registro()) {
                     $this->setIdCompra($compra['idCompra']);
