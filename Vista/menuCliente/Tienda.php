@@ -171,7 +171,7 @@ $controlCompraItem= new c_compraItem();
 
 <!-- </html> -->
 <?php
-include_once("../menu/pie.php")
+include_once("../menu/pie.php")//holahhj
 ?>
 
 <tr>
