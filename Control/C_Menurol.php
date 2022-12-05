@@ -115,7 +115,7 @@ class c_menuRol{
         return $arreglo;
     }
 
-    public function menusByIdRol($idRoles){
+    /* public function menusByIdRol($idRoles){
         $arrayMenuRol= [];
         foreach ($idRoles as $idRol){
             $idRolActual= $idRol->getObjRol()->getIdRol();
@@ -139,5 +139,25 @@ class c_menuRol{
         }
         $arrayDeMenues = array_unique($arrayDeMenues); //Elimina elementos repetidos del array
         return $arrayDeMenues;
+    } */
+
+    public function menusByIdRol($objRol){
+        $param['idRol'] = $objRol->getIdRol();
+        $objMenuRol = $this->buscar($param);
+        $arrayMenuRoles= [];
+        foreach ($objMenuRol as $menuRol){
+            if (is_array($menuRol)) {
+                foreach ($menuRol as $MR) {
+                    array_push($arrayMenuRoles, $MR);
+                }
+            } else {
+                array_push($arrayMenuRoles, $menuRol);
+            }
+        }
+        $menus = [];
+        foreach ($arrayMenuRoles as $obj) {
+            array_push($menus, $obj->getMenu());
+        }
+        return $menus;
     }
 }

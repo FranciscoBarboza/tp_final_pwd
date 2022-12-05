@@ -6,12 +6,11 @@ include_once("../menu/cabecera.php");
         background-color: rgb(70, 70, 70);
     }
 </style>
-
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 80px;">
     <div class="container col-md-5">
         <form action="accion/accionRegistrarse.php" method="get" class="needs-validation row-md-4 text-white mb-4" novalidate>
             <div>
-                <label>Nombre: </label><input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="usNombre" minlength="3" id="input_nombre" class="form-control text" required>
+                <label>Nombre: </label><input type="text" pattern="[a-zA-Z]+\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*\s?[a-zA-Z]*" name="usNombre" minlength="3" id="usNombre" class="form-control text" required>
                 <div class="invalid-feedback">
                     Porfavor ingrese un nombre valido! No se aceptan numeros y tiene que ser mayor a 3 letras.
                 </div>
@@ -20,7 +19,7 @@ include_once("../menu/cabecera.php");
                 </div>
             </div>
             <div>
-                <label>Email: </label><input type="email" name="usMail" id="input_email" class="form-control text" required>
+                <label>Email: </label><input type="email" name="usMail" id="usMail" class="form-control text" required>
                 <div class="invalid-feedback">
                     Porfavor ingrese un e-mail valido! Es requerido que contenga numeros y letras.
                 </div>
