@@ -1,4 +1,5 @@
-$(document).ready(function () {
+
+    $(document).on('submit','.Comprar', function (){
     $('form').submit(function (e) {
         e.preventDefault();
         const forms = document.querySelectorAll('.need-validation');
