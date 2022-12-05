@@ -106,7 +106,7 @@ if ($objSession->activa()) {
             <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../menuDepo/listaProductos.php" style="font-family: 'Chivo', sans-serif;">Admin.productos</a>
           </li>
           <li class="nav-item">
-            <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../menuCliente/perfil.php" style="font-family: 'Chivo', sans-serif;">Perfil</a>
+            <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../menuCliente/perfilCliente.php" style="font-family: 'Chivo', sans-serif;">Perfil</a>
           </li>
           <li class="nav-item">
             <a class="px-2 mx-1 btn btn-danger btn-outline-light" href="../menuAdmin/listaMenues.php" style="font-family: 'Chivo', sans-serif;">Admin.menues</a>

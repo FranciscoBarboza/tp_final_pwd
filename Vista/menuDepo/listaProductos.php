@@ -23,7 +23,7 @@ include_once("../../configuracion.php");
 </head> -->
 <!-- <body> -->
 <div class="container col-md-10">
-    <form action="" class="form-control needs-validation" method="POST" novalidate>         
+    <!-- <form action="" class="form-control needs-validation" method="POST" novalidate>         
     <table id="formulario_CrearProducto" class="table table-bordered">
         <thead class="table-primary">
             <tr>
@@ -70,22 +70,24 @@ include_once("../../configuracion.php");
             </tr>
         </tbody>
     </table>
-    </form>
+    </form> -->
 </div>
     <div class="container-fluid">
             <div class="container col-md-10">
+                <br>
                 <h2>Lista de todos los productos de la plataforma</h2>
                 <div class="mb-3">
                         <table class="table table-hover">
                             <thead class="text-center">
                                 <tr>
                                     <th>Imagen</th>
+                                    <!-- <th class="invisible-cell">URL</th> -->
                                     <th>ID producto</th>
                                     <th>Nombre</th>
                                     <th>Detalle</th>
                                     <th>Precio</th>
                                     <th>En stock</th>
-                                    <th></th>
+                                    <th>Editar</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -95,14 +97,15 @@ include_once("../../configuracion.php");
                                     foreach ($arrayProductos as $producto){ 
                                         echo '<tr>';
                                         echo '<td><img src="'.$producto->getUrlItem().'" alt="" height="100" width="100"></td>';
+                                        echo '<td style= display:none;>' .$producto->getUrlItem().'</td>';
                                         echo '<td>' .$producto->getIdProducto().'</td>';
                                         echo '<td>'. $producto->getProNombre().'</td>';
                                         echo '<td>'. $producto->getProDetalle().'</td>';
                                         echo '<td>'. $producto->getProPrecio().'</td>';
                                         echo '<td>'. $producto->getProCantStock().'</td>';
                                         echo '<td><button type="button" class="btn btn-success editarBoton" data-bs-toggle="modal"data-bs-target="#exampleModal" data-bs-whatever="@mdo">Editar Producto</button>';
-                                        echo '<td><button type="button" class="btn btn-warning remove">Deshabilitar</button></td>';
-                                        echo '<td><button type="button" class="btn btn-warning unRemove">Habilitar</button></td>';
+                                       /*  echo '<td><button type="button" class="btn btn-warning remove">Deshabilitar</button></td>';
+                                        echo '<td><button type="button" class="btn btn-warning unRemove">Habilitar</button></td>'; */
                                         echo '</tr>';
                                     }
                                 }else{
@@ -116,32 +119,29 @@ include_once("../../configuracion.php");
                                     <div class="modal-content">
                                         <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Modifique datos producto</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
                                 </div>
-
                                 <form action="accionActualizarProducto.php" class="needs-validation" method="POST">
 
                                 <div class="modal-body">
-                                    <div class="form-group">
+                                    <input type="hidden" name="urlImagen" id="urlImagen">
+                                    <div class="form-group" style="margin-bottom: 10px ;">
                                         <label>URL Imagen</label>
                                         <input type="url" name="urlItem" id="urlItem" class="form-control" placeholder="Ingrese nuevo URL de la nueva imagen" required>
                                     </div>
                                     <input type="hidden" name="idProducto" id="idProducto">
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 10px ;">
                                         <label>Nombre Producto</label>
                                         <input type="text" name="proNombre" id="proNombre" class="form-control" placeholder="Ingrese nuevo nombre de producto" required>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 10px ;">
                                         <label>Detalles</label>
                                         <input type="text" name="proDetalle" id="proDetalle" class="form-control" placeholder="Ingrese nuevo detalle de producto" required>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 10px ;">
                                         <label>Precio</label>
                                         <input type="number" name="proPrecio" id="proPrecio" class="form-control" placeholder="Ingrese nuevo precio de producto" required>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 10px ;">
                                         <label>Stock</label>
                                         <input type="number" name="proCantStock" id="proCantStock" class="form-control" placeholder="Ingrese stock disponible de producto" required>
                                     </div>
@@ -154,6 +154,8 @@ include_once("../../configuracion.php");
                             </div>
                         </tbody>
                     </table>
+                </div>
+            </div>
 </div>
 <!-- </body> -->
 <script src="js/deshabilitarUsuario.js"></script>

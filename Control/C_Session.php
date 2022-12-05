@@ -54,7 +54,7 @@ class c_session{
         $this->setUsNombre($nombreUsuario);
         $this->setUsPass($passUsuario);
     } */
-    public function iniciar($nombreUsuario, $passUsuario) {
+    /* public function iniciar($nombreUsuario, $passUsuario) {
         $resp = false;
         $obj = new c_usuario();
         $param['usNombre'] = $nombreUsuario;
@@ -71,6 +71,14 @@ class c_session{
             $this->cerrar();
         }
         return $resp;
+    } */
+
+    private function iniciar($nombreUsuario, $arrayRoles){
+        $_SESSION["nombreUsuario"] = $nombreUsuario;
+        $_SESSION["roles"] = $arrayRoles;
+        $objRol = new C_Rol();
+        $param = [2];
+        $_SESSION["vista"] = $objRol->obtenerObj($param)[0];
     }
 
     public function validar(){

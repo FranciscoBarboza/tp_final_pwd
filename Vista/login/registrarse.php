@@ -18,6 +18,7 @@ include_once("../menu/cabecera.php");
                     Correcto!
                 </div>
             </div>
+            <br>
             <div>
                 <label>Email: </label><input type="email" name="usMail" id="usMail" class="form-control text" required>
                 <div class="invalid-feedback">
@@ -27,8 +28,9 @@ include_once("../menu/cabecera.php");
                     Correcto!
                 </div>
             </div>
+            <br>
             <div>
-                <label>Contraseña: </label><input type="password" name="usPass" id="input_contrasena" class="form-control" required>
+                <label>Contraseña: </label><input type="password" name="usPass" id="usPass" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una contraseña!
                 </div>
@@ -39,8 +41,9 @@ include_once("../menu/cabecera.php");
                     Correcto!
                 </div>
             </div>
+            <br>
             <div>
-                <label>Repetir la Contraseña: </label><input type="password" name="usPassRep" id="input_contrasenaRep" class="form-control" required>
+                <label>Repetir la Contraseña: </label><input type="password" name="usPassRep" id="usPassRep" class="form-control" required>
                 <div class="invalid-feedback">
                     Ingrese una contraseña!
                 </div>
@@ -51,7 +54,7 @@ include_once("../menu/cabecera.php");
                     Correcto!
                 </div>
             </div>
-            <input type="submit" name="boton_enviar" onclick="return verificarContraseñaIgual(document.getElementById('input_contrasena'), document.getElementById('input_contrasenaRep'))" class="btn btn-dark mt-2" id="boton_enviar" value="Cargar">
+            <input type="submit" name="boton_enviar" class="btn btn-dark mt-2" id="boton_enviar" value="Registrarme">
         </form>
         <a href="login.php" class="link-warning">Ya estoy registrado</a>
     </div>

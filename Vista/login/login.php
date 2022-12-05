@@ -1,6 +1,11 @@
 <?php
 include_once("../menu/cabecera.php");
 ?>
+<style>
+    body{
+        background-color: rgb(70, 70, 70);
+    }
+</style>
 <div class="modal modal-signin position-static d-block py-5" tabindex="-1" role="dialog" id="modalSignin">
     <div class="modal-dialog" role="document">
         <div class="modal-content rounded-4 shadow">

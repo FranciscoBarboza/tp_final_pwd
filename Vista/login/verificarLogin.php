@@ -14,7 +14,7 @@ if($objSession->validar($metodo)){
         })
 
         function redireccionarPagina() {
-            location.href = "../inicio.php"
+            location.href = "../paginaSegura/inicio.php"
         }
         setTimeout("redireccionarPagina()", 1450);
     </script>

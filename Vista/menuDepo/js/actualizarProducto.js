@@ -10,12 +10,13 @@ $(document).ready(function () {
 
         console.log(data);
 
-        $('#urlItem').val(data[0]);
-        $('#idProducto').val(data[1]);
-        $('#proNombre').val(data[2]);
-        $('#proDetalle').val(data[3]);
-        $('#proPrecio').val(data[4]);
-        $('#proCantStock').val(data[5]);
+        $('#urlImagen').val(data[0]);
+        $('#urlItem').val(data[1]);
+        $('#idProducto').val(data[2]);
+        $('#proNombre').val(data[3]);
+        $('#proDetalle').val(data[4]);
+        $('#proPrecio').val(data[5]);
+        $('#proCantStock').val(data[6]);
     });
 });
 
@@ -26,7 +27,7 @@ $(document).ready(function () {
         if (forms[0].checkValidity()) {
             $.ajax({
                 type: "POST",
-                url: 'accion/accionActualizarUsuario.php',
+                url: 'accion/accionActualizarProducto.php',
                 data: $(this).serialize(),
                 success: function (response) {
                     var jsonData = JSON.parse(response);
@@ -49,7 +50,7 @@ $(document).ready(function () {
 function registerSuccess() {
     Swal.fire({
         icon: 'success',
-        title: 'La cuenta se editó correctamente!',
+        title: 'El producto se editó correctamente!',
         showConfirmButton: false,
         timer: 1500
     })
@@ -61,11 +62,15 @@ function registerSuccess() {
 function registerFailure() {
     Swal.fire({
         icon: 'error',
-        title: 'La cuenta no se pudo editar en la base de datos!',
+        title: 'El producto no se pudo editar en la base de datos!',
         showConfirmButton: false,
         timer: 1500
     })
     setTimeout(function () {
         recargarPagina();
     }, 1500);
+}
+
+function recargarPagina() {
+    location.reload();
 }
