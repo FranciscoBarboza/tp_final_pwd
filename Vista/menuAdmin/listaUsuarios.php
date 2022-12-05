@@ -33,7 +33,7 @@ include_once("../../configuracion.php");
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
 </head>
 <body> -->
-    <div  class="container-fluid">
+<div  class="container-fluid">
             <div class="container col-md-10">
                 <h2>Lista de todos los usuarios</h2>
                 <div class="mb-3">
@@ -102,18 +102,21 @@ include_once("../../configuracion.php");
                                         </button>
                                 </div>
 
-                                <form action="actualizarDatos.php" method="POST">
+                                <form action="accionActualizarUsuario.php" class="needs-validation" method="POST">
 
                                 <div class="modal-body">
+                                    <input type="hidden" name="idUsuario" id="idUsuario">
+                                    <input type="hidden" name="usPass" id="usPass">
+                                    <input type="hidden" name="usDeshabilitado" id="usDeshabilitado">
                                     <div class="form-group">
                                         <label>Nombre Usuario</label>
-                                        <input type="text" name="usNombre" id="usNombre" class="form-control" placeholder="Ingrese nuevo nombre de usuario">
+                                        <input type="text" name="usNombre" id="usNombre" class="form-control" placeholder="Ingrese nuevo nombre de usuario" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Mail Usuario</label>
-                                        <input type="email" name="usMail" id="usMail" class="form-control" placeholder="Ingrese nuevo mail del usuario">
+                                        <input type="email" name="usMail" id="usMail" class="form-control" placeholder="Ingrese nuevo mail del usuario" required>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- div class="form-group">
                                         <label>Roles Usuario</label>
                                         <br>
                                         <label>Rol Administrador<input type="checkbox" id="cbox1" value="rolAdmin"></label>
@@ -121,7 +124,7 @@ include_once("../../configuracion.php");
                                         <label>Rol Cliente<input type="checkbox" id="cbox2" value="rolCliente"></label>
                                         <br>
                                         <label>Rol Deposito<input type="checkbox" id="cbox3" value="rolDepo"></label>
-                                    </div>
+                                    </div> -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button type="submit" name="insertData" class="btn btn-primary actualizar">Guardar</button>
@@ -131,7 +134,7 @@ include_once("../../configuracion.php");
                             </div>
                         </tbody>
                     </table>
-    </div>
+</div>
 <!-- </body> -->
 <script src="js/deshabilitarUsuario.js"></script>
 <script src="js/habilitarUsuario.js"></script>

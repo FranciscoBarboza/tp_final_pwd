@@ -202,7 +202,7 @@ INSERT INTO `rol` (`idRol`, `rolDescripcion`) VALUES
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `idUsuario` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usNombre` varchar(50) NOT NULL,
+  `usNombre` varchar(50) NOT NULL UNIQUE,
   `usPass` varchar(150) NOT NULL,
   `usMail` varchar(50) NOT NULL,
   `usDeshabilitado` timestamp NULL DEFAULT NULL,
@@ -210,6 +210,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   UNIQUE KEY `idusuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+ALTER TABLE 'usuario' MODIFY 'usNombre' varchar(50) NOT NULL UNIQUE;
 -- --------------------------------------------------------
 
 --

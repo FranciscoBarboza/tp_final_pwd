@@ -59,7 +59,7 @@ function registerFailure() {
     }, 1500);
 }
 
-function captchaFailure() {
+/* function captchaFailure() {
     Swal.fire({
         icon: 'error',
         title: 'El captcha no se realizo correctamente!',
@@ -69,7 +69,7 @@ function captchaFailure() {
     setTimeout(function () {
         recargarPagina();
     }, 1500);
-}
+} */
 
 function recargarPagina() {
     location.reload();

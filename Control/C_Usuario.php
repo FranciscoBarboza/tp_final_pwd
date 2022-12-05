@@ -45,8 +45,7 @@ class c_usuario
      * @return boolean
      */
 
-    private function seteadosCamposClaves($param)
-    {
+    private function seteadosCamposClaves($param){
         $resp = false;
         if (isset($param['idUsuario']))
             $resp = true;
