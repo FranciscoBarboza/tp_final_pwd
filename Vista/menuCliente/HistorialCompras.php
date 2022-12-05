@@ -6,6 +6,16 @@ $idUsuario= 1;
 
 /* aca van las mejores funciones creadas por el hombre */
 
+function buscarCompraItemsDeunaCompra($idCompra){
+  $idCompra= intval($idCompra);
+  $objc_compraItem= new c_compraItem();
+
+  $arrayCompasItems= $objc_compraItem->buscar(["idcompra"=> $idCompra]);
+
+  return $arrayCompasItems;
+}
+
+
 function arrayComprasDeUnUsuario($idUsuario){
   $objC_Compra= new c_compra();
   $idUsuario= intval($idUsuario);
@@ -25,47 +35,41 @@ function buscarCompraEstadosDeUnaCompra($idCompra){
   return $arrayComprasEstado;
 }
 
+function crearhistorialCompras($idUsuario){
+  $idUsuario= intval($idUsuario);
 
-function compraItemsDeUnaCompra($idCompra){
-  $idCompra= intval($idCompra);
-  $objC_compraItem= new c_compraItem();
+  $comprasUsuario= arrayComprasDeUnUsuario($idUsuario);
 
-  $arrayObjCompraItem= $objC_compraItem->buscar(["idcompra" => $idCompra]);
-
-
-  return $arrayObjCompraItem;
-}
-
-
-function crearHistorial($idUsuario){
-
-$arrayCompra= arrayComprasDeUnUsuario($idUsuario);
-
-$i= 1;
-foreach ($arrayCompra as $compra) {
-  $compra= new Compra();
-
-  $idcompra= $compra->getIdCompra();//aislo el id compra
-
-  $arrayCompraEstados= buscarCompraEstadosDeUnaCompra($idcompra);//obtengo el array con todos los compraEstados de una compra
-
-  foreach($arrayCompraEstados as $compraestado){
-
+  $i= 1;
+  foreach ($comprasUsuario as $compra) {
+    crearModal($compra, $i);
+    crearCabecera($compra, $i);
+    
 
   }
 
+}
 
+function crearCabecera($objCompra, $numero){
 
+  echo "
+  
+<div class=\"container align-items-center \" style=\"margin-top: 50px;\">
+
+<table class=\"table table-hover table-bordered\">
+  <thead class=\"\">
+    <thead class=\"table-dark\">
+      <th colspan=\"4\" scope=\"col\">idCompra:{$objCompra->getIdCompra()}</td>
+      <th colspan=\"3\" scope=\"col\"><button type=\"button\" class=\"btn btn-primary\" data-bs-toggle=\"modal\" data-bs-target=\"#historial{$numero}\">HISTORIAL</button></td>
+    </thead>
+  </thead>
+  
+  ";
+}
+
+function crearModal($idUsuario, $numero){
   
 }
-
-function imprimirCabecera(){
-
-}
-
-};
-
-
 
 
 

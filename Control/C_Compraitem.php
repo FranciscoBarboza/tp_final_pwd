@@ -215,7 +215,7 @@ class c_compraItem
             <form action=\"accion/eliminarDeCarrito.php\" method=\"post\" class=\"form needs-validation eliminar\" novalidate>
                 <input type=\"number\" name=\"idCompraItem\" value=\"{$objProducto->getIdProducto()}\" class=\"d-none\">
             
-                <input  onclick=\"alert('eliminar');\" type=\"submit\"  alt='eliminar' class=\"eliminarCss\" value=\"X\">
+                <input  onclick=\"enviarFormulario();\" type=\"submit\"  alt='eliminar' class=\"eliminarCss\" value=\"X\" >
             </form>
 
             <button onclick=\"alert('eliminar');background-color= 'none'; \" style=\"border: none; background-color: transparent;\" alt='eliminar'><img width='24px' src=\"css/img/Skull-icon.png\" alt='eliminar'></button>
