@@ -36,7 +36,7 @@ if ($objSession->activa()) {
 <body>
   <nav class="navbar navbar-expand-xl navbar-light  barra_navegacion" aria-label="Third navbar example"  id="header" style="background-color: #4B515D">
     <div class="container-fluid">
-    <span class="navbar-brand card-title text-danger fw-bold text-center" style="font-family: 'Chivo', sans-serif; margin-top: 5px"><a href="../../index.php">MonsterPaths</a></span>
+    <span class="navbar-brand card-title text-danger fw-bold text-center" style="font-family: 'Chivo', sans-serif; margin-top: 5px">MonsterPath</span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
