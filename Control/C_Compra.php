@@ -113,7 +113,7 @@ class c_compra
             if  (isset($param['coFecha']))
                     $where.=" and coFecha ='".$param['cofecha']."'";
             if  (isset($param['idUsuario']))
-                    $where.=" and idUsuario ='".$param['idusuario']."'";
+                    $where.=" and idUsuario ='".$param['idUsuario']."'";
         }
         $obj = new Compra();
         $arreglo =  $obj->listar($where);  
