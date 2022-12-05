@@ -82,11 +82,38 @@ class CompraEstado extends baseDatos{
         
         //Creo la consulta 
         $consulta = "INSERT INTO compraestado (idCompraEstado, idCompra, idCompraEstadoTipo, ceFechaINI, ceFechaFIN) VALUES (
-        '".$this->getIdCompraEstado()."',
+        DEFAULT,
         '".$this->getObjCompra()->getIdCompra()."',
         '".$this->getObjCompraEstadoTipo()->getIdCompraEstadoTipo()."',
         '".$this->getCeFechaINI()."',
         '".$this->getCeFechaFIN()."')";
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($consulta)) {
+                $resp = true;
+            } else {
+                $this->setMensajeFuncion($base->getError());
+            }
+        } else {
+            $this->setMensajeFuncion($base->getError());
+        }
+        return $resp;
+    }
+
+    /* INSERTA UN COMPRA ESTADO TIPO INICIAL SOLO CON EL ID COMPRA  y el compra estado tipo que queramos*/
+    public function insertar_Id_Ce($idCompra, $compraEstadoTipo){
+        $base = new baseDatos();
+        $resp = false;
+
+        $compraEstadoTipo= intval($compraEstadoTipo);
+        $idCompra= intval($idCompra);
+        
+        //Creo la consulta 
+        $consulta = "INSERT INTO compraestado (idCompraEstado, idCompra, idCompraEstadoTipo, ceFechaINI, ceFechaFIN) VALUES (
+        DEFAULT,
+        {$idCompra},
+        {$compraEstadoTipo},
+        DEFAULT,
+        NULL)";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consulta)) {
                 $resp = true;

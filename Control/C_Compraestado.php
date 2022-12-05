@@ -146,15 +146,19 @@ class c_compraEstado{
         /* ahora que tengo el arreglo con las compra estados iniciadas filtro las que tengan el id compra que quiero*/
         $arregloFiltrado= [];
         
-        foreach ($arreglo as $compraEstado) {
+        if ($arreglo != null) {
+            foreach ($arreglo as $compraEstado) {
             
-            $objCompraAux= $compraEstado->getObjCompra();
-
-            if (intval($objCompraAux->getObjUsuario()->getIdUsuario()) == intval($id)) {
-                array_push($arregloFiltrado, $compraEstado);
+                $objCompraAux= $compraEstado->getObjCompra();
+    
+                if (intval($objCompraAux->getObjUsuario()->getIdUsuario()) == intval($id)) {
+                    array_push($arregloFiltrado, $compraEstado);
+                }
+    
             }
-
         }
+
+        
 
         return $arregloFiltrado;
     }

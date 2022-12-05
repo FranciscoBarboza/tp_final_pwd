@@ -109,7 +109,7 @@ class c_compra
         if ($param<>NULL){
             $where .= '';
             if  (isset($param['idCompra']))
-                $where.=" and idCompra ='".$param['idcompra']."'"; 
+                $where.=" and idCompra ='".$param['idCompra']."'"; 
             if  (isset($param['coFecha']))
                     $where.=" and coFecha ='".$param['cofecha']."'";
             if  (isset($param['idUsuario']))
@@ -181,17 +181,18 @@ class c_compra
      * crea una nueva compra con un id de usuario
      */
     public function crearNuevaCompra($id_usuario){
-        $objUsuario= new c_usuario();
-        $objUsuario->buscar(["idUsuario" => intval($id_usuario)]);
+        $objUsuarioControl= new c_usuario();
+        $objUsuario = $objUsuarioControl->buscarViejo(["idUsuario" => intval($id_usuario)]);
+        
         $objcompra= new Compra();
-        $objcompra->cargar("DEFAULT","DEFAULT", $objUsuario[0]->getIdUsuario());
+        $objcompra->cargar("DEFAULT","DEFAULT", $objUsuario[0]);
 
-        $objcompra->insertar();
+        $objcompra->nuevaCompra();
     }
 
     public function buscarUltimaCompraCreada(){
         $objCompra= new Compra();
-        $objCompra->listar("`idCompra` = (SELECT MAX(idCompra) FROM compra)");
-        return $objCompra[0];
+        $objCompra->ultimaCompra();
+        return $objCompra;
     }
 }

@@ -224,14 +224,14 @@ class c_compraItem
         $objCompraitem= new CompraItem();
         $objCompraAux= new c_compra();
         $objProducto= new c_producto();
-
-        $objProducto->buscar(["idProducto"=>$idProducto]);
+        //posible error
+        $objProductoAux= $objProducto->buscar(["idProducto"=>$idProducto]);
 
         $compraEncontrada= $objCompraAux->buscar(["idCompra"=> intval($idCompra)]);
 
         
 
-        $objCompraitem->cargar(null, $objProducto, $compraEncontrada[0], intval($cantidad));
+        $objCompraitem->cargar(null, $objProductoAux[0], $compraEncontrada[0], intval($cantidad));
 
         $objCompraitem->insertar();
 

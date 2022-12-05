@@ -153,6 +153,27 @@ class c_usuario
         return $arreglo;
     }
 
+    public function buscarViejo($param){
+        $where = " true "; 
+        if ($param<>NULL){
+            $where .= '';
+            if  (isset($param['idUsuario']))
+                $where.=" and idUsuario ='".$param['idUsuario']."'"; 
+            if  (isset($param['usNombre']))
+                    $where.=" and usNombre ='".$param['usNombre']."'";
+            if  (isset($param['usPass']))
+                    $where.=" and usPass ='".$param['usPass']."'";
+            if  (isset($param['usMail']))
+                    $where.=" and usMail ='".$param['usMail']."'";
+            if  (isset($param['usDeshabilitado']))
+                    $where.=" and usDeshabilitado ='".$param['usDeshabilitado']."'";
+        }
+        $obj = new Usuario();
+        $arreglo =  $obj->listarViejo($where);  
+        
+        return $arreglo;
+    }
+
     //Preguntar (no debería haber una fecha?)
     /* public function habilitar($param){
         $resp = false;

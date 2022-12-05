@@ -67,8 +67,17 @@ if (count($array_compraEstadoIniciada) <> 0) {
 
     $objCompraItemAux->crearCompraItem($datos['idProducto'], $datos['ciCantidad'], $idCompraCreada);
 
-    echo json_encode(array('success'=>1));
+    
 
+    /* me recontra olvide de agregar el nuevo compraEstado jajjasjasjasjajjassjaajsja*/
+
+    $objCompraEstado= new CompraEstado();
+
+    
+
+    $objCompraEstado->insertar_Id_Ce($idCompraCreada, 1);
+
+    echo json_encode(array('success'=>1));
 }
 
 /*

@@ -153,7 +153,7 @@ class Usuario extends baseDatos{
     }
 
     //LISTAR
-    /* public function listar($condicion = ''){
+     public function listarViejo($condicion = ''){
         $arregloUsuarios = null;
         $base = new baseDatos();
         $consultaUsuario =  "SELECT * from usuario";
@@ -176,7 +176,7 @@ class Usuario extends baseDatos{
             $this->setMensajeFuncion($base->getError());
         }
         return $arregloUsuarios;
-    } */
+    }
 
     public function listar($arrayBusqueda){
         //seteo de respuesta
