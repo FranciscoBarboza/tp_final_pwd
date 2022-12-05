@@ -138,16 +138,19 @@ class c_compraItem
     
     $compraEstados1= $objCompraEstado->listar("idCompraEstadoTipo = 1");//todos las compras estados iniciadas 1
     
-    foreach ($compraEstados1 as $compraE) {
-     $compra= $compraE->getObjCompra();
-         
-     if ($compraE->getObjCompra()->getObjUsuario()->getIdUsuario() == $id) {
-        array_push($compraIniciada, $compraE);
-     }
-    
-    
-     
+    if ($compraEstados1 != null) {
+        foreach ($compraEstados1 as $compraE) {
+            $compra= $compraE->getObjCompra();
+                
+            if ($compraE->getObjCompra()->getObjUsuario()->getIdUsuario() == $id) {
+               array_push($compraIniciada, $compraE);
+            }
+           
+           
+            
+           }
     }
+    
     return $compraIniciada;
     }
     
