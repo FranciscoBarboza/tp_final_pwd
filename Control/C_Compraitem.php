@@ -146,8 +146,6 @@ class c_compraItem
                array_push($compraIniciada, $compraE);
             }
            
-           
-            
            }
     }
     
@@ -214,7 +212,12 @@ class c_compraItem
         <td>{$objProducto->getProDetalle()}</td>
         <td>{$objCompraItem->getCiCantidad()}</td>
         <td>
-        
+            <form action=\"accion/eliminarDeCarrito.php\" method=\"post\" class=\"form needs-validation eliminar\" novalidate>
+                <input type=\"number\" name=\"idCompraItem\" value=\"{$objProducto->getIdProducto()}\" class=\"d-none\">
+            
+                <input  onclick=\"alert('eliminar');\" type=\"submit\"  alt='eliminar' class=\"eliminarCss\" value=\"X\">
+            </form>
+
             <button onclick=\"alert('eliminar');background-color= 'none'; \" style=\"border: none; background-color: transparent;\" alt='eliminar'><img width='24px' src=\"css/img/Skull-icon.png\" alt='eliminar'></button>
             <button onclick=\"alert('eliminar');background-color= 'none'; \" style=\"border: none; background-color: transparent;\" alt='editar'><img width='24px' src=\"css/img/editar.png\" alt='editar'></button>
             

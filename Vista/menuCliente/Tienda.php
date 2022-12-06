@@ -165,11 +165,36 @@ $controlCompraItem= new c_compraItem();
     })
 })()
 </script>
-<!-- <script src="js/comprar.js"></script> -->
+<script src="js/comprar.js"></script>
+<script src="js/eliminarDeCarrito.js"></script>
 <link rel="stylesheet" href="css/tienda.css">
 
 <!-- </html> -->
 <?php
 include_once("../menu/pie.php")
 ?>
+
+<tr>
+        <th scope="row">{$objProducto->getIdProducto()}</th>
+        <td>{$objProducto->getProNombre()}</td>
+
+        <td style="text-align:center;">
+            <img width='65px' src="{$objProducto->getUrlItem()}\" alt='eliminar' class='img_producto'>        
+        </td>
+
+        <td>{$objProducto->getProDetalle()}</td>
+        <td>{$objCompraItem->getCiCantidad()}</td>
+        <td>
+          <form action="accion/eliminarDeCarrito.php" method="post" class="form needs-validation Comprar" novalidate>
+            <input type="number" name="idCompraItem" value="" >
+        
+            <input  onclick="alert('eliminar');" type="submit"  alt='eliminar' class="eliminarCss" value="X">
+          </form>
+          
+
+            <button onclick="alert('eliminar');" style= "border: none; background-color: transparent;" alt='editar'><img width='24px' src="css/img/editar.png" alt='editar'></button>
+          
+          
+        </td>
+      </tr>";
 
