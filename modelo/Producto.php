@@ -127,8 +127,7 @@ class Producto extends baseDatos{
     }
 
     //MODIFICAR
-    public function modificar()
-    {
+    public function modificar(){
         $base = new baseDatos();
         $resp = false;
         $consulta = "UPDATE producto SET 

@@ -34,6 +34,14 @@ class c_session{
         $_SESSION['usPass'] = $usPass;
     }
 
+    public function getUsDeshabilitado(){
+        return $_SESSION['usDeshabilitado'];
+    }
+
+    public function setUsDeshabilitado($usDeshabilitado){
+        $_SESSION['usDeshabilitado'] = $usDeshabilitado;
+    }
+
     /** CONSTRUCTOR **/
     public function __construct(){
         if (session_status() == 1) {
@@ -50,10 +58,27 @@ class c_session{
     }
 
     /** INICIAR **/
-    public function iniciar($nombreUsuario, $passUsuario)
-    {
+    /* public function iniciar($nombreUsuario, $passUsuario){
         $this->setUsNombre($nombreUsuario);
         $this->setUsPass($passUsuario);
+    } */
+    public function iniciar($nombreUsuario, $passUsuario) {
+        $resp = false;
+        $obj = new c_usuario();
+        $param['usNombre'] = $nombreUsuario;
+        $param['usPass'] = $passUsuario;
+        $param['usDeshabilitado'] = 'null';
+
+        $resultado = $obj->buscar($param);
+
+        if (count($resultado) > 0) {
+            $usuario = $resultado[0];
+            $_SESSION['idUsuario'] = $usuario->getIdUsuario();
+            $resp = true;
+        } else {
+            $this->cerrar();
+        }
+        return $resp;
     }
 
     /** VALIDAR **/
@@ -91,7 +116,7 @@ class c_session{
 
     public function validar(){
         $resp = false;
-        if($this->activa() && isset($_SESSION['idusuario']))
+        if($this->activa() && isset($_SESSION['idUsuario']))
             $resp=true;
         return $resp;
     }
@@ -111,7 +136,6 @@ class c_session{
         else{
             $where = [];
         }
-
         $listaUsuarios = $controlUsuario->buscar($where);
         if ($listaUsuarios >= 1) {
             $usuarioLog = $listaUsuarios[0];
@@ -121,30 +145,38 @@ class c_session{
 
 
     /** GET ROL **/
-    /* public function getRol(){
-        $controlUsuario = new c_usuario();
-        $usuario = $this->getUsuario();
-        $idUsuario = $usuario->getIdUsuario();
-        $param = ['idUsuario' => $idUsuario];
-        $listaRolesUsu = $controlUsuario->buscar($param);
-        if ($listaRolesUsu > 1) {
-            $rol = $listaRolesUsu;
-        } else {
-            $rol = $listaRolesUsu[0];
+    public function getRolActual(){
+        $rolActual = null;
+        if (isset($_SESSION['idRol'])) {
+            $rolActual = $_SESSION['idRol'];
         }
-        return $rol;
-    } */
+        return $rolActual;
+    }
 
-    public function getRoles(){
+    public function getRol() {
+        $list_rol = null;
+        if ($this->validar()) {
+            $obj = new c_usuarioRol();
+            $param['idUsuario'] = $_SESSION['idUsuario'];
+            $param['idRol'] = $_SESSION['idRol'];
+
+            $resultado = $obj->buscar($param);
+            if (count($resultado) > 0) {
+                $list_rol = $resultado;
+            }
+        }
+        return $list_rol;
+    }
+
+    /* public function getRoles(){
         $usuarioActual = $this->getUsuario();
         $objUsuarioRol = new c_usuarioRol();
         $param = ['idUsuario' => $usuarioActual->getIdUsuario()];
         $listaRoles = $objUsuarioRol->buscar($param);
         return $listaRoles;
-    }
+    } */
 
-    public function administrador()
-    {
+    /* public function administrador(){
         $arrayRoles = $this->getRoles();
         $admin = false;
         $i = 0;
@@ -183,27 +215,38 @@ class c_session{
             $i++;
         }
         return $depo;
-    }
+    } */
 
-    public function tienePermisos($pagina)
-    {
+    public function tienePermisos(){
         $tienePermisos = false;
+        $objUsuarioRol = new c_usuarioRol();
         if ($this->activa()) {
-            $tienePermisos= true;
-        } else {
-            $tienePermisos= false;
-        }
-        if (($this->administrador() && $pagina== "Administrador")||($this->cliente() && $pagina== "Cliente")||($this->deposito() && $pagina== "Deposito")) {
-            $tienePermisos= true;
-        } else {
-            $tienePermisos= false;
-        }
+            $where = ['idUsuario' => $this->getIdUsuario(), 'idRol' => $this->getRolActual()];
+            $resp = $objUsuarioRol->buscar($where);
+            if($resp != null && $this->getUsDeshabilitado() != null){
+                $tienePermisos= true;
+            }
+        } 
         return $tienePermisos;
     }
 
+    function permisosMenu($data) {
+        $resp = false;
+        if (isset($data['idMenu'])) {
+            $objMenuRol = new c_menuRol();
+            $where = ['idMenu' => $data['idMenu'], 'idRol' => $_SESSION['idRol']];
+            $param = $objMenuRol->buscar($where);
+            if (count($param) != 0) {
+                $resp = true;
+            }
+        }
+        return $resp;
+    }
+
+
+
     /** CERRAR **/
-    public function cerrar()
-    {
+    public function cerrar(){
         $cerrado = false;
         if (session_destroy()) {
             $cerrado = true;
